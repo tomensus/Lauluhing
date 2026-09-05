@@ -260,7 +260,7 @@ section{ position: relative; z-index:1; padding: 96px 0; }
 .section-eyebrow{
   color: var(--coral-dark); font-weight:800; letter-spacing:.06em; text-transform:uppercase; font-size: 13px; margin-bottom: 10px;
 }
-.how h2, .examples h2, .testimonials h2, .faq h2, .occasions h2{
+.how h2, .examples h2, .testimonials h2, .faq h2{
   font-size: clamp(1.8rem, 3vw, 2.4rem); max-width: 640px;
 }
 .section-lead{ max-width: 560px; font-size: 17px; }
@@ -300,17 +300,8 @@ section{ position: relative; z-index:1; padding: 96px 0; }
 .player-controls.compact .play-btn{ width:34px; height:34px; }
 .player-controls.compact .player-time{ font-size:11px; }
 
-/* ---------- Occasions ---------- */
-.occasions{ text-align:center; }
-.occasion-pills{ display:flex; flex-wrap:wrap; gap: 14px; justify-content:center; margin-top: 36px; }
-.occasion-pills span{
-  background: var(--white); border:1px solid var(--line); padding: 12px 22px;
-  border-radius: 999px; font-weight:600; font-size: 15px; box-shadow: var(--shadow-sm);
-}
-
-
 /* ---------- Testimonials ---------- */
-.testimonials{ background: var(--cream-2); }
+.testimonials{ background: var(--white); }
 .testimonial-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 44px; }
 .testimonial-card{
   margin:0; background: var(--white); border:1px solid var(--line); border-radius: var(--radius-md);
