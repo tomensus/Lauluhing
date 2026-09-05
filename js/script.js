@@ -32,7 +32,7 @@ document.querySelectorAll('.faq-item').forEach((item) => {
   });
 });
 
-// Demo audio player simulation (no real audio files — visual/interactive mock)
+// Demo audio player simulation (no real audio files - visual/interactive mock)
 document.querySelectorAll('[data-demo-player]').forEach((button) => {
   const card = button.closest('.player-controls');
   const fill = card.querySelector('.progress-fill');
@@ -92,7 +92,7 @@ document.querySelectorAll('[data-demo-player]').forEach((button) => {
   });
 });
 
-// Order wizard — one question at a time (front-end only demo, no backend wired up yet)
+// Order wizard - one question at a time (front-end only demo, no backend wired up yet)
 const orderForm = document.getElementById('order-form');
 const formNote = document.getElementById('formNote');
 
@@ -214,7 +214,7 @@ if (orderForm) {
       const paymentSummary = document.getElementById('paymentSummary');
       paymentSummary.textContent = packageGroup.dataset.value
         ? `Valitud pakett: ${packageGroup.dataset.value} · Kokku: ${packageGroup.dataset.price}€`
-        : 'Valitud pakett: — · Kokku: —';
+        : 'Valitud pakett: - · Kokku: -';
     }
     progressFill.style.width = `${((index + 1) / steps.length) * 100}%`;
     stepLabel.textContent = `Samm ${index + 1}/${steps.length}`;
@@ -252,7 +252,7 @@ if (orderForm) {
     }
 
     const answers = collectAnswers();
-    formNote.textContent = `Makse õnnestus! Aitäh, ${answers.yourName}! Sinu "${answers.packageName}" tellimus ${answers.personName ? `("${answers.personName}") ` : ''}on kinnitatud — laul valmib peagi ja saadame selle sulle e-postiga. 🎵`;
+    formNote.textContent = `Makse õnnestus! Aitäh, ${answers.yourName}! Sinu "${answers.packageName}" tellimus ${answers.personName ? `("${answers.personName}") ` : ''}on kinnitatud - laul valmib peagi ja saadame selle sulle e-postiga. 🎵`;
     orderForm.reset();
     orderForm.querySelectorAll('.chip-option.is-selected, .package-option.is-selected').forEach((c) => c.classList.remove('is-selected'));
     orderForm.querySelectorAll('.chip-group, .package-group').forEach((g) => {
