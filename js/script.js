@@ -32,27 +32,69 @@ document.querySelectorAll('.faq-item').forEach((item) => {
   });
 });
 
-// Demo audio player simulation (no real audio files - visual/interactive mock)
+// Song players: real playback for players with a data-audio-src, a
+// visual/interactive mock (no real audio file) for the rest.
+function formatTime(sec) {
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60).toString().padStart(2, '0');
+  return `${m}:${s}`;
+}
+
+function stopOtherPlayers(current) {
+  document.querySelectorAll('.play-btn.is-playing').forEach((other) => {
+    if (other !== current) other.click();
+  });
+}
+
 document.querySelectorAll('[data-demo-player]').forEach((button) => {
   const card = button.closest('.player-controls');
   const fill = card.querySelector('.progress-fill');
   const timeLabel = card.querySelector('.player-time');
-  const totalLabel = timeLabel ? timeLabel.textContent.split('/')[1].trim() : '2:00';
-  const totalSeconds = parseTime(totalLabel);
+  let totalLabel = timeLabel ? timeLabel.textContent.split('/')[1].trim() : '2:00';
+
+  if (button.dataset.audioSrc) {
+    const audio = new Audio(button.dataset.audioSrc);
+
+    audio.addEventListener('loadedmetadata', () => {
+      if (isFinite(audio.duration)) {
+        totalLabel = formatTime(audio.duration);
+        if (timeLabel) timeLabel.textContent = `0:00 / ${totalLabel}`;
+      }
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+      fill.style.width = `${pct}%`;
+      if (timeLabel) timeLabel.textContent = `${formatTime(audio.currentTime)} / ${totalLabel}`;
+    });
+
+    audio.addEventListener('ended', () => {
+      button.classList.remove('is-playing');
+      fill.style.width = '0%';
+      if (timeLabel) timeLabel.textContent = `0:00 / ${totalLabel}`;
+    });
+
+    button.addEventListener('click', () => {
+      stopOtherPlayers(button);
+      if (audio.paused) {
+        audio.play();
+        button.classList.add('is-playing');
+      } else {
+        audio.pause();
+        button.classList.remove('is-playing');
+      }
+    });
+
+    return;
+  }
+
+  const totalSeconds = (() => {
+    const [min, sec] = totalLabel.split(':').map(Number);
+    return min * 60 + sec;
+  })();
 
   let elapsed = 0;
   let intervalId = null;
-
-  function parseTime(str) {
-    const [min, sec] = str.split(':').map(Number);
-    return min * 60 + sec;
-  }
-
-  function formatTime(sec) {
-    const m = Math.floor(sec / 60);
-    const s = Math.floor(sec % 60).toString().padStart(2, '0');
-    return `${m}:${s}`;
-  }
 
   function stop() {
     clearInterval(intervalId);
@@ -68,10 +110,7 @@ document.querySelectorAll('[data-demo-player]').forEach((button) => {
   }
 
   button.addEventListener('click', () => {
-    // Pause any other playing demo players
-    document.querySelectorAll('.play-btn.is-playing').forEach((other) => {
-      if (other !== button) other.click();
-    });
+    stopOtherPlayers(button);
 
     if (intervalId) {
       stop();
