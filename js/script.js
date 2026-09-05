@@ -92,14 +92,127 @@ document.querySelectorAll('[data-demo-player]').forEach((button) => {
   });
 });
 
-// Order form (front-end only demo — no backend wired up yet)
+// Order wizard — one question at a time (front-end only demo, no backend wired up yet)
 const orderForm = document.getElementById('order-form');
 const formNote = document.getElementById('formNote');
 
 if (orderForm) {
-  orderForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    formNote.textContent = 'Aitäh! Sinu lugu on teele saadetud — võtame sinuga peagi ühendust. 🎵';
-    orderForm.reset();
+  const steps = Array.from(orderForm.querySelectorAll('.wizard-step'));
+  const progressFill = document.getElementById('wizardProgressFill');
+  const stepLabel = document.getElementById('wizardStepLabel');
+  const backBtn = document.getElementById('wizardBack');
+  const nextBtn = document.getElementById('wizardNext');
+
+  let current = 0;
+
+  // Chip groups behave as single-select buttons that store their value on the group itself.
+  orderForm.querySelectorAll('.chip-group').forEach((group) => {
+    const otherInput = group.parentElement.querySelector('.chip-other-input');
+    group.querySelectorAll('.chip-option').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        group.querySelectorAll('.chip-option').forEach((c) => c.classList.remove('is-selected'));
+        chip.classList.add('is-selected');
+        group.dataset.value = chip.dataset.value;
+        if (otherInput) {
+          otherInput.hidden = !chip.dataset.other;
+          if (chip.dataset.other) otherInput.focus();
+        }
+        refreshNav();
+      });
+    });
   });
+
+  orderForm.querySelectorAll('input[type="text"], input[type="email"], textarea').forEach((field) => {
+    field.addEventListener('input', refreshNav);
+  });
+
+  function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
+  function isStepValid(index) {
+    const step = steps[index];
+    if (step.dataset.required !== 'true') return true;
+
+    switch (Number(step.dataset.step)) {
+      case 0: {
+        const group = document.getElementById('chipKellele');
+        if (!group.dataset.value) return false;
+        if (group.dataset.value === 'muu') return document.getElementById('kelleleOther').value.trim() !== '';
+        return true;
+      }
+      case 1:
+        return document.getElementById('field-person-name').value.trim() !== '';
+      case 2:
+        return document.getElementById('field-character').value.trim() !== '';
+      case 5: {
+        const group = document.getElementById('chipGenre');
+        if (!group.dataset.value) return false;
+        if (group.dataset.value === 'muu') return document.getElementById('genreOther').value.trim() !== '';
+        return true;
+      }
+      case 6:
+        return Boolean(document.getElementById('chipVoice').dataset.value);
+      case 8:
+        return (
+          document.getElementById('field-your-name').value.trim() !== '' &&
+          isValidEmail(document.getElementById('field-email').value.trim())
+        );
+      default:
+        return true;
+    }
+  }
+
+  function refreshNav() {
+    nextBtn.disabled = !isStepValid(current);
+  }
+
+  function showStep(index) {
+    steps.forEach((step, i) => { step.hidden = i !== index; });
+    backBtn.hidden = index === 0;
+    nextBtn.textContent = index === steps.length - 1 ? 'Saada tellimus' : 'Edasi';
+    progressFill.style.width = `${((index + 1) / steps.length) * 100}%`;
+    stepLabel.textContent = `Samm ${index + 1}/${steps.length}`;
+    refreshNav();
+  }
+
+  function collectAnswers() {
+    const kellele = document.getElementById('chipKellele').dataset.value;
+    const genre = document.getElementById('chipGenre').dataset.value;
+    return {
+      kellele: kellele === 'muu' ? document.getElementById('kelleleOther').value.trim() : kellele,
+      personName: document.getElementById('field-person-name').value.trim(),
+      genre: genre === 'muu' ? document.getElementById('genreOther').value.trim() : genre,
+      voice: document.getElementById('chipVoice').dataset.value,
+      yourName: document.getElementById('field-your-name').value.trim(),
+    };
+  }
+
+  backBtn.addEventListener('click', () => {
+    if (current > 0) {
+      current -= 1;
+      showStep(current);
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (!isStepValid(current)) return;
+
+    if (current < steps.length - 1) {
+      current += 1;
+      showStep(current);
+      return;
+    }
+
+    const answers = collectAnswers();
+    formNote.textContent = `Aitäh, ${answers.yourName}! Sinu lugu ${answers.personName ? `("${answers.personName}") ` : ''}on teele saadetud — võtame sinuga peagi ühendust. 🎵`;
+    orderForm.reset();
+    orderForm.querySelectorAll('.chip-option.is-selected').forEach((c) => c.classList.remove('is-selected'));
+    orderForm.querySelectorAll('.chip-group').forEach((g) => delete g.dataset.value);
+    orderForm.querySelectorAll('.chip-other-input').forEach((i) => { i.hidden = true; });
+    current = 0;
+    showStep(current);
+  });
+
+  showStep(current);
 }

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lauluhing — Isikupärane laul erilise inimese jaoks</title>
 <meta name="description" content="Lauluhing loob sulle isikupärase laulu kingituseks — sünnipäevaks, pulmaks, aastapäevaks või lihtsalt niisama. Jaga oma lugu, meie teeme sellest muusika.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%B5%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23ff6b5b'/%3E%3Cpath d='M50,82 C25,63 10,47 10,30 C10,15 22,6 35,12 C42,15 47,21 50,27 C53,21 58,15 65,12 C78,6 90,15 90,30 C90,47 75,63 50,82 Z' fill='white'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -18,7 +18,15 @@
 <header class="site-header" id="top">
   <div class="container header-inner">
     <a href="#top" class="logo">
-      <span class="logo-mark">♪</span>
+      <span class="logo-mark">
+        <svg viewBox="0 0 120 170" width="20" height="26" fill="none" aria-hidden="true">
+          <path d="M64,95 C34,72 14,52 14,32 C14,12 34,2 49,12 C57,18 61,26 64,32 C67,26 71,18 79,12 C94,2 114,12 114,32 C114,52 94,72 64,95 Z" stroke="currentColor" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>
+          <line x1="64" y1="95" x2="64" y2="146" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+          <path d="M64,60 C85,55 100,40 108,15" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+          <path d="M64,90 C82,88 95,78 103,58" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+          <ellipse cx="46" cy="152" rx="21" ry="14" fill="currentColor" transform="rotate(-18 46 152)"/>
+        </svg>
+      </span>
       <span class="logo-text">Lauluhing</span>
     </a>
 
@@ -307,38 +315,113 @@
       <div class="order-copy">
         <p class="section-eyebrow">Alusta siit</p>
         <h2>Jaga oma lugu — meie teeme ülejäänu</h2>
-        <p>Täida vorm ja meie meeskond võtab sinuga ühendust 24 tunni jooksul, et arutada laulu detaile ja stiili.</p>
+        <p>Vasta üheksale lühikesele küsimusele — üks korraga — ja meie meeskond võtab sinuga ühendust 24 tunni jooksul, et arutada laulu detaile ja stiili.</p>
         <ul class="order-list">
-          <li>🎼 Vali muusikastiil, mis sobib hetkega</li>
-          <li>💌 Räägi meile lugu, nimed ja tunded</li>
+          <li>💬 Vasta küsimustele oma tempos, samm-sammult</li>
+          <li>🎼 Vali muusikastiil ja hääl, mis sobib hetkega</li>
           <li>🎧 Saa valmis laul e-postiga</li>
         </ul>
       </div>
 
-      <form class="order-form" id="order-form" novalidate>
-        <div class="form-row">
-          <label for="name">Sinu nimi</label>
-          <input type="text" id="name" name="name" placeholder="Nt Kadri Tamm" required>
+      <form class="order-form wizard" id="order-form" novalidate>
+
+        <div class="wizard-progress">
+          <div class="wizard-progress-fill" id="wizardProgressFill"></div>
         </div>
-        <div class="form-row">
-          <label for="email">E-post</label>
-          <input type="email" id="email" name="email" placeholder="sinu@email.ee" required>
+        <p class="wizard-step-label" id="wizardStepLabel">Samm 1/9</p>
+
+        <div class="wizard-steps">
+
+          <div class="wizard-step" data-step="0" data-required="true">
+            <p class="wizard-question">Kellele on laul?</p>
+            <p class="wizard-hint">Nt elukaaslane, vanaema, isa...</p>
+            <div class="chip-group" id="chipKellele">
+              <button type="button" class="chip-option" data-value="Elukaaslasele">Elukaaslasele</button>
+              <button type="button" class="chip-option" data-value="Vanaemale">Vanaemale</button>
+              <button type="button" class="chip-option" data-value="Vanaisale">Vanaisale</button>
+              <button type="button" class="chip-option" data-value="Emale">Emale</button>
+              <button type="button" class="chip-option" data-value="Isale">Isale</button>
+              <button type="button" class="chip-option" data-value="Sõbrale">Sõbrale</button>
+              <button type="button" class="chip-option" data-value="Lapsele">Lapsele</button>
+              <button type="button" class="chip-option" data-value="muu" data-other="true">Muu</button>
+            </div>
+            <input type="text" class="chip-other-input" id="kelleleOther" placeholder="Kirjuta, kellele..." hidden>
+          </div>
+
+          <div class="wizard-step" data-step="1" data-required="true" hidden>
+            <p class="wizard-question">Mis on selle inimese nimi?</p>
+            <input type="text" id="field-person-name" placeholder="Nt Kristel">
+          </div>
+
+          <div class="wizard-step" data-step="2" data-required="true" hidden>
+            <p class="wizard-question">Iseloomusta teda, mis teeb ta sinu jaoks eriliseks? <span class="required-star">*</span></p>
+            <p class="wizard-hint">Väike harjumus, tema naer, viis, kuidas ta sind aitab...</p>
+            <textarea id="field-character" rows="4" placeholder="Kirjuta siia..."></textarea>
+          </div>
+
+          <div class="wizard-step" data-step="3" hidden>
+            <p class="wizard-question">Mis on teie erilised ühised hetked?</p>
+            <textarea id="field-moments" rows="4" placeholder="Kirjuta siia... (valikuline)"></textarea>
+          </div>
+
+          <div class="wizard-step" data-step="4" hidden>
+            <p class="wizard-question">Mõni isiklik sõnum...</p>
+            <p class="wizard-hint">Mida tahaksid talle öelda, kuid pole kunagi täielikult välja öelnud? Mille eest tahaksid teda tänada? Mis on see üks asi südamest, mida tahad talle edasi anda?</p>
+            <textarea id="field-message" rows="4" placeholder="Kirjuta siia... (valikuline)"></textarea>
+          </div>
+
+          <div class="wizard-step" data-step="5" data-required="true" hidden>
+            <p class="wizard-question">Mis žanri soovid? <span class="required-star">*</span></p>
+            <div class="chip-group" id="chipGenre">
+              <button type="button" class="chip-option" data-value="Pop">Pop</button>
+              <button type="button" class="chip-option" data-value="Country">Country</button>
+              <button type="button" class="chip-option" data-value="Rock">Rock</button>
+              <button type="button" class="chip-option" data-value="R&B">R&amp;B</button>
+              <button type="button" class="chip-option" data-value="Jazz">Jazz</button>
+              <button type="button" class="chip-option" data-value="Akustiline">Akustiline</button>
+              <button type="button" class="chip-option" data-value="Folk">Folk</button>
+              <button type="button" class="chip-option" data-value="Ballaad">Ballaad</button>
+              <button type="button" class="chip-option" data-value="Hällilaul">Hällilaul</button>
+              <button type="button" class="chip-option" data-value="Rap / Hip-Hop">Rap / Hip-Hop</button>
+              <button type="button" class="chip-option" data-value="muu" data-other="true">Muu</button>
+            </div>
+            <input type="text" class="chip-other-input" id="genreOther" placeholder="Kirjuta soovitud žanr..." hidden>
+          </div>
+
+          <div class="wizard-step" data-step="6" data-required="true" hidden>
+            <p class="wizard-question">Mis häält soovid? <span class="required-star">*</span></p>
+            <div class="chip-group" id="chipVoice">
+              <button type="button" class="chip-option" data-value="Meeshääl">Meeshääl</button>
+              <button type="button" class="chip-option" data-value="Naishääl">Naishääl</button>
+              <button type="button" class="chip-option" data-value="Vahet pole">Vahet pole</button>
+            </div>
+          </div>
+
+          <div class="wizard-step" data-step="7" hidden>
+            <p class="wizard-question">Endal midagi lisada?</p>
+            <p class="wizard-hint">Ükskõik mida.</p>
+            <textarea id="field-extra" rows="4" placeholder="Kirjuta siia... (valikuline)"></textarea>
+          </div>
+
+          <div class="wizard-step" data-step="8" data-required="true" hidden>
+            <p class="wizard-question">Kuhu saadame valmis laulu?</p>
+            <p class="wizard-hint">Meie meeskond võtab sinuga ühendust 24 tunni jooksul.</p>
+            <div class="form-row">
+              <label for="field-your-name">Sinu nimi</label>
+              <input type="text" id="field-your-name" placeholder="Nt Kadri Tamm">
+            </div>
+            <div class="form-row">
+              <label for="field-email">E-post</label>
+              <input type="email" id="field-email" placeholder="sinu@email.ee">
+            </div>
+          </div>
+
         </div>
-        <div class="form-row">
-          <label for="occasion">Puhk</label>
-          <select id="occasion" name="occasion">
-            <option>Sünnipäev</option>
-            <option>Pulm</option>
-            <option>Aastapäev</option>
-            <option>Lapse sünd</option>
-            <option>Muu</option>
-          </select>
+
+        <div class="wizard-nav">
+          <button type="button" class="btn btn-ghost" id="wizardBack" hidden>Tagasi</button>
+          <button type="button" class="btn btn-primary btn-full" id="wizardNext" disabled>Edasi</button>
         </div>
-        <div class="form-row">
-          <label for="story">Sinu lugu</label>
-          <textarea id="story" name="story" rows="4" placeholder="Räägi meile nimedest, mälestustest ja hetkedest, mida soovid laulu panna..."></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary btn-full">Saada tellimus</button>
         <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
       </form>
     </div>
@@ -415,7 +498,15 @@
   <div class="container footer-inner">
     <div class="footer-brand">
       <a href="#top" class="logo">
-        <span class="logo-mark">♪</span>
+        <span class="logo-mark">
+        <svg viewBox="0 0 120 170" width="20" height="26" fill="none" aria-hidden="true">
+          <path d="M64,95 C34,72 14,52 14,32 C14,12 34,2 49,12 C57,18 61,26 64,32 C67,26 71,18 79,12 C94,2 114,12 114,32 C114,52 94,72 64,95 Z" stroke="currentColor" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>
+          <line x1="64" y1="95" x2="64" y2="146" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+          <path d="M64,60 C85,55 100,40 108,15" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+          <path d="M64,90 C82,88 95,78 103,58" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+          <ellipse cx="46" cy="152" rx="21" ry="14" fill="currentColor" transform="rotate(-18 46 152)"/>
+        </svg>
+      </span>
         <span class="logo-text">Lauluhing</span>
       </a>
       <p>Isikupärased laulud igaks eluhetkeks.</p>
