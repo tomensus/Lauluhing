@@ -33,7 +33,7 @@
     <nav class="main-nav" id="main-nav">
       <a href="#how">Kuidas see töötab</a>
       <a href="#examples">Näited</a>
-      <a href="#pricing">Hinnad</a>
+      <a href="#order">Telli</a>
       <a href="#faq">KKK</a>
     </nav>
 
@@ -231,58 +231,6 @@
     </div>
   </section>
 
-  <!-- PRICING / ORDER -->
-  <section class="pricing" id="pricing">
-    <div class="container">
-      <p class="section-eyebrow">Hinnad</p>
-      <h2>Vali endale sobiv pakett</h2>
-      <p class="section-lead">Kõik paketid sisaldavad isikupärast laulu, mille loovad professionaalsed muusikud sinu loo põhjal.</p>
-
-      <div class="pricing-grid">
-        <div class="price-card">
-          <h3>Digilaul</h3>
-          <p class="price"><span>49€</span></p>
-          <p class="price-desc">Ideaalne lihtsaks ja kiireks üllatuseks</p>
-          <ul class="price-features">
-            <li>✔ Isikupärane laul (kuni 2 min)</li>
-            <li>✔ Kõrgkvaliteetne MP3 fail</li>
-            <li>✔ Valmib 5 päevaga</li>
-            <li>✔ Üks parandusring</li>
-          </ul>
-          <a href="#order-form" class="btn btn-outline">Vali see pakett</a>
-        </div>
-
-        <div class="price-card featured">
-          <p class="price-badge">Enim valitud</p>
-          <h3>Kingituse pakett</h3>
-          <p class="price"><span>79€</span></p>
-          <p class="price-desc">Täielik kingituselamus koos videoga</p>
-          <ul class="price-features">
-            <li>✔ Kõik "Digilaul" paketist</li>
-            <li>✔ Muusikavideo lüürikaga</li>
-            <li>✔ Kaunis digitaalne kingitusekaart</li>
-            <li>✔ Valmib 3 päevaga</li>
-            <li>✔ Kaks parandusringi</li>
-          </ul>
-          <a href="#order-form" class="btn btn-primary">Vali see pakett</a>
-        </div>
-
-        <div class="price-card">
-          <h3>Kiirtellimus</h3>
-          <p class="price"><span>129€</span></p>
-          <p class="price-desc">Kui hetk ei oota</p>
-          <ul class="price-features">
-            <li>✔ Kõik "Kingituse" paketist</li>
-            <li>✔ Valmib 24 tunniga</li>
-            <li>✔ Isiklik konsultatsioon laulukirjutajaga</li>
-            <li>✔ Piiramatud parandused</li>
-          </ul>
-          <a href="#order-form" class="btn btn-outline">Vali see pakett</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- TESTIMONIALS -->
   <section class="testimonials">
     <div class="container">
@@ -315,11 +263,11 @@
       <div class="order-copy">
         <p class="section-eyebrow">Alusta siit</p>
         <h2>Jaga oma lugu — meie teeme ülejäänu</h2>
-        <p>Vasta üheksale lühikesele küsimusele — üks korraga — ja meie meeskond võtab sinuga ühendust 24 tunni jooksul, et arutada laulu detaile ja stiili.</p>
+        <p>Vasta paarile lühikesele küsimusele — üks korraga — vali pakett ja vormista tellimus kohe siin.</p>
         <ul class="order-list">
           <li>💬 Vasta küsimustele oma tempos, samm-sammult</li>
-          <li>🎼 Vali muusikastiil ja hääl, mis sobib hetkega</li>
-          <li>🎧 Saa valmis laul e-postiga</li>
+          <li>🎼 Vali muusikastiil, hääl ja pakett, mis sobib hetkega</li>
+          <li>💳 Maksa turvaliselt ja saa valmis laul e-postiga</li>
         </ul>
       </div>
 
@@ -404,6 +352,34 @@
           </div>
 
           <div class="wizard-step" data-step="8" data-required="true" hidden>
+            <p class="wizard-question">Vali pakett <span class="required-star">*</span></p>
+            <div class="package-group" id="chipPackage">
+              <button type="button" class="package-option" data-value="Digilaul" data-price="49">
+                <span class="package-info">
+                  <span class="package-name">Digilaul</span>
+                  <span class="package-desc">MP3 fail · valmib 5 päevaga</span>
+                </span>
+                <span class="package-price">49€</span>
+              </button>
+              <button type="button" class="package-option" data-value="Kingituse pakett" data-price="79">
+                <span class="package-badge">Enim valitud</span>
+                <span class="package-info">
+                  <span class="package-name">Kingituse pakett</span>
+                  <span class="package-desc">+ muusikavideo · valmib 3 päevaga</span>
+                </span>
+                <span class="package-price">79€</span>
+              </button>
+              <button type="button" class="package-option" data-value="Kiirtellimus" data-price="129">
+                <span class="package-info">
+                  <span class="package-name">Kiirtellimus</span>
+                  <span class="package-desc">Valmib 24 tunniga</span>
+                </span>
+                <span class="package-price">129€</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="wizard-step" data-step="9" data-required="true" hidden>
             <p class="wizard-question">Kuhu saadame valmis laulu?</p>
             <p class="wizard-hint">Meie meeskond võtab sinuga ühendust 24 tunni jooksul.</p>
             <div class="form-row">
@@ -413,6 +389,29 @@
             <div class="form-row">
               <label for="field-email">E-post</label>
               <input type="email" id="field-email" placeholder="sinu@email.ee">
+            </div>
+          </div>
+
+          <div class="wizard-step" data-step="10" data-required="true" hidden>
+            <p class="wizard-question">Maksmine</p>
+            <p class="wizard-hint" id="paymentSummary">Valitud pakett: — · Kokku: —</p>
+            <div class="form-row">
+              <label for="field-card-name">Kaardiomaniku nimi</label>
+              <input type="text" id="field-card-name" placeholder="Nt Kadri Tamm">
+            </div>
+            <div class="form-row">
+              <label for="field-card-number">Kaardi number</label>
+              <input type="text" id="field-card-number" placeholder="1234 5678 9012 3456" inputmode="numeric" maxlength="19">
+            </div>
+            <div class="payment-row">
+              <div class="form-row">
+                <label for="field-card-expiry">Kehtivusaeg</label>
+                <input type="text" id="field-card-expiry" placeholder="MM/AA" inputmode="numeric" maxlength="5">
+              </div>
+              <div class="form-row">
+                <label for="field-card-cvc">CVC</label>
+                <input type="text" id="field-card-cvc" placeholder="123" inputmode="numeric" maxlength="4">
+              </div>
             </div>
           </div>
 
@@ -517,7 +516,7 @@
         <h4>Sisukord</h4>
         <a href="#how">Kuidas see töötab</a>
         <a href="#examples">Näited</a>
-        <a href="#pricing">Hinnad</a>
+        <a href="#order">Telli</a>
         <a href="#faq">KKK</a>
       </div>
       <div>

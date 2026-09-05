@@ -122,8 +122,37 @@ if (orderForm) {
     });
   });
 
+  // Package cards behave the same way as chips, plus they carry a price.
+  const packageGroup = document.getElementById('chipPackage');
+  packageGroup.querySelectorAll('.package-option').forEach((option) => {
+    option.addEventListener('click', () => {
+      packageGroup.querySelectorAll('.package-option').forEach((o) => o.classList.remove('is-selected'));
+      option.classList.add('is-selected');
+      packageGroup.dataset.value = option.dataset.value;
+      packageGroup.dataset.price = option.dataset.price;
+      refreshNav();
+    });
+  });
+
   orderForm.querySelectorAll('input[type="text"], input[type="email"], textarea').forEach((field) => {
     field.addEventListener('input', refreshNav);
+  });
+
+  const cardNumberInput = document.getElementById('field-card-number');
+  cardNumberInput.addEventListener('input', () => {
+    const digits = cardNumberInput.value.replace(/\D/g, '').slice(0, 16);
+    cardNumberInput.value = digits.replace(/(.{4})/g, '$1 ').trim();
+  });
+
+  const cardExpiryInput = document.getElementById('field-card-expiry');
+  cardExpiryInput.addEventListener('input', () => {
+    const digits = cardExpiryInput.value.replace(/\D/g, '').slice(0, 4);
+    cardExpiryInput.value = digits.length > 2 ? `${digits.slice(0, 2)}/${digits.slice(2)}` : digits;
+  });
+
+  const cardCvcInput = document.getElementById('field-card-cvc');
+  cardCvcInput.addEventListener('input', () => {
+    cardCvcInput.value = cardCvcInput.value.replace(/\D/g, '').slice(0, 4);
   });
 
   function isValidEmail(value) {
@@ -154,9 +183,18 @@ if (orderForm) {
       case 6:
         return Boolean(document.getElementById('chipVoice').dataset.value);
       case 8:
+        return Boolean(packageGroup.dataset.value);
+      case 9:
         return (
           document.getElementById('field-your-name').value.trim() !== '' &&
           isValidEmail(document.getElementById('field-email').value.trim())
+        );
+      case 10:
+        return (
+          document.getElementById('field-card-name').value.trim() !== '' &&
+          document.getElementById('field-card-number').value.replace(/\s/g, '').length >= 13 &&
+          /^\d{2}\/\d{2}$/.test(document.getElementById('field-card-expiry').value.trim()) &&
+          /^\d{3,4}$/.test(document.getElementById('field-card-cvc').value.trim())
         );
       default:
         return true;
@@ -170,7 +208,14 @@ if (orderForm) {
   function showStep(index) {
     steps.forEach((step, i) => { step.hidden = i !== index; });
     backBtn.hidden = index === 0;
-    nextBtn.textContent = index === steps.length - 1 ? 'Saada tellimus' : 'Edasi';
+    const isLast = index === steps.length - 1;
+    nextBtn.textContent = isLast ? `Maksa ${packageGroup.dataset.price || ''}€` : 'Edasi';
+    if (isLast) {
+      const paymentSummary = document.getElementById('paymentSummary');
+      paymentSummary.textContent = packageGroup.dataset.value
+        ? `Valitud pakett: ${packageGroup.dataset.value} · Kokku: ${packageGroup.dataset.price}€`
+        : 'Valitud pakett: — · Kokku: —';
+    }
     progressFill.style.width = `${((index + 1) / steps.length) * 100}%`;
     stepLabel.textContent = `Samm ${index + 1}/${steps.length}`;
     refreshNav();
@@ -184,6 +229,8 @@ if (orderForm) {
       personName: document.getElementById('field-person-name').value.trim(),
       genre: genre === 'muu' ? document.getElementById('genreOther').value.trim() : genre,
       voice: document.getElementById('chipVoice').dataset.value,
+      packageName: packageGroup.dataset.value,
+      packagePrice: packageGroup.dataset.price,
       yourName: document.getElementById('field-your-name').value.trim(),
     };
   }
@@ -205,10 +252,13 @@ if (orderForm) {
     }
 
     const answers = collectAnswers();
-    formNote.textContent = `Aitäh, ${answers.yourName}! Sinu lugu ${answers.personName ? `("${answers.personName}") ` : ''}on teele saadetud — võtame sinuga peagi ühendust. 🎵`;
+    formNote.textContent = `Makse õnnestus! Aitäh, ${answers.yourName}! Sinu "${answers.packageName}" tellimus ${answers.personName ? `("${answers.personName}") ` : ''}on kinnitatud — laul valmib peagi ja saadame selle sulle e-postiga. 🎵`;
     orderForm.reset();
-    orderForm.querySelectorAll('.chip-option.is-selected').forEach((c) => c.classList.remove('is-selected'));
-    orderForm.querySelectorAll('.chip-group').forEach((g) => delete g.dataset.value);
+    orderForm.querySelectorAll('.chip-option.is-selected, .package-option.is-selected').forEach((c) => c.classList.remove('is-selected'));
+    orderForm.querySelectorAll('.chip-group, .package-group').forEach((g) => {
+      delete g.dataset.value;
+      delete g.dataset.price;
+    });
     orderForm.querySelectorAll('.chip-other-input').forEach((i) => { i.hidden = true; });
     current = 0;
     showStep(current);

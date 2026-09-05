@@ -260,7 +260,7 @@ section{ position: relative; z-index:1; padding: 96px 0; }
 .section-eyebrow{
   color: var(--coral-dark); font-weight:800; letter-spacing:.06em; text-transform:uppercase; font-size: 13px; margin-bottom: 10px;
 }
-.how h2, .examples h2, .pricing h2, .testimonials h2, .faq h2, .occasions h2{
+.how h2, .examples h2, .testimonials h2, .faq h2, .occasions h2{
   font-size: clamp(1.8rem, 3vw, 2.4rem); max-width: 640px;
 }
 .section-lead{ max-width: 560px; font-size: 17px; }
@@ -308,35 +308,6 @@ section{ position: relative; z-index:1; padding: 96px 0; }
   border-radius: 999px; font-weight:600; font-size: 15px; box-shadow: var(--shadow-sm);
 }
 
-/* ---------- Pricing ---------- */
-.pricing{ background: var(--white); }
-.pricing-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 26px; margin-top: 48px; align-items:stretch; }
-.price-card{
-  position:relative;
-  border:1px solid var(--line); border-radius: var(--radius-lg); padding: 36px 30px;
-  background: var(--cream); display:flex; flex-direction:column;
-}
-.price-card.featured{
-  background: linear-gradient(160deg, var(--ink-fixed) 0%, #43304a 100%);
-  color: var(--surface-fixed-light); border-color: transparent;
-  transform: scale(1.03);
-  box-shadow: var(--shadow-lg);
-}
-.price-card.featured h3, .price-card.featured .price, .price-card.featured .price-desc, .price-card.featured .price-features li{
-  color: var(--surface-fixed-light);
-}
-.price-badge{
-  position:absolute; top:-14px; left: 30px;
-  background: var(--gold); color: var(--ink-fixed);
-  padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight:800;
-}
-.price-card h3{ font-size: 20px; }
-.price{ font-family: var(--font-display); font-size: 42px; font-weight:600; margin: 4px 0 6px; }
-.price-desc{ font-size: 14px; margin-bottom: 22px; }
-.price-features{ margin: 0 0 28px; display:flex; flex-direction:column; gap: 12px; flex:1; }
-.price-features li{ font-size: 14px; color: var(--ink-soft); }
-.price-card.featured .btn-primary{ background: var(--surface-fixed-light); color: var(--ink-fixed); box-shadow:none; }
-.price-card.featured .btn-primary:hover{ background: #f5eee5; }
 
 /* ---------- Testimonials ---------- */
 .testimonials{ background: var(--cream-2); }
@@ -425,6 +396,33 @@ section{ position: relative; z-index:1; padding: 96px 0; }
 }
 .chip-other-input{ margin-top: 12px; }
 
+.package-group{ display:flex; flex-direction:column; gap: 12px; }
+.package-option{
+  position: relative;
+  display:flex; align-items:center; justify-content:space-between; gap: 16px;
+  width:100%; text-align:left;
+  font-family: var(--font-body);
+  padding: 16px 20px; border-radius: var(--radius-md); border: 1.5px solid var(--line);
+  background: var(--white); color: var(--ink); cursor:pointer;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.package-option:hover{ border-color: var(--coral); }
+.package-option.is-selected{
+  border-color: var(--coral); box-shadow: 0 0 0 3px rgba(255,107,91,0.16);
+}
+.package-badge{
+  position:absolute; top:-11px; left: 18px;
+  background: var(--gold); color: var(--ink-fixed);
+  padding: 4px 12px; border-radius: 999px; font-size: 11px; font-weight:800;
+}
+.package-info{ display:flex; flex-direction:column; gap: 3px; }
+.package-name{ font-family: var(--font-display); font-weight:600; font-size: 17px; }
+.package-desc{ font-size: 13px; color: var(--ink-soft); }
+.package-price{ font-family: var(--font-display); font-weight:600; font-size: 22px; flex:none; }
+
+.payment-row{ display:flex; gap: 16px; }
+.payment-row .form-row{ flex:1; }
+
 .wizard-nav{ display:flex; gap: 12px; margin-top: 28px; }
 .wizard-nav .btn-full{ flex:1; width:auto; }
 .wizard-nav .btn-primary:disabled{ opacity:.45; cursor:not-allowed; transform:none; box-shadow:none; }
@@ -472,8 +470,6 @@ section{ position: relative; z-index:1; padding: 96px 0; }
   .hero-visual{ margin-top: 40px; }
   .steps{ grid-template-columns: 1fr; }
   .example-grid{ grid-template-columns: repeat(2,1fr); }
-  .pricing-grid{ grid-template-columns: 1fr; }
-  .price-card.featured{ transform: none; order: -1; }
   .testimonial-grid{ grid-template-columns: 1fr; }
   .order-inner{ grid-template-columns: 1fr; }
   .footer-inner{ grid-template-columns: 1fr; }
