@@ -350,7 +350,7 @@ section{ position: relative; z-index:1; padding: 96px 0; }
   color: var(--ink-soft); margin: 0 0 24px;
 }
 .wizard-steps{ min-height: 240px; }
-.wizard-step{ animation: wizard-in .25s ease; }
+.wizard-step{ animation: wizard-in .25s ease; scroll-margin-top: 90px; }
 @keyframes wizard-in{ from{ opacity:0; transform: translateY(6px);} to{ opacity:1; transform: translateY(0);} }
 @media (prefers-reduced-motion: reduce){ .wizard-step{ animation:none; } }
 

@@ -260,7 +260,11 @@ if (orderForm) {
   }
 
   function scrollWizardIntoView() {
-    orderForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Scroll the active step itself (not the whole card) to the top of the
+    // viewport - on short mobile screens a tall step (e.g. the package
+    // cards) can be taller than the viewport, so centering the whole card
+    // would push the question itself above the visible area.
+    steps[current].scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   backBtn.addEventListener('click', () => {
