@@ -259,10 +259,15 @@ if (orderForm) {
     };
   }
 
+  function scrollWizardIntoView() {
+    orderForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
   backBtn.addEventListener('click', () => {
     if (current > 0) {
       current -= 1;
       showStep(current);
+      scrollWizardIntoView();
     }
   });
 
@@ -272,6 +277,7 @@ if (orderForm) {
     if (current < steps.length - 1) {
       current += 1;
       showStep(current);
+      scrollWizardIntoView();
       return;
     }
 
