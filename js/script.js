@@ -180,27 +180,8 @@ if (orderForm) {
     });
   });
 
-  const contactStepIndex = steps.findIndex((s) => s.querySelector('#field-your-name'));
-
   orderForm.querySelectorAll('input[type="text"], input[type="email"], textarea').forEach((field) => {
     field.addEventListener('input', refreshNav);
-  });
-
-  const cardNumberInput = document.getElementById('field-card-number');
-  cardNumberInput.addEventListener('input', () => {
-    const digits = cardNumberInput.value.replace(/\D/g, '').slice(0, 16);
-    cardNumberInput.value = digits.replace(/(.{4})/g, '$1 ').trim();
-  });
-
-  const cardExpiryInput = document.getElementById('field-card-expiry');
-  cardExpiryInput.addEventListener('input', () => {
-    const digits = cardExpiryInput.value.replace(/\D/g, '').slice(0, 4);
-    cardExpiryInput.value = digits.length > 2 ? `${digits.slice(0, 2)}/${digits.slice(2)}` : digits;
-  });
-
-  const cardCvcInput = document.getElementById('field-card-cvc');
-  cardCvcInput.addEventListener('input', () => {
-    cardCvcInput.value = cardCvcInput.value.replace(/\D/g, '').slice(0, 4);
   });
 
   function isValidEmail(value) {
@@ -237,13 +218,6 @@ if (orderForm) {
           document.getElementById('field-your-name').value.trim() !== '' &&
           isValidEmail(document.getElementById('field-email').value.trim())
         );
-      case 10:
-        return (
-          document.getElementById('field-card-name').value.trim() !== '' &&
-          document.getElementById('field-card-number').value.replace(/\s/g, '').length >= 13 &&
-          /^\d{2}\/\d{2}$/.test(document.getElementById('field-card-expiry').value.trim()) &&
-          /^\d{3,4}$/.test(document.getElementById('field-card-cvc').value.trim())
-        );
       default:
         return true;
     }
@@ -258,21 +232,14 @@ if (orderForm) {
     backBtn.hidden = index === 0;
 
     const isLast = index === steps.length - 1;
-    const goesToStripe = index === contactStepIndex && Boolean(packageGroup.dataset.stripeUrl);
-    if (goesToStripe) {
+    if (isLast && packageGroup.dataset.stripeUrl) {
       nextBtn.textContent = 'Jätka maksele →';
     } else if (isLast) {
-      nextBtn.textContent = `Maksa ${packageGroup.dataset.price || ''}€`;
+      nextBtn.textContent = 'Lõpeta tellimus';
     } else {
       nextBtn.textContent = 'Edasi';
     }
 
-    if (isLast) {
-      const paymentSummary = document.getElementById('paymentSummary');
-      paymentSummary.textContent = packageGroup.dataset.value
-        ? `Valitud pakett: ${packageGroup.dataset.value} · Kokku: ${packageGroup.dataset.price}€`
-        : 'Valitud pakett: - · Kokku: -';
-    }
     progressFill.style.width = `${((index + 1) / steps.length) * 100}%`;
     stepLabel.textContent = `Samm ${index + 1}/${steps.length}`;
     refreshNav();
@@ -302,19 +269,20 @@ if (orderForm) {
   nextBtn.addEventListener('click', () => {
     if (!isStepValid(current)) return;
 
-    if (current === contactStepIndex && packageGroup.dataset.stripeUrl) {
-      window.location.href = packageGroup.dataset.stripeUrl;
-      return;
-    }
-
     if (current < steps.length - 1) {
       current += 1;
       showStep(current);
       return;
     }
 
+    if (packageGroup.dataset.stripeUrl) {
+      window.location.href = packageGroup.dataset.stripeUrl;
+      return;
+    }
+
+    // Fallback for a package without a configured Stripe Payment Link yet.
     const answers = collectAnswers();
-    formNote.textContent = `Makse õnnestus! Aitäh, ${answers.yourName}! Sinu "${answers.packageName}" tellimus ${answers.personName ? `("${answers.personName}") ` : ''}on kinnitatud - laul valmib peagi ja saadame selle sulle e-postiga. 🎵`;
+    formNote.textContent = `Aitäh, ${answers.yourName}! Sinu "${answers.packageName}" tellimus ${answers.personName ? `("${answers.personName}") ` : ''}on vastu võetud - võtame peagi ühendust, et makse ja laulu üksikasjad kokku leppida. 🎵`;
     orderForm.reset();
     orderForm.querySelectorAll('.chip-option.is-selected, .package-option.is-selected').forEach((c) => c.classList.remove('is-selected'));
     orderForm.querySelectorAll('.chip-group, .package-group').forEach((g) => {

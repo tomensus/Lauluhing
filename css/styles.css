@@ -421,9 +421,6 @@ section{ position: relative; z-index:1; padding: 96px 0; }
   color: var(--coral-dark); font-size: 12px;
 }
 
-.payment-row{ display:flex; gap: 16px; }
-.payment-row .form-row{ flex:1; }
-
 .wizard-nav{ display:flex; gap: 14px; margin-top: 32px; }
 .wizard-nav .btn{ padding: 17px 32px; font-size: 16px; }
 .wizard-nav .btn-full{ flex:1; width:auto; }
