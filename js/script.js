@@ -161,7 +161,9 @@ if (orderForm) {
     });
   });
 
-  // Package cards behave the same way as chips, plus they carry a price.
+  // Package cards behave the same way as chips, plus they carry a price and,
+  // where set up, a Stripe Payment Link to redirect to instead of our own
+  // (mock) card form.
   const packageGroup = document.getElementById('chipPackage');
   packageGroup.querySelectorAll('.package-option').forEach((option) => {
     option.addEventListener('click', () => {
@@ -169,9 +171,16 @@ if (orderForm) {
       option.classList.add('is-selected');
       packageGroup.dataset.value = option.dataset.value;
       packageGroup.dataset.price = option.dataset.price;
+      if (option.dataset.stripeUrl) {
+        packageGroup.dataset.stripeUrl = option.dataset.stripeUrl;
+      } else {
+        delete packageGroup.dataset.stripeUrl;
+      }
       refreshNav();
     });
   });
+
+  const contactStepIndex = steps.findIndex((s) => s.querySelector('#field-your-name'));
 
   orderForm.querySelectorAll('input[type="text"], input[type="email"], textarea').forEach((field) => {
     field.addEventListener('input', refreshNav);
@@ -247,8 +256,17 @@ if (orderForm) {
   function showStep(index) {
     steps.forEach((step, i) => { step.hidden = i !== index; });
     backBtn.hidden = index === 0;
+
     const isLast = index === steps.length - 1;
-    nextBtn.textContent = isLast ? `Maksa ${packageGroup.dataset.price || ''}€` : 'Edasi';
+    const goesToStripe = index === contactStepIndex && Boolean(packageGroup.dataset.stripeUrl);
+    if (goesToStripe) {
+      nextBtn.textContent = 'Jätka maksele →';
+    } else if (isLast) {
+      nextBtn.textContent = `Maksa ${packageGroup.dataset.price || ''}€`;
+    } else {
+      nextBtn.textContent = 'Edasi';
+    }
+
     if (isLast) {
       const paymentSummary = document.getElementById('paymentSummary');
       paymentSummary.textContent = packageGroup.dataset.value
@@ -284,6 +302,11 @@ if (orderForm) {
   nextBtn.addEventListener('click', () => {
     if (!isStepValid(current)) return;
 
+    if (current === contactStepIndex && packageGroup.dataset.stripeUrl) {
+      window.location.href = packageGroup.dataset.stripeUrl;
+      return;
+    }
+
     if (current < steps.length - 1) {
       current += 1;
       showStep(current);
@@ -297,6 +320,7 @@ if (orderForm) {
     orderForm.querySelectorAll('.chip-group, .package-group').forEach((g) => {
       delete g.dataset.value;
       delete g.dataset.price;
+      delete g.dataset.stripeUrl;
     });
     orderForm.querySelectorAll('.chip-other-input').forEach((i) => { i.hidden = true; });
     current = 0;
