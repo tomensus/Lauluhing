@@ -216,17 +216,17 @@ if (orderForm) {
         delete packageGroup.dataset.stripeUrl;
       }
       syncPackageHiddenFields();
-      // Re-run showStep (not just refreshNav): the package step doubles as
-      // the wizard's final step, so picking a package can change whether
-      // the next button should read "Jätka maksele" right here, without
-      // any step transition to trigger that update otherwise.
-      showStep(current);
+      refreshNav();
     });
   });
 
   orderForm.querySelectorAll('input[type="text"], input[type="email"], textarea').forEach((field) => {
     field.addEventListener('input', refreshNav);
   });
+
+  function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
 
   function isStepValid(index) {
     const step = steps[index];
@@ -253,6 +253,11 @@ if (orderForm) {
         return Boolean(document.getElementById('chipVoice').dataset.value);
       case 8:
         return Boolean(packageGroup.dataset.value);
+      case 9:
+        return (
+          document.getElementById('field-your-name').value.trim() !== '' &&
+          isValidEmail(document.getElementById('field-email').value.trim())
+        );
       default:
         return true;
     }
@@ -290,6 +295,7 @@ if (orderForm) {
       voice: document.getElementById('chipVoice').dataset.value,
       packageName: packageGroup.dataset.value,
       packagePrice: packageGroup.dataset.price,
+      yourName: document.getElementById('field-your-name').value.trim(),
     };
   }
 
@@ -334,6 +340,8 @@ if (orderForm) {
     if (packageGroup.dataset.stripeUrl) {
       const stripeUrl = new URL(packageGroup.dataset.stripeUrl);
       stripeUrl.searchParams.set('client_reference_id', referenceInput.value);
+      const email = document.getElementById('field-email').value.trim();
+      if (email) stripeUrl.searchParams.set('prefilled_email', email);
       // Best-effort: don't let a failed/slow form submission block payment.
       submitToNetlify().catch(() => {}).finally(() => {
         window.location.href = stripeUrl.toString();
@@ -345,7 +353,7 @@ if (orderForm) {
     submitToNetlify().catch(() => {});
     const answers = collectAnswers();
     const reference = referenceInput.value;
-    formNote.textContent = `Aitäh! Sinu "${answers.packageName}" tellimus ${answers.personName ? `("${answers.personName}") ` : ''}on vastu võetud (viide ${reference}) - võtame peagi ühendust, et makse ja laulu üksikasjad kokku leppida. 🎵`;
+    formNote.textContent = `Aitäh, ${answers.yourName}! Sinu "${answers.packageName}" tellimus ${answers.personName ? `("${answers.personName}") ` : ''}on vastu võetud (viide ${reference}) - võtame peagi ühendust, et makse ja laulu üksikasjad kokku leppida. 🎵`;
     orderForm.reset();
     orderForm.querySelectorAll('.chip-option.is-selected, .package-option.is-selected').forEach((c) => c.classList.remove('is-selected'));
     orderForm.querySelectorAll('.chip-group, .package-group').forEach((g) => {
