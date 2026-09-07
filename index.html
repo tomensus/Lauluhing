@@ -265,7 +265,16 @@
         </ul>
       </div>
 
-      <form class="order-form wizard" id="order-form" novalidate>
+      <form class="order-form wizard" id="order-form" name="tellimus" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="tellimus">
+        <p hidden><label>Ära täida seda välja: <input name="bot-field"></label></p>
+
+        <!-- Resolved values for the button-based questions, kept in sync via JS -->
+        <input type="hidden" name="kellele" id="hiddenKellele">
+        <input type="hidden" name="zanr" id="hiddenGenre">
+        <input type="hidden" name="haal" id="hiddenVoice">
+        <input type="hidden" name="pakett" id="hiddenPackage">
+        <input type="hidden" name="hind" id="hiddenPrice">
 
         <div class="wizard-progress">
           <div class="wizard-progress-fill" id="wizardProgressFill"></div>
@@ -292,24 +301,24 @@
 
           <div class="wizard-step" data-step="1" data-required="true" hidden>
             <p class="wizard-question">Mis on selle inimese nimi?</p>
-            <input type="text" id="field-person-name" placeholder="Nt Kristel">
+            <input type="text" id="field-person-name" name="nimi" placeholder="Nt Kristel">
           </div>
 
           <div class="wizard-step" data-step="2" data-required="true" hidden>
             <p class="wizard-question">Iseloomusta teda, mis teeb ta sinu jaoks eriliseks? <span class="required-star">*</span></p>
             <p class="wizard-hint">Väike harjumus, tema naer, viis, kuidas ta sind aitab...</p>
-            <textarea id="field-character" rows="4" placeholder="Kirjuta siia..."></textarea>
+            <textarea id="field-character" name="iseloomustus" rows="4" placeholder="Kirjuta siia..."></textarea>
           </div>
 
           <div class="wizard-step" data-step="3" hidden>
             <p class="wizard-question">Mis on teie erilised ühised hetked?</p>
-            <textarea id="field-moments" rows="4" placeholder="Kirjuta siia... (valikuline)"></textarea>
+            <textarea id="field-moments" name="hetked" rows="4" placeholder="Kirjuta siia... (valikuline)"></textarea>
           </div>
 
           <div class="wizard-step" data-step="4" hidden>
             <p class="wizard-question">Mõni isiklik sõnum...</p>
             <p class="wizard-hint">Mida tahaksid talle öelda, kuid pole kunagi täielikult välja öelnud? Mille eest tahaksid teda tänada? Mis on see üks asi südamest, mida tahad talle edasi anda?</p>
-            <textarea id="field-message" rows="4" placeholder="Kirjuta siia... (valikuline)"></textarea>
+            <textarea id="field-message" name="sonum" rows="4" placeholder="Kirjuta siia... (valikuline)"></textarea>
           </div>
 
           <div class="wizard-step" data-step="5" data-required="true" hidden>
@@ -342,7 +351,7 @@
           <div class="wizard-step" data-step="7" hidden>
             <p class="wizard-question">Endal midagi lisada?</p>
             <p class="wizard-hint">Ükskõik mida.</p>
-            <textarea id="field-extra" rows="4" placeholder="Kirjuta siia... (valikuline)"></textarea>
+            <textarea id="field-extra" name="lisada" rows="4" placeholder="Kirjuta siia... (valikuline)"></textarea>
           </div>
 
           <div class="wizard-step" data-step="8" data-required="true" hidden>
@@ -394,11 +403,11 @@
             <p class="wizard-hint">Meie meeskond võtab sinuga ühendust 24 tunni jooksul.</p>
             <div class="form-row">
               <label for="field-your-name">Sinu nimi</label>
-              <input type="text" id="field-your-name" placeholder="Nt Kadri Tamm">
+              <input type="text" id="field-your-name" name="sinu_nimi" placeholder="Nt Kadri Tamm">
             </div>
             <div class="form-row">
               <label for="field-email">E-post</label>
-              <input type="email" id="field-email" placeholder="sinu@email.ee">
+              <input type="email" id="field-email" name="email" placeholder="sinu@email.ee">
             </div>
           </div>
 

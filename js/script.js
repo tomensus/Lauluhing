@@ -131,7 +131,7 @@ document.querySelectorAll('[data-demo-player]').forEach((button) => {
   });
 });
 
-// Order wizard - one question at a time (front-end only demo, no backend wired up yet)
+// Order wizard - one question at a time, submitted to Netlify Forms on completion
 const orderForm = document.getElementById('order-form');
 const formNote = document.getElementById('formNote');
 
@@ -143,6 +143,30 @@ if (orderForm) {
   const nextBtn = document.getElementById('wizardNext');
 
   let current = 0;
+
+  // Chip-group answers aren't real form fields, so their resolved value is
+  // mirrored into a hidden input under a fixed name - that's what actually
+  // gets submitted to Netlify Forms.
+  const hiddenFieldMap = {
+    chipKellele: { hiddenId: 'hiddenKellele', otherId: 'kelleleOther' },
+    chipGenre: { hiddenId: 'hiddenGenre', otherId: 'genreOther' },
+    chipVoice: { hiddenId: 'hiddenVoice', otherId: null },
+  };
+
+  function syncHiddenField(group) {
+    const map = hiddenFieldMap[group.id];
+    if (!map) return;
+    const hiddenInput = document.getElementById(map.hiddenId);
+    const value = group.dataset.value;
+    hiddenInput.value = value === 'muu' && map.otherId
+      ? document.getElementById(map.otherId).value.trim()
+      : (value || '');
+  }
+
+  function syncPackageHiddenFields() {
+    document.getElementById('hiddenPackage').value = packageGroup.dataset.value || '';
+    document.getElementById('hiddenPrice').value = packageGroup.dataset.price || '';
+  }
 
   // Chip groups behave as single-select buttons that store their value on the group itself.
   orderForm.querySelectorAll('.chip-group').forEach((group) => {
@@ -156,9 +180,13 @@ if (orderForm) {
           otherInput.hidden = !chip.dataset.other;
           if (chip.dataset.other) otherInput.focus();
         }
+        syncHiddenField(group);
         refreshNav();
       });
     });
+    if (otherInput) {
+      otherInput.addEventListener('input', () => syncHiddenField(group));
+    }
   });
 
   // Package cards behave the same way as chips, plus they carry a price and,
@@ -176,6 +204,7 @@ if (orderForm) {
       } else {
         delete packageGroup.dataset.stripeUrl;
       }
+      syncPackageHiddenFields();
       refreshNav();
     });
   });
@@ -259,6 +288,15 @@ if (orderForm) {
     };
   }
 
+  function submitToNetlify() {
+    const body = new URLSearchParams(new FormData(orderForm)).toString();
+    return fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body,
+    });
+  }
+
   function scrollWizardIntoView() {
     // Center the question itself (not the whole step or card) in the
     // viewport. Centering a taller element - the whole card, or a step
@@ -289,11 +327,16 @@ if (orderForm) {
     }
 
     if (packageGroup.dataset.stripeUrl) {
-      window.location.href = packageGroup.dataset.stripeUrl;
+      const stripeUrl = packageGroup.dataset.stripeUrl;
+      // Best-effort: don't let a failed/slow form submission block payment.
+      submitToNetlify().catch(() => {}).finally(() => {
+        window.location.href = stripeUrl;
+      });
       return;
     }
 
     // Fallback for a package without a configured Stripe Payment Link yet.
+    submitToNetlify().catch(() => {});
     const answers = collectAnswers();
     formNote.textContent = `Aitäh, ${answers.yourName}! Sinu "${answers.packageName}" tellimus ${answers.personName ? `("${answers.personName}") ` : ''}on vastu võetud - võtame peagi ühendust, et makse ja laulu üksikasjad kokku leppida. 🎵`;
     orderForm.reset();
