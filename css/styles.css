@@ -480,6 +480,22 @@ section{ position: relative; z-index:1; padding: 96px 0; }
   .example-grid{ grid-template-columns: 1fr; }
   .hero-badge{ display:none; }
   .footer-links{ grid-template-columns: 1fr; }
-  .order-form{ padding: 28px 22px; }
-  .wizard-question{ font-size: 21px; }
+  .order-form{ padding: 22px 18px; gap: 14px; }
+  .wizard-step-label{ font-size: 11px; margin-bottom: 16px; }
+  .wizard-steps{ min-height: 180px; }
+  .wizard-question{ font-size: 19px; margin-bottom: 6px; }
+  .wizard-hint{ font-size: 13px; margin-bottom: 14px; }
+  .wizard-step input[type="text"],
+  .wizard-step input[type="email"],
+  .wizard-step textarea{ padding: 12px 14px; }
+  .chip-group{ gap: 8px; }
+  .chip-option{ font-size: 14px; padding: 10px 16px; }
+  .package-group{ gap: 12px; }
+  .package-option{ padding: 16px 18px; gap: 10px; }
+  .package-name{ font-size: 16px; }
+  .package-price{ font-size: 19px; }
+  .package-features{ gap: 6px; }
+  .package-features li{ font-size: 13px; }
+  .wizard-nav{ margin-top: 22px; }
+  .wizard-nav .btn{ padding: 14px 24px; font-size: 14px; }
 }
