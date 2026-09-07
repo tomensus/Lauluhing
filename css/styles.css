@@ -324,16 +324,6 @@ section{ position: relative; z-index:1; padding: 96px 0; }
   padding: 44px; display:flex; flex-direction:column; gap: 20px;
   box-shadow: var(--shadow-md);
 }
-.form-row{ display:flex; flex-direction:column; gap: 6px; }
-.form-row label{ font-size: 13px; font-weight:700; color: var(--ink); }
-.form-row input, .form-row select, .form-row textarea{
-  font-family: var(--font-body); font-size: 15px;
-  padding: 12px 14px; border-radius: var(--radius-sm); border: 1px solid var(--line);
-  background: var(--white); color: var(--ink); resize: vertical;
-}
-.form-row input:focus, .form-row select:focus, .form-row textarea:focus{
-  outline: none; border-color: var(--coral);
-}
 .form-note{ text-align:center; font-size: 14px; font-weight:600; color: var(--coral-dark); min-height: 1.2em; margin:0; }
 
 /* ---------- Wizard (step-by-step order form) ---------- */
@@ -362,18 +352,13 @@ section{ position: relative; z-index:1; padding: 96px 0; }
 .wizard-hint{ font-size: 15px; color: var(--ink-soft); margin: 0 0 20px; }
 
 .wizard-step input[type="text"],
-.wizard-step input[type="email"],
 .wizard-step textarea{
   width:100%; font-family: var(--font-body); font-size: 16px;
   padding: 15px 18px; border-radius: var(--radius-sm); border: 1px solid var(--line);
   background: var(--white); color: var(--ink); resize: vertical;
 }
 .wizard-step input[type="text"]:focus,
-.wizard-step input[type="email"]:focus,
 .wizard-step textarea:focus{ outline:none; border-color: var(--coral); }
-.wizard-step .form-row{ margin-bottom: 18px; }
-.wizard-step .form-row:last-child{ margin-bottom: 0; }
-.wizard-step .form-row label{ font-size: 14px; font-weight:700; color: var(--ink); }
 
 .chip-group{ display:flex; flex-wrap:wrap; gap: 12px; }
 .chip-option{

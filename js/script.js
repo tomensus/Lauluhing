@@ -205,17 +205,17 @@ if (orderForm) {
         delete packageGroup.dataset.stripeUrl;
       }
       syncPackageHiddenFields();
-      refreshNav();
+      // Re-run showStep (not just refreshNav): the package step doubles as
+      // the wizard's final step, so picking a package can change whether
+      // the next button should read "Jätka maksele" right here, without
+      // any step transition to trigger that update otherwise.
+      showStep(current);
     });
   });
 
   orderForm.querySelectorAll('input[type="text"], input[type="email"], textarea').forEach((field) => {
     field.addEventListener('input', refreshNav);
   });
-
-  function isValidEmail(value) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-  }
 
   function isStepValid(index) {
     const step = steps[index];
@@ -242,11 +242,6 @@ if (orderForm) {
         return Boolean(document.getElementById('chipVoice').dataset.value);
       case 8:
         return Boolean(packageGroup.dataset.value);
-      case 9:
-        return (
-          document.getElementById('field-your-name').value.trim() !== '' &&
-          isValidEmail(document.getElementById('field-email').value.trim())
-        );
       default:
         return true;
     }
@@ -284,7 +279,6 @@ if (orderForm) {
       voice: document.getElementById('chipVoice').dataset.value,
       packageName: packageGroup.dataset.value,
       packagePrice: packageGroup.dataset.price,
-      yourName: document.getElementById('field-your-name').value.trim(),
     };
   }
 
@@ -338,7 +332,7 @@ if (orderForm) {
     // Fallback for a package without a configured Stripe Payment Link yet.
     submitToNetlify().catch(() => {});
     const answers = collectAnswers();
-    formNote.textContent = `Aitäh, ${answers.yourName}! Sinu "${answers.packageName}" tellimus ${answers.personName ? `("${answers.personName}") ` : ''}on vastu võetud - võtame peagi ühendust, et makse ja laulu üksikasjad kokku leppida. 🎵`;
+    formNote.textContent = `Aitäh! Sinu "${answers.packageName}" tellimus ${answers.personName ? `("${answers.personName}") ` : ''}on vastu võetud - võtame peagi ühendust, et makse ja laulu üksikasjad kokku leppida. 🎵`;
     orderForm.reset();
     orderForm.querySelectorAll('.chip-option.is-selected, .package-option.is-selected').forEach((c) => c.classList.remove('is-selected'));
     orderForm.querySelectorAll('.chip-group, .package-group').forEach((g) => {
