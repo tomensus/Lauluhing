@@ -260,11 +260,14 @@ if (orderForm) {
   }
 
   function scrollWizardIntoView() {
-    // Scroll the active step itself (not the whole card) to the top of the
-    // viewport - on short mobile screens a tall step (e.g. the package
-    // cards) can be taller than the viewport, so centering the whole card
-    // would push the question itself above the visible area.
-    steps[current].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Center the question itself (not the whole step or card) in the
+    // viewport. Centering a taller element - the whole card, or a step
+    // with a lot of content like the package cards - can push its own
+    // heading above the visible area on a short phone screen, so we
+    // target just the question text, which is always small.
+    const activeStep = steps[current];
+    const target = activeStep.querySelector('.wizard-question') || activeStep;
+    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   backBtn.addEventListener('click', () => {
