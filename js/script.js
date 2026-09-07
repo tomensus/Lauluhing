@@ -144,6 +144,17 @@ if (orderForm) {
 
   let current = 0;
 
+  // A short order reference that ties this Netlify Forms submission to its
+  // Stripe payment (sent along as client_reference_id), so the two can be
+  // matched up without collecting the customer's name/email ourselves.
+  const referenceInput = document.getElementById('hiddenReference');
+  function generateReference() {
+    const stamp = Date.now().toString(36).toUpperCase();
+    const random = Math.random().toString(36).slice(2, 6).toUpperCase();
+    return `LH-${stamp}-${random}`;
+  }
+  referenceInput.value = generateReference();
+
   // Chip-group answers aren't real form fields, so their resolved value is
   // mirrored into a hidden input under a fixed name - that's what actually
   // gets submitted to Netlify Forms.
@@ -321,10 +332,11 @@ if (orderForm) {
     }
 
     if (packageGroup.dataset.stripeUrl) {
-      const stripeUrl = packageGroup.dataset.stripeUrl;
+      const stripeUrl = new URL(packageGroup.dataset.stripeUrl);
+      stripeUrl.searchParams.set('client_reference_id', referenceInput.value);
       // Best-effort: don't let a failed/slow form submission block payment.
       submitToNetlify().catch(() => {}).finally(() => {
-        window.location.href = stripeUrl;
+        window.location.href = stripeUrl.toString();
       });
       return;
     }
@@ -332,7 +344,8 @@ if (orderForm) {
     // Fallback for a package without a configured Stripe Payment Link yet.
     submitToNetlify().catch(() => {});
     const answers = collectAnswers();
-    formNote.textContent = `Aitäh! Sinu "${answers.packageName}" tellimus ${answers.personName ? `("${answers.personName}") ` : ''}on vastu võetud - võtame peagi ühendust, et makse ja laulu üksikasjad kokku leppida. 🎵`;
+    const reference = referenceInput.value;
+    formNote.textContent = `Aitäh! Sinu "${answers.packageName}" tellimus ${answers.personName ? `("${answers.personName}") ` : ''}on vastu võetud (viide ${reference}) - võtame peagi ühendust, et makse ja laulu üksikasjad kokku leppida. 🎵`;
     orderForm.reset();
     orderForm.querySelectorAll('.chip-option.is-selected, .package-option.is-selected').forEach((c) => c.classList.remove('is-selected'));
     orderForm.querySelectorAll('.chip-group, .package-group').forEach((g) => {
@@ -341,6 +354,7 @@ if (orderForm) {
       delete g.dataset.stripeUrl;
     });
     orderForm.querySelectorAll('.chip-other-input').forEach((i) => { i.hidden = true; });
+    referenceInput.value = generateReference();
     current = 0;
     showStep(current);
   });
