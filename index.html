@@ -7,6 +7,8 @@
 <meta name="description" content="Lauluhing loob sulle isikupärase laulu kingituseks - sünnipäevaks, pulmaks, aastapäevaks või lihtsalt niisama. Jaga oma lugu, meie teeme sellest muusika.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://lauluhing.com/">
+<link rel="alternate" hreflang="et" href="https://lauluhing.com/">
+<link rel="alternate" hreflang="x-default" href="https://lauluhing.com/">
 <meta name="theme-color" content="#fff8f0" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1b151f" media="(prefers-color-scheme: dark)">
 
@@ -17,8 +19,10 @@
 <meta property="og:title" content="Lauluhing - Isikupärane laul erilise inimese jaoks">
 <meta property="og:description" content="Lauluhing loob sulle isikupärase laulu kingituseks - sünnipäevaks, pulmaks, aastapäevaks või lihtsalt niisama. Jaga oma lugu, meie teeme sellest muusika.">
 <meta property="og:image" content="https://lauluhing.com/assets/images/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="2400">
 <meta property="og:image:height" content="1260">
+<meta property="og:image:alt" content="Lauluhing - isikupärane laul kingituseks">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Lauluhing - Isikupärane laul erilise inimese jaoks">
@@ -34,60 +38,69 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Lauluhing",
-  "url": "https://lauluhing.com/",
-  "logo": "https://lauluhing.com/assets/images/og-image.jpg",
-  "email": "lauluhing@gmail.com",
-  "description": "Lauluhing loob isikupäraseid laule kingituseks - sünnipäevaks, pulmaks, aastapäevaks või lihtsalt niisama."
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "serviceType": "Isikupärase laulu loomine",
-  "name": "Isikupärane laul kingituseks",
-  "provider": { "@type": "Organization", "name": "Lauluhing", "url": "https://lauluhing.com/" },
-  "areaServed": "EE",
-  "description": "Isikupärane laul, mis luuakse sinu jagatud loo, mälestuste ja sõnumi põhjal - sobib kingituseks sünnipäevaks, pulmaks, aastapäevaks või muuks eriliseks hetkeks.",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Laulupaketid",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "name": "Tavaline",
-        "price": "29.95",
-        "priceCurrency": "EUR",
-        "url": "https://lauluhing.com/#order",
-        "description": "Üks originaalne laul, valmis 5 päeva jooksul, MP3 fail e-postiga."
-      },
-      {
-        "@type": "Offer",
-        "name": "Populaarseim (Prioriteet)",
-        "price": "44.95",
-        "priceCurrency": "EUR",
-        "url": "https://lauluhing.com/#order",
-        "description": "Üks originaalne laul, valmis 24 tunni jooksul, kiirem töötlus ja prioriteetne suhtlus."
-      },
-      {
-        "@type": "Offer",
-        "name": "Express",
-        "price": "54.95",
-        "priceCurrency": "EUR",
-        "url": "https://lauluhing.com/#order",
-        "description": "Üks originaalne laul, valmis 4 tunni jooksul, kaks versiooni valikus."
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://lauluhing.com/#organization",
+      "name": "Lauluhing",
+      "url": "https://lauluhing.com/",
+      "logo": "https://lauluhing.com/assets/images/og-image.jpg",
+      "email": "lauluhing@gmail.com",
+      "description": "Lauluhing loob isikupäraseid laule kingituseks - sünnipäevaks, pulmaks, aastapäevaks või lihtsalt niisama."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://lauluhing.com/#website",
+      "url": "https://lauluhing.com/",
+      "name": "Lauluhing",
+      "inLanguage": "et",
+      "publisher": { "@id": "https://lauluhing.com/#organization" }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://lauluhing.com/#service",
+      "serviceType": "Isikupärase laulu loomine",
+      "name": "Isikupärane laul kingituseks",
+      "provider": { "@id": "https://lauluhing.com/#organization" },
+      "areaServed": "EE",
+      "inLanguage": "et",
+      "priceRange": "29.95€-54.95€",
+      "description": "Isikupärane laul, mis luuakse sinu jagatud loo, mälestuste ja sõnumi põhjal - sobib kingituseks sünnipäevaks, pulmaks, aastapäevaks või muuks eriliseks hetkeks.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Laulupaketid",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Tavaline",
+            "price": "29.95",
+            "priceCurrency": "EUR",
+            "url": "https://lauluhing.com/#order",
+            "description": "Üks originaalne laul, valmis 5 päeva jooksul, MP3 fail e-postiga."
+          },
+          {
+            "@type": "Offer",
+            "name": "Populaarseim (Prioriteet)",
+            "price": "44.95",
+            "priceCurrency": "EUR",
+            "url": "https://lauluhing.com/#order",
+            "description": "Üks originaalne laul, valmis 24 tunni jooksul, kiirem töötlus ja prioriteetne suhtlus."
+          },
+          {
+            "@type": "Offer",
+            "name": "Express",
+            "price": "54.95",
+            "priceCurrency": "EUR",
+            "url": "https://lauluhing.com/#order",
+            "description": "Üks originaalne laul, valmis 4 tunni jooksul, kaks versiooni valikus."
+          }
+        ]
       }
-    ]
-  }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://lauluhing.com/#faq",
+      "mainEntity": [
     {
       "@type": "Question",
       "name": "Kui kaua kestab laulu valmimine?",
@@ -119,6 +132,8 @@
         "@type": "Answer",
         "text": "Ikka saab! Kui valmis laul ei tundu veel täpselt see õige, anna meile teada, mis kripeldama jäi - olgu see üks sõna, meloodia nüanss või hoopis teine tunnetus. Väiksemad täpsustused teeme hea meelega üle, sest tahame, et laul kõlaks täpselt nii nagu sina ette kujutasid."
       }
+    }
+      ]
     }
   ]
 }
@@ -219,6 +234,7 @@
     <div class="container">
       <p class="section-eyebrow">Kuidas see töötab</p>
       <h2>Kolm sammu unikaalse laulu kinkimiseni</h2>
+      <p class="section-lead">Personaalse laulu tellimine on lihtne - jaga oma lugu, meie teeme sellest laulukingituse, mis sobib sünnipäevaks, pulmaks, aastapäevaks või mis tahes muuks eriliseks hetkeks.</p>
 
       <div class="steps">
         <div class="step-card">
@@ -541,6 +557,7 @@
     <div class="container">
       <p class="section-eyebrow">Küsimused</p>
       <h2>Korduma kippuvad küsimused</h2>
+      <p class="section-lead">Kõik, mida on vaja teada isikupärase laulu tellimise, valmimisaja ja kättesaamise kohta.</p>
 
       <div class="faq-list">
         <div class="faq-item">
@@ -635,6 +652,6 @@
   </div>
 </footer>
 
-<script src="js/script.js"></script>
+<script src="js/script.js" defer></script>
 </body>
 </html>
