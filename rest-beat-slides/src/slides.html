@@ -16,7 +16,6 @@
     --navy-soft:#5B6B86;   /* secondary text */
     --navy-mid:#3F5373;    /* scale: 70 to 80 */
     --teal-mid:#6BB9AF;    /* scale: 60 to 70 */
-    --teal-light:#5FD0C0;  /* teal on navy */
     --line:#E3E8EE;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -29,14 +28,11 @@
          margin:0 auto 40px}
   .safe{position:absolute;left:90px;right:90px;top:130px;bottom:330px;
         display:flex;flex-direction:column}
-  .dark{background:var(--navy);color:#fff}
-
+  
   /* progress segments: tells people there is more to swipe */
   .progress{position:absolute;top:56px;left:90px;right:90px;display:flex;gap:12px}
   .progress i{flex:1;height:10px;border-radius:5px;background:var(--line)}
   .progress i.on{background:var(--teal)}
-  .dark .progress i{background:rgba(255,255,255,.18)}
-  .dark .progress i.on{background:var(--teal-light)}
 
   .brand{position:absolute;left:90px;bottom:200px;display:flex;align-items:center;gap:16px}
   .brand img{width:80px;mix-blend-mode:multiply}
@@ -52,16 +48,8 @@
   .wave path,.line path{fill:none;stroke-linecap:round;stroke-linejoin:round}
 
   /* 1: hook */
-  .chip{align-self:flex-start;display:inline-flex;align-items:center;gap:14px;
-        border:3px solid var(--teal-light);color:var(--teal-light);border-radius:999px;
-        padding:12px 30px;font-weight:700;font-size:32px;letter-spacing:1px;text-transform:uppercase}
-  .chip i{width:14px;height:14px;border-radius:50%;background:var(--teal-light)}
-  .hook h1{font-size:122px;line-height:1.02;letter-spacing:-4px;margin-top:40px}
-  .hook h1 .t{color:var(--teal-light)}
-  .cta{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
-  .pill{display:inline-flex;align-items:center;background:var(--teal);color:#fff;border-radius:999px;
-        padding:26px 46px;font-weight:700;font-size:44px}
-  .swipe{width:104px;height:104px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
+  .hook h1{font-size:122px;line-height:1.02;letter-spacing:-4px}
+  .hook .sub{font-weight:600;font-size:48px;color:var(--navy-soft);margin-top:auto}
 
   /* 2: steps on a rounded line */
   .steps{position:relative;display:flex;flex-direction:column;gap:76px;margin-top:70px}
@@ -78,33 +66,19 @@
   .row.hi .txt{color:var(--navy);font-weight:700}
   .bar{height:38px;border-radius:19px;margin-top:18px}
 
-  /* 6: CTA card */
-  .card{background:var(--navy);color:#fff;border-radius:48px;padding:64px 60px 70px}
-  .card h1{font-size:96px}
 </style>
 </head>
 <body>
 
-<!-- 1: hook (dark, high contrast so it stops the scroll) -->
-<section class="slide dark hook" id="s1">
+<!-- 1: hook -->
+<section class="slide hook" id="s1">
   <div class="progress"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="safe">
-    <div class="chip"><i></i>Quick test</div>
     <h1>What's your<br><span class="t">resting<br>heart rate?</span></h1>
-    <!-- Logo redrawn in white + teal so it reads on navy; same shape as logo.png -->
-    <svg class="line" viewBox="-8 -2 166 104" style="width:500px;margin:20px 0 0 -12px">
-      <path d="M0 50 H26 L37 6 L50 94 L61 50 H74" stroke="#FFFFFF" stroke-width="13"/>
-      <path d="M74 50 C83 50 85 30 94 30 C103 30 105 50 114 50 H148" stroke="#5FD0C0" stroke-width="13"/>
-    </svg>
-    <div class="cta">
-      <div class="pill">Check it in 15 seconds</div>
-      <div class="swipe"><svg viewBox="0 0 40 40" width="46"><path d="M8 20 H31 M22 11 L31 20 L22 29" fill="none" stroke="#152A4D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    </div>
+    <img src="logo-trim.png" alt="" style="width:560px;margin:56px 0 0 -14px;mix-blend-mode:multiply">
+    <p class="sub">Check it in 15 seconds</p>
   </div>
-  <div class="brand">
-    <svg class="line" viewBox="-8 -2 166 104"><path d="M0 50 H26 L37 6 L50 94 L61 50 H74" stroke="#FFFFFF" stroke-width="13"/><path d="M74 50 C83 50 85 30 94 30 C103 30 105 50 114 50 H148" stroke="#5FD0C0" stroke-width="13"/></svg>
-    <span>RestBeat</span>
-  </div>
+  <div class="brand"><img src="logo-trim.png" alt=""><span>RestBeat</span></div>
 </section>
 
 <!-- 2: how to measure -->
@@ -181,13 +155,11 @@
 <section class="slide" id="s6">
   <div class="progress"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
   <div class="safe" style="justify-content:center">
-    <div class="card">
-      <h1>Comment<br><span style="white-space:nowrap">your number 👇</span></h1>
-      <svg class="line" viewBox="0 0 900 80" style="width:100%;margin-top:56px">
-        <path stroke="#5FD0C0" stroke-width="16" d="M10 40 H300 C336 40 346 18 382 18 C418 18 428 40 464 40 H860"/>
-        <circle cx="872" cy="40" r="18" fill="#5FD0C0"/>
-      </svg>
-    </div>
+    <h1 style="font-size:104px">Comment<br><span style="white-space:nowrap">your number 👇</span></h1>
+    <svg class="line" viewBox="0 0 900 80" style="width:100%;margin-top:70px">
+      <path stroke="#2C9C8E" stroke-width="16" d="M10 40 H300 C336 40 346 18 382 18 C418 18 428 40 464 40 H860"/>
+      <circle cx="872" cy="40" r="18" fill="#2C9C8E"/>
+    </svg>
     <p style="font-weight:600;font-size:54px;line-height:1.3;margin-top:70px">Follow <span class="t" style="font-weight:800">@rest.beat</span><br>for simple tips</p>
   </div>
   <div class="brand"><img src="logo-trim.png" alt=""><span>RestBeat</span></div>
