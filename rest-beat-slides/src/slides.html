@@ -16,149 +16,181 @@
     --navy-soft:#5B6B86;   /* secondary text */
     --navy-mid:#3F5373;    /* scale: 70 to 80 */
     --teal-mid:#6BB9AF;    /* scale: 60 to 70 */
+    --teal-light:#5FD0C0;  /* teal on navy */
     --line:#E3E8EE;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:#ccd3db;font-family:Poppins,"Noto Color Emoji",sans-serif;color:var(--navy)}
 
-  .slide{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--bg);
+  /* 3:4 slide. TikTok letterboxes 3:4 photos inside the 9:16 screen, so only the
+     outer edges sit under the app UI. Text stays 100 px from the top and
+     200 px from the bottom; the brand row sits at the bottom of that zone. */
+  .slide{position:relative;width:1080px;height:1440px;overflow:hidden;background:var(--bg);
          margin:0 auto 40px}
-  /* Safe zone: 150 px from top, 350 px from bottom */
-  /* content stops 120 px above the brand row so the two never touch */
-  .safe{position:absolute;left:96px;right:96px;top:150px;bottom:470px;
+  .safe{position:absolute;left:90px;right:90px;top:130px;bottom:330px;
         display:flex;flex-direction:column}
+  .dark{background:var(--navy);color:#fff}
 
-  .brand{position:absolute;left:96px;bottom:350px;display:flex;align-items:center;gap:18px}
-  .brand img{width:84px;mix-blend-mode:multiply}
-  .brand span{font-weight:700;font-size:36px;letter-spacing:-.5px}
-  .brand span b{color:var(--teal);font-weight:700}
+  /* progress segments: tells people there is more to swipe */
+  .progress{position:absolute;top:56px;left:90px;right:90px;display:flex;gap:12px}
+  .progress i{flex:1;height:10px;border-radius:5px;background:var(--line)}
+  .progress i.on{background:var(--teal)}
+  .dark .progress i{background:rgba(255,255,255,.18)}
+  .dark .progress i.on{background:var(--teal-light)}
 
-  h1{font-weight:800;font-size:112px;line-height:1.08;letter-spacing:-3px}
-  h1 .t{color:var(--teal)}
-  .h2{font-weight:800;font-size:92px;line-height:1.12;letter-spacing:-2.5px}
-  .sub{font-weight:500;font-size:46px;line-height:1.35;color:var(--navy-soft)}
+  .brand{position:absolute;left:90px;bottom:200px;display:flex;align-items:center;gap:16px}
+  .brand img{width:80px;mix-blend-mode:multiply}
+  .brand svg{width:80px;height:auto}
+  .brand span{font-weight:700;font-size:34px;letter-spacing:-.5px}
 
-  .wave{position:absolute;left:0;width:1080px}
-  .wave path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+  h1{font-weight:800;font-size:108px;line-height:1.06;letter-spacing:-3px}
+  .h2{font-weight:800;font-size:84px;line-height:1.12;letter-spacing:-2.5px}
+  .t{color:var(--teal)}
 
-  .pill{display:inline-flex;align-items:center;gap:18px;align-self:flex-start;
-        background:var(--teal);color:#fff;border-radius:999px;padding:24px 44px;
-        font-weight:700;font-size:46px}
-  .pill i{width:18px;height:18px;border-radius:50%;background:#fff;display:block}
+  .wave{display:block;width:100%;flex:none}
+  svg.line{flex:none}
+  .wave path,.line path{fill:none;stroke-linecap:round;stroke-linejoin:round}
 
-  /* slide 2: steps on a rounded line */
-  .steps{position:relative;display:flex;flex-direction:column;gap:110px;margin-top:40px}
-  .steps::before{content:"";position:absolute;left:31px;top:40px;bottom:40px;width:14px;border-radius:7px;
-                 background:var(--line)}
-  .step{position:relative;display:flex;gap:56px;align-items:flex-start}
-  .dot{flex:none;width:76px;height:76px;border-radius:50%;margin-top:14px;
-       display:flex;align-items:center;justify-content:center;
-       font-weight:800;font-size:38px;color:#fff}
-  .step p{font-weight:800;font-size:84px;line-height:1.1;letter-spacing:-2px}
+  /* 1: hook */
+  .chip{align-self:flex-start;display:inline-flex;align-items:center;gap:14px;
+        border:3px solid var(--teal-light);color:var(--teal-light);border-radius:999px;
+        padding:12px 30px;font-weight:700;font-size:32px;letter-spacing:1px;text-transform:uppercase}
+  .chip i{width:14px;height:14px;border-radius:50%;background:var(--teal-light)}
+  .hook h1{font-size:122px;line-height:1.02;letter-spacing:-4px;margin-top:40px}
+  .hook h1 .t{color:var(--teal-light)}
+  .cta{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
+  .pill{display:inline-flex;align-items:center;background:var(--teal);color:#fff;border-radius:999px;
+        padding:26px 46px;font-weight:700;font-size:44px}
+  .swipe{width:104px;height:104px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
 
-  /* slide 3: scale */
-  .scale{display:flex;flex-direction:column;gap:78px}
-  .row .lbl{display:flex;align-items:baseline;justify-content:space-between;gap:24px}
-  .row .num{font-weight:800;font-size:84px;letter-spacing:-2px;line-height:1}
-  .row .txt{font-weight:600;font-size:40px;color:var(--navy-soft);margin-top:14px}
-  .bar{height:44px;border-radius:22px;margin-top:22px}
-  .row.hi .txt{color:var(--navy)}
+  /* 2: steps on a rounded line */
+  .steps{position:relative;display:flex;flex-direction:column;gap:76px;margin-top:70px}
+  .steps::before{content:"";position:absolute;left:33px;top:40px;bottom:40px;width:12px;border-radius:6px;background:var(--line)}
+  .step{position:relative;display:flex;gap:48px;align-items:flex-start}
+  .dot{flex:none;width:78px;height:78px;border-radius:50%;margin-top:8px;
+       display:flex;align-items:center;justify-content:center;font-weight:800;font-size:38px;color:#fff}
+  .step p{font-weight:800;font-size:80px;line-height:1.1;letter-spacing:-2px}
+
+  /* 3: scale */
+  .scale{display:flex;flex-direction:column;gap:46px}
+  .row .num{font-weight:800;font-size:80px;letter-spacing:-2px;line-height:1}
+  .row .txt{font-weight:600;font-size:38px;color:var(--navy-soft);margin-top:10px}
+  .row.hi .txt{color:var(--navy);font-weight:700}
+  .bar{height:38px;border-radius:19px;margin-top:18px}
+
+  /* 6: CTA card */
+  .card{background:var(--navy);color:#fff;border-radius:48px;padding:64px 60px 70px}
+  .card h1{font-size:96px}
 </style>
 </head>
 <body>
 
-<!-- 1: hook -->
-<section class="slide" id="s1">
+<!-- 1: hook (dark, high contrast so it stops the scroll) -->
+<section class="slide dark hook" id="s1">
+  <div class="progress"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="safe">
-    <h1>What's your<br><span class="t">resting</span><br>heart rate?</h1>
-    <img src="logo-trim.png" alt="" style="width:720px;margin:150px 0 0 -22px;mix-blend-mode:multiply">
-    <div class="pill" style="margin-top:auto"><i></i>Check it in 15 seconds</div>
+    <div class="chip"><i></i>Quick test</div>
+    <h1>What's your<br><span class="t">resting<br>heart rate?</span></h1>
+    <!-- Logo redrawn in white + teal so it reads on navy; same shape as logo.png -->
+    <svg class="line" viewBox="-8 -2 166 104" style="width:500px;margin:20px 0 0 -12px">
+      <path d="M0 50 H26 L37 6 L50 94 L61 50 H74" stroke="#FFFFFF" stroke-width="13"/>
+      <path d="M74 50 C83 50 85 30 94 30 C103 30 105 50 114 50 H148" stroke="#5FD0C0" stroke-width="13"/>
+    </svg>
+    <div class="cta">
+      <div class="pill">Check it in 15 seconds</div>
+      <div class="swipe"><svg viewBox="0 0 40 40" width="46"><path d="M8 20 H31 M22 11 L31 20 L22 29" fill="none" stroke="#152A4D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
   </div>
-  <div class="brand"><img src="logo-trim.png" alt=""><span>rest<b>.</b>beat</span></div>
+  <div class="brand">
+    <svg class="line" viewBox="-8 -2 166 104"><path d="M0 50 H26 L37 6 L50 94 L61 50 H74" stroke="#FFFFFF" stroke-width="13"/><path d="M74 50 C83 50 85 30 94 30 C103 30 105 50 114 50 H148" stroke="#5FD0C0" stroke-width="13"/></svg>
+    <span>RestBeat</span>
+  </div>
 </section>
 
 <!-- 2: how to measure -->
 <section class="slide" id="s2">
-  <svg class="wave" style="top:150px" viewBox="0 0 1080 200" height="200">
-    <path stroke="#152A4D" stroke-width="22"
-      d="M-20 110 H90 L118 110 L146 26 L182 184 L208 110 H330 L358 110 L386 26 L422 184 L448 110 H570 L598 110 L626 26 L662 184 L688 110 H810 L838 110 L866 26 L902 184 L928 110 H1100"/>
-  </svg>
-  <div class="safe" style="top:430px">
+  <div class="progress"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div class="safe">
+    <svg class="wave" viewBox="0 0 900 150" style="width:calc(100% + 180px);margin-left:-90px">
+      <path stroke="#152A4D" stroke-width="18"
+        d="M-20 80 H70 L94 80 L118 14 L148 140 L170 80 H270 L294 80 L318 14 L348 140 L370 80 H470 L494 80 L518 14 L548 140 L570 80 H670 L694 80 L718 14 L748 140 L770 80 H920"/>
+    </svg>
     <div class="steps">
       <div class="step"><div class="dot" style="background:var(--navy)">1</div><p>Put two fingers on your neck.</p></div>
-      <div class="step"><div class="dot" style="background:var(--navy-mid)">2</div><p>Count for 15 seconds.</p></div>
+      <div class="step"><div class="dot" style="background:var(--navy-mid)">2</div><p>Count for 15&nbsp;seconds.</p></div>
       <div class="step"><div class="dot" style="background:var(--teal)">3</div><p>Multiply by&nbsp;4.</p></div>
     </div>
   </div>
-  <div class="brand"><img src="logo-trim.png" alt=""><span>rest<b>.</b>beat</span></div>
+  <div class="brand"><img src="logo-trim.png" alt=""><span>RestBeat</span></div>
 </section>
 
 <!-- 3: scale -->
 <section class="slide" id="s3">
+  <div class="progress"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
   <div class="safe" style="justify-content:center">
     <div class="scale">
       <div class="row">
-        <div class="num" style="color:var(--teal)">Under 60</div>
-        <div class="txt">Great shape</div>
-        <div class="bar" style="width:34%;background:var(--teal)"></div>
+        <div class="num t">Under 60</div><div class="txt">Great shape</div>
+        <div class="bar" style="width:32%;background:var(--teal)"></div>
       </div>
       <div class="row">
-        <div class="num" style="color:var(--teal)">60 to 70</div>
-        <div class="txt">Good</div>
+        <div class="num t">60 to 70</div><div class="txt">Good</div>
         <div class="bar" style="width:52%;background:var(--teal-mid)"></div>
       </div>
       <div class="row">
-        <div class="num">70 to 80</div>
-        <div class="txt">Room to improve</div>
-        <div class="bar" style="width:72%;background:var(--navy-mid)"></div>
+        <div class="num">70 to 80</div><div class="txt">Room to improve</div>
+        <div class="bar" style="width:74%;background:var(--navy-mid)"></div>
       </div>
       <div class="row hi">
-        <div class="num">Over 80</div>
-        <div class="txt">This account is for you</div>
+        <div class="num">Over 80</div><div class="txt">This account is for you</div>
         <div class="bar" style="width:100%;background:var(--navy)"></div>
       </div>
     </div>
   </div>
-  <div class="brand"><img src="logo-trim.png" alt=""><span>rest<b>.</b>beat</span></div>
+  <div class="brand"><img src="logo-trim.png" alt=""><span>RestBeat</span></div>
 </section>
 
 <!-- 4: why it matters -->
 <section class="slide" id="s4">
+  <div class="progress"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
   <div class="safe" style="justify-content:center">
-    <p class="h2">A <span style="color:var(--teal)">lower resting heart rate</span> is linked to better fitness and heart health</p>
+    <p class="h2">A <span class="t">lower resting</span><br><span class="t">heart rate</span> is linked<br>to better fitness<br>and heart health</p>
+    <svg class="wave" viewBox="0 0 900 150" style="width:calc(100% + 180px);margin:80px 0 0 -90px">
+      <path stroke="#152A4D" stroke-width="18" d="M-20 75 H120 L144 75 L170 12 L204 140 L228 75 H330 L350 75 L368 42 L388 110 L404 75 H450"/>
+      <path stroke="#2C9C8E" stroke-width="18" d="M450 75 C484 75 492 48 526 48 C560 48 568 75 602 75 C632 75 640 62 670 62 C700 62 708 75 738 75 H920"/>
+    </svg>
   </div>
-  <svg class="wave" style="top:1270px" viewBox="0 0 1080 200" height="200">
-    <path stroke="#152A4D" stroke-width="22" d="M-20 100 H150 L178 100 L210 24 L250 176 L278 100 H400 L424 100 L446 58 L470 140 L490 100 H540"/>
-    <path stroke="#2C9C8E" stroke-width="22" d="M540 100 C580 100 590 66 630 66 C670 66 680 100 720 100 C756 100 764 84 800 84 C836 84 844 100 880 100 H1100"/>
-  </svg>
-  <div class="brand"><img src="logo-trim.png" alt=""><span>rest<b>.</b>beat</span></div>
+  <div class="brand"><img src="logo-trim.png" alt=""><span>RestBeat</span></div>
 </section>
 
 <!-- 5: good news -->
 <section class="slide" id="s5">
-  <svg class="wave" style="top:150px" viewBox="0 0 1080 200" height="200">
-    <path stroke="#2C9C8E" stroke-width="22"
-      d="M-20 100 C40 100 60 50 120 50 C180 50 200 100 260 100 C320 100 340 60 400 60 C460 60 480 100 540 100 C600 100 620 70 680 70 C740 70 760 100 820 100 C870 100 890 82 940 82 C990 82 1010 100 1100 100"/>
-  </svg>
+  <div class="progress"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
   <div class="safe" style="justify-content:center">
-    <p class="sub" style="font-weight:700;color:var(--teal);font-size:52px;margin-bottom:28px">The good news:</p>
-    <h1 style="font-size:118px">you can<br>lower it<br>naturally</h1>
+    <p style="font-weight:700;color:var(--teal);font-size:54px;margin-bottom:20px">The good news:</p>
+    <h1 style="font-size:124px">you can<br>lower it<br><span class="t">naturally</span></h1>
+    <svg class="wave" viewBox="0 0 900 120" style="width:calc(100% + 180px);margin:90px 0 0 -90px">
+      <path stroke="#2C9C8E" stroke-width="18"
+        d="M-20 60 C30 60 50 22 100 22 C150 22 170 60 220 60 C270 60 290 30 340 30 C390 30 410 60 460 60 C510 60 530 40 580 40 C630 40 650 60 700 60 C740 60 760 50 800 50 C840 50 860 60 920 60"/>
+    </svg>
   </div>
-  <div class="brand"><img src="logo-trim.png" alt=""><span>rest<b>.</b>beat</span></div>
+  <div class="brand"><img src="logo-trim.png" alt=""><span>RestBeat</span></div>
 </section>
 
 <!-- 6: CTA -->
 <section class="slide" id="s6">
+  <div class="progress"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
   <div class="safe" style="justify-content:center">
-    <h1 style="font-size:104px">Comment<br><span style="white-space:nowrap">your number 👇</span></h1>
-    <svg viewBox="0 0 900 120" width="888" height="118" style="margin:90px 0 90px -10px">
-      <path fill="none" stroke="#2C9C8E" stroke-width="22" stroke-linecap="round"
-        d="M16 60 H300 C340 60 350 34 390 34 C430 34 440 60 480 60 H850"/>
-      <circle cx="862" cy="60" r="22" fill="#2C9C8E"/>
-    </svg>
-    <p class="sub" style="font-size:54px;color:var(--navy);font-weight:600">Follow <span style="color:var(--teal);font-weight:800">@rest.beat</span><br>for simple tips</p>
+    <div class="card">
+      <h1>Comment<br><span style="white-space:nowrap">your number 👇</span></h1>
+      <svg class="line" viewBox="0 0 900 80" style="width:100%;margin-top:56px">
+        <path stroke="#5FD0C0" stroke-width="16" d="M10 40 H300 C336 40 346 18 382 18 C418 18 428 40 464 40 H860"/>
+        <circle cx="872" cy="40" r="18" fill="#5FD0C0"/>
+      </svg>
+    </div>
+    <p style="font-weight:600;font-size:54px;line-height:1.3;margin-top:70px">Follow <span class="t" style="font-weight:800">@rest.beat</span><br>for simple tips</p>
   </div>
-  <div class="brand"><img src="logo-trim.png" alt=""><span>rest<b>.</b>beat</span></div>
+  <div class="brand"><img src="logo-trim.png" alt=""><span>RestBeat</span></div>
 </section>
 
 </body>

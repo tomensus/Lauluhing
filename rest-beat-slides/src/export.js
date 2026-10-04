@@ -1,10 +1,10 @@
-// Renders each <section class="slide"> in slides.html to ../slide-N.png (1080x1920).
+// Renders each <section class="slide"> in slides.html to ../slide-N.png (1080x1440).
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
 const path = require('path');
 
 (async () => {
   const browser = await chromium.launch();
-  const page = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
+  const page = await browser.newPage({ viewport: { width: 1080, height: 1440 } });
   await page.goto('file://' + path.join(__dirname, 'slides.html'), { waitUntil: 'networkidle' });
   await page.evaluate(() => document.fonts.ready);
   const slides = await page.$$('section.slide');
