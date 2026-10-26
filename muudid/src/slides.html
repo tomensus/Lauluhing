@@ -3,73 +3,53 @@
 <head>
 <meta charset="utf-8">
 <title>Lauluhing – 4 müüti</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
 <style>
-  :root{
-    --cream:#fff8f0;
-    --ink:#2b1f2e;
-    --ink-soft:#5c4f5e;
-    --mute:#9a8c98;
-    --coral:#ff6b5b;
-    --coral-dark:#e2503f;
-    --line:#eee0d2;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:#d9cfc6;font-family:Inter,"Noto Color Emoji",sans-serif;color:var(--ink)}
+  /* 1: cover */
+  .giant{font-family:Fraunces,serif;font-style:italic;font-weight:700;font-size:460px;line-height:.8;color:var(--coral);
+         margin:0 0 10px -20px;text-shadow:0 30px 80px rgba(255,107,91,.35)}
+  .stamp{display:inline-block;font-weight:900;font-size:40px;letter-spacing:6px;color:var(--coral);border:6px solid var(--coral);
+         border-radius:16px;padding:10px 24px 8px;transform:rotate(-10deg)}
+  .cover-stamp{position:absolute;right:20px;top:120px}
 
-  /* 9:16 slide. TikTok UI covers ~150 px at the top, ~380 px at the bottom and
-     the action buttons on the right, so text stays inside .safe. */
-  .slide{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--cream);
-         margin:0 auto 40px}
-  .safe{position:absolute;left:100px;right:150px;top:230px;bottom:420px;
-        display:flex;flex-direction:column;justify-content:center}
+  /* 2-5: myth vs truth */
+  .ghost{position:absolute;right:-30px;top:1020px;z-index:1;font-family:Fraunces,serif;font-style:italic;font-weight:700;
+         font-size:520px;line-height:1;color:var(--coral);opacity:.08}
+  .myth{position:relative;padding-right:40px}
+  .myth .lbl{display:inline-block;font-weight:800;font-size:26px;letter-spacing:6px;color:var(--mute);
+             background:rgba(43,31,46,.06);padding:12px 20px;border-radius:999px;margin-bottom:28px}
+  .myth p{font-family:Fraunces,serif;font-weight:600;font-size:76px;line-height:1.1;color:var(--mute);
+          text-decoration:line-through;text-decoration-thickness:4px;text-decoration-color:rgba(255,107,91,.75)}
+  .myth .stamp{position:absolute;right:-10px;top:-14px;font-size:34px;background:rgba(255,248,240,.85)}
+  .truth{margin-top:80px;padding:50px 52px 54px}
+  .truth .lbl{display:flex;align-items:center;gap:14px;font-weight:800;font-size:26px;letter-spacing:6px;color:var(--coral-dark);margin-bottom:18px}
+  .truth .lbl svg{width:40px;height:40px}
+  .truth .big{font-family:Fraunces,serif;font-weight:700;font-size:108px;line-height:1;letter-spacing:-1px;color:var(--ink)}
+  .truth .big em{color:var(--coral)}
+  .truth p{font-weight:600;font-size:40px;line-height:1.38;color:var(--ink-soft);margin-top:24px}
+  .truth .ico{position:absolute;right:40px;top:-50px;width:120px;height:120px;border-radius:50%;background:var(--coral);
+              display:flex;align-items:center;justify-content:center;font-size:58px;box-shadow:0 20px 40px -14px rgba(226,80,63,.6);transform:rotate(8deg)}
 
-  .progress{position:absolute;top:170px;left:100px;right:150px;display:flex;gap:12px}
-  .progress i{flex:1;height:8px;border-radius:4px;background:var(--line)}
-  .progress i.on{background:var(--coral)}
+  /* 6: payoff */
+  .glow-mark{width:220px;color:var(--cream);margin-bottom:70px;filter:drop-shadow(0 20px 40px rgba(120,20,0,.35))}
+  .spark{position:absolute;color:var(--sticky);font-size:56px}
 
-  .brand{position:absolute;left:100px;bottom:420px;display:flex;align-items:center;gap:14px;
-         font-weight:800;font-size:26px;letter-spacing:7px;text-transform:uppercase}
-  .brand svg{width:30px;height:auto;color:var(--coral)}
-
-  .kicker{font-weight:800;font-size:30px;letter-spacing:6px;text-transform:uppercase;color:var(--coral-dark);margin-bottom:34px}
-  h1,h2{font-family:Fraunces,serif;font-weight:700;letter-spacing:-0.5px;line-height:1.08;font-variation-settings:"opsz" 72}
-  h1{font-size:112px}
-  h2{font-size:92px}
-  .c{color:var(--coral)}
-  .sub{font-weight:600;font-size:44px;line-height:1.35;color:var(--ink-soft);margin-top:44px}
-  .swipe{font-weight:700;font-size:36px;color:var(--ink);margin-top:70px;display:flex;align-items:center;gap:16px}
-  .swipe b{display:inline-block;width:64px;height:64px;border-radius:50%;background:var(--coral);color:#fff;
-           text-align:center;line-height:64px;font-size:36px}
-
-  /* myth vs truth */
-  .lbl{font-weight:800;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin-bottom:22px}
-  .myth .lbl{color:var(--mute)}
-  .myth p{font-family:Fraunces,serif;font-weight:600;font-size:72px;line-height:1.12;color:var(--mute);
-          text-decoration:line-through;text-decoration-thickness:4px;text-decoration-color:rgba(255,107,91,.7)}
-  .truth{background:#fff;border-radius:36px;padding:56px;margin-top:80px;border:4px solid var(--coral);
-         box-shadow:0 24px 60px rgba(43,31,46,.12)}
-  .truth .lbl{color:var(--coral-dark)}
-  .truth .big{font-family:Fraunces,serif;font-weight:700;font-size:104px;line-height:1.02;letter-spacing:-1px;color:var(--coral)}
-  .truth p{font-weight:600;font-size:42px;line-height:1.38;margin-top:22px}
-  .truth .big + p{margin-top:26px}
-
-  /* dark payoff slide */
-  .dark{background:radial-gradient(ellipse at 50% 42%,#5a3a3f 0%,#2b1f2e 55%,#1b151f 100%);color:#fff8f0}
-  .dark .progress i{background:rgba(255,255,255,.18)}
-  .dark .progress i.on{background:var(--coral)}
-  .dark .sub{color:#e6d6d8}
-  .dark .brand{color:#fff8f0}
-
-  .emo{font-size:180px;line-height:1;margin-top:50px}
-  .url{font-weight:800;font-size:46px;margin-top:70px}
+  /* 7: CTA */
+  .opts{display:flex;gap:22px;margin-top:70px}
+  .opt{width:150px;height:150px;border-radius:40px;background:var(--paper);display:flex;align-items:center;justify-content:center;
+       font-family:Fraunces,serif;font-weight:700;font-size:84px;box-shadow:0 22px 44px -22px rgba(91,46,40,.5)}
+  .opt:nth-child(odd){transform:rotate(-4deg)}
+  .opt:nth-child(even){transform:rotate(3deg)}
+  .hint{font-size:60px;color:var(--plum);margin-top:44px;transform:rotate(-2deg)}
+  .url{display:inline-flex;align-items:center;gap:18px;margin-top:80px;background:var(--ink);color:var(--cream);
+       font-weight:800;font-size:44px;padding:28px 48px;border-radius:999px}
   .url span{color:var(--coral)}
 </style>
 </head>
 <body>
 
-<!-- brand mark (from the site header) -->
 <svg width="0" height="0" style="position:absolute">
+  <!-- brand mark (from the site header) -->
   <symbol id="mark" viewBox="0 0 120 170">
     <path d="M64,95 C34,72 14,52 14,32 C14,12 34,2 49,12 C57,18 61,26 64,32 C67,26 71,18 79,12 C94,2 114,12 114,32 C114,52 94,72 64,95 Z" stroke="currentColor" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
     <line x1="64" y1="95" x2="64" y2="146" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>
@@ -77,27 +57,38 @@
     <path d="M64,90 C82,88 95,78 103,58" stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="round"/>
     <ellipse cx="46" cy="152" rx="21" ry="14" fill="currentColor" transform="rotate(-18 46 152)"/>
   </symbol>
+  <symbol id="staff" viewBox="0 0 1160 300">
+    <path d="M0 60 C320 -10 760 200 1160 70"/><path d="M0 100 C320 30 760 240 1160 110"/>
+    <path d="M0 140 C320 70 760 280 1160 150"/><path d="M0 180 C320 110 760 320 1160 190"/>
+    <path d="M0 220 C320 150 760 360 1160 230"/>
+  </symbol>
+  <symbol id="check" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="#ff6b5b"/><path d="M11 21 L18 28 L30 13" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
 
-<!-- 1: hook -->
-<section class="slide">
+<!-- 1: cover -->
+<section class="slide dark">
+  <svg class="staff" style="top:1250px;height:300px" viewBox="0 0 1160 300" preserveAspectRatio="none"><use href="#staff"/></svg>
   <div class="progress"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="safe">
-    <div class="kicker">Müüt vs tõde</div>
-    <h1>4 asja, mida arvatakse personaalse laulu kohta <span class="c">valesti</span>.</h1>
-    <p class="swipe">Mitu neist sina uskusid? <b>→</b></p>
+    <span class="stamp cover-stamp">MÜÜT?</span>
+    <div class="giant">4</div>
+    <h1 style="font-size:92px">asja, mida arvatakse <em class="c">personaalse laulu</em> kohta valesti.</h1>
+    <p class="swipe" style="background:var(--cream);color:var(--ink)">Mitu neist sina uskusid? <b>→</b></p>
   </div>
   <div class="brand"><svg viewBox="0 0 120 170"><use href="#mark"/></svg>Lauluhing</div>
 </section>
 
 <!-- 2: price -->
 <section class="slide">
+  <div class="ghost">01</div>
+  <svg class="staff" style="top:1300px;height:300px" viewBox="0 0 1160 300" preserveAspectRatio="none"><use href="#staff"/></svg>
   <div class="progress"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="safe">
-    <div class="myth"><div class="lbl">Müüt 1</div><p>„See on kindlasti kallis.“</p></div>
-    <div class="truth">
-      <div class="lbl">Tegelikult</div>
-      <div class="big">29,95 €</div>
+    <div class="myth"><span class="lbl">MÜÜT 1</span><p>„See on kindlasti kallis.“</p></div>
+    <div class="card hl truth">
+      <div class="ico">🏷️</div>
+      <div class="lbl"><svg><use href="#check"/></svg>TEGELIKULT</div>
+      <div class="big"><em>29,95 €</em></div>
       <p>Nii palju maksab terve originaallaul, mis on kirjutatud ainult ühele inimesele.</p>
     </div>
   </div>
@@ -106,12 +97,15 @@
 
 <!-- 3: time -->
 <section class="slide">
+  <div class="ghost">02</div>
+  <svg class="staff" style="top:1300px;height:300px" viewBox="0 0 1160 300" preserveAspectRatio="none"><use href="#staff"/></svg>
   <div class="progress"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
   <div class="safe">
-    <div class="myth"><div class="lbl">Müüt 2</div><p>„Selleks läheb nädalaid.“</p></div>
-    <div class="truth">
-      <div class="lbl">Tegelikult</div>
-      <div class="big">4 tundi</div>
+    <div class="myth"><span class="lbl">MÜÜT 2</span><p>„Selleks läheb nädalaid.“</p></div>
+    <div class="card hl truth">
+      <div class="ico">⚡</div>
+      <div class="lbl"><svg><use href="#check"/></svg>TEGELIKULT</div>
+      <div class="big"><em>4 tundi</em></div>
       <p>Expressiga. Tavaline laul valmib 5 päevaga, prioriteet 24 tunniga.</p>
     </div>
   </div>
@@ -120,12 +114,15 @@
 
 <!-- 4: no music skills -->
 <section class="slide">
+  <div class="ghost">03</div>
+  <svg class="staff" style="top:1300px;height:300px" viewBox="0 0 1160 300" preserveAspectRatio="none"><use href="#staff"/></svg>
   <div class="progress"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
   <div class="safe">
-    <div class="myth"><div class="lbl">Müüt 3</div><p>„Ma pean ise muusikast midagi teadma.“</p></div>
-    <div class="truth">
-      <div class="lbl">Tegelikult</div>
-      <div class="big">Räägi lihtsalt.</div>
+    <div class="myth"><span class="lbl">MÜÜT 3</span><p>„Ma pean ise muusikast midagi teadma.“</p></div>
+    <div class="card hl truth">
+      <div class="ico">💬</div>
+      <div class="lbl"><svg><use href="#check"/></svg>TEGELIKULT</div>
+      <div class="big">Räägi <em>lihtsalt</em>.</div>
       <p>Nimed, mälestused, siseringi naljad. Stiili leiame koos.</p>
     </div>
   </div>
@@ -134,12 +131,15 @@
 
 <!-- 5: changes -->
 <section class="slide">
+  <div class="ghost">04</div>
+  <svg class="staff" style="top:1300px;height:300px" viewBox="0 0 1160 300" preserveAspectRatio="none"><use href="#staff"/></svg>
   <div class="progress"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
   <div class="safe">
-    <div class="myth"><div class="lbl">Müüt 4</div><p>„Kui ei meeldi, on raha läinud.“</p></div>
-    <div class="truth">
-      <div class="lbl">Tegelikult</div>
-      <div class="big">Ütle, mis kripeldab.</div>
+    <div class="myth"><span class="lbl">MÜÜT 4</span><p>„Kui ei meeldi, on raha läinud.“</p></div>
+    <div class="card hl truth">
+      <div class="ico">✏️</div>
+      <div class="lbl"><svg><use href="#check"/></svg>TEGELIKULT</div>
+      <div class="big" style="font-size:92px">Ütle, mis <em>kripeldab</em>.</div>
       <p>Üks sõna, meloodia nüanss või tunnetus – väiksemad täpsustused teeme hea meelega.</p>
     </div>
   </div>
@@ -147,24 +147,29 @@
 </section>
 
 <!-- 6: payoff -->
-<section class="slide dark">
+<section class="slide coral">
+  <svg class="staff" style="top:1250px;height:300px" viewBox="0 0 1160 300" preserveAspectRatio="none"><use href="#staff"/></svg>
+  <span class="spark" style="left:150px;top:420px">✦</span>
+  <span class="spark" style="left:800px;top:520px;font-size:38px">✦</span>
+  <span class="spark" style="left:220px;top:1180px;font-size:40px">✦</span>
   <div class="progress"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
-  <div class="safe" style="align-items:center;text-align:center">
-    <svg viewBox="0 0 120 170" style="width:170px;color:var(--coral);margin-bottom:70px"><use href="#mark"/></svg>
-    <h2 style="font-size:96px">Mis on päris?</h2>
-    <p class="sub" style="font-size:52px;margin-top:50px">Sellist kinki ei ole maailmas<br>kellelgi teisel. 🤍</p>
+  <div class="safe center">
+    <svg class="glow-mark" viewBox="0 0 120 170"><use href="#mark"/></svg>
+    <h2>Mis on <em class="c">päris</em>?</h2>
+    <p class="sub" style="font-size:54px;margin-top:50px">Sellist kinki ei ole maailmas kellelgi teisel. 🤍</p>
   </div>
   <div class="brand"><svg viewBox="0 0 120 170"><use href="#mark"/></svg>Lauluhing</div>
 </section>
 
 <!-- 7: CTA -->
 <section class="slide">
+  <svg class="staff" style="top:1250px;height:300px" viewBox="0 0 1160 300" preserveAspectRatio="none"><use href="#staff"/></svg>
   <div class="progress"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
-  <div class="safe" style="align-items:center;text-align:center">
-    <h2>Mis müüti sina uskusid?</h2>
-    <p class="sub">Kirjuta kommentaari number 1–4 👇</p>
-    <div class="emo">🎶</div>
-    <p class="url">Telli: <span>lauluhing.com</span></p>
+  <div class="safe center">
+    <h2>Mis müüti <em class="c">sina</em> uskusid?</h2>
+    <div class="opts"><div class="opt">1</div><div class="opt">2</div><div class="opt">3</div><div class="opt">4</div></div>
+    <p class="hint hand">kirjuta number kommentaari 👇</p>
+    <p class="url">🎶 Telli: <span>lauluhing.com</span></p>
   </div>
   <div class="brand"><svg viewBox="0 0 120 170"><use href="#mark"/></svg>Lauluhing</div>
 </section>

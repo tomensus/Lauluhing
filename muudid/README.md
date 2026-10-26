@@ -1,6 +1,6 @@
 # TikTok Photo Mode: „4 müüti personaalse laulu kohta“
 
-7 slaidi, 9:16 (1080×1920), tekst TikToki turvaalas. Allikas: `src/slides.html`, eksport: `node src/export.js`.
+7 slaidi, 9:16 (1080×1920), tekst TikToki turvaalas. Allikas: `src/slides.html` (ühine stiil `tiktok-shared/lauluhing.css`), eksport repo juurest: `node tiktok-shared/export.js muudid`. `safe-zone-check.png` näitab TikToki kasutajaliidese alasid sinisega, seda ei postitata.
 
 | # | Slaid | Roll |
 |---|-------|------|

@@ -1,0 +1,113 @@
+/* Shared look for Lauluhing TikTok Photo Mode carousels (1080x1920).
+   Colours and type follow the site (css/styles.css). */
+@font-face{font-family:Fraunces;font-weight:600;src:url(fonts/fraunces600.ttf)}
+@font-face{font-family:Fraunces;font-weight:700;src:url(fonts/fraunces700.ttf)}
+@font-face{font-family:Fraunces;font-weight:600;font-style:italic;src:url(fonts/fraunces600i.ttf)}
+@font-face{font-family:Fraunces;font-weight:700;font-style:italic;src:url(fonts/fraunces700i.ttf)}
+@font-face{font-family:Caveat;font-weight:700;src:url(fonts/caveat700.ttf)}
+
+:root{
+  --cream:#fff8f0;
+  --cream-2:#fef1e6;
+  --ink:#2b1f2e;
+  --ink-soft:#5c4f5e;
+  --mute:#9a8c98;
+  --coral:#ff6b5b;
+  --coral-dark:#e2503f;
+  --gold:#f2b544;
+  --plum:#6c4b73;
+  --lilac:#e9def0;
+  --line:#eee0d2;
+  --paper:#fffdf9;
+  --sticky:#ffe7a8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#d9cfc6;font-family:Inter,"Noto Color Emoji",sans-serif;color:var(--ink);
+     -webkit-font-smoothing:antialiased}
+
+/* ---------- slide + backgrounds ---------- */
+.slide{position:relative;width:1080px;height:1920px;overflow:hidden;margin:0 auto 40px;isolation:isolate;
+  background:
+    radial-gradient(900px 700px at 105% 8%, rgba(255,107,91,.20), transparent 70%),
+    radial-gradient(800px 700px at -10% 92%, rgba(242,181,68,.20), transparent 70%),
+    radial-gradient(700px 600px at 20% 30%, rgba(233,222,240,.55), transparent 70%),
+    var(--cream)}
+/* paper grain, like the site's noise overlay */
+.slide::after{content:"";position:absolute;inset:0;z-index:50;pointer-events:none;opacity:.10;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .17 0 0 0 0 .12 0 0 0 0 .18 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.slide.dark{color:var(--cream);
+  background:
+    radial-gradient(800px 760px at 50% 40%, rgba(255,107,91,.32), transparent 70%),
+    radial-gradient(900px 700px at 100% 100%, rgba(108,75,115,.55), transparent 70%),
+    linear-gradient(180deg,#2b1f2e,#1b151f)}
+.slide.dark::after{mix-blend-mode:screen;opacity:.06;filter:invert(1)}
+
+.slide.coral{color:var(--cream);
+  background:
+    radial-gradient(900px 800px at 90% 0%, rgba(242,181,68,.45), transparent 65%),
+    radial-gradient(900px 800px at 0% 100%, rgba(108,75,115,.40), transparent 70%),
+    linear-gradient(160deg,#ff6b5b,#d9442f)}
+
+/* faint music staff sweeping behind the content */
+.staff{position:absolute;left:-40px;right:-40px;z-index:0;pointer-events:none}
+.staff{fill:none;stroke:var(--ink);stroke-opacity:.07;stroke-width:3}
+.dark .staff,.coral .staff{stroke:#fff;stroke-opacity:.14}
+
+/* ---------- TikTok safe zone ----------
+   TikTok covers ~150 px at the top, ~380 px at the bottom and a button column
+   on the right, so everything readable stays inside .safe. */
+.safe{position:absolute;left:100px;right:150px;top:240px;bottom:430px;z-index:2;
+      display:flex;flex-direction:column;justify-content:center}
+.center{align-items:center;text-align:center}
+
+.progress{position:absolute;top:170px;left:100px;right:150px;display:flex;gap:12px;z-index:3}
+.progress i{flex:1;height:8px;border-radius:4px;background:rgba(43,31,46,.10)}
+.progress i.on{background:var(--coral)}
+.dark .progress i,.coral .progress i{background:rgba(255,255,255,.22)}
+.dark .progress i.on{background:var(--coral)}
+.coral .progress i.on{background:var(--cream)}
+
+.brand{position:absolute;left:100px;bottom:430px;display:flex;align-items:center;gap:14px;z-index:3;
+       font-weight:800;font-size:26px;letter-spacing:7px;text-transform:uppercase}
+.brand svg{width:30px;height:auto;color:var(--coral)}
+.dark .brand,.coral .brand{color:var(--cream)}
+.coral .brand svg{color:var(--cream)}
+
+/* ---------- type ---------- */
+.kicker{display:inline-flex;align-self:flex-start;align-items:center;gap:14px;font-weight:800;font-size:28px;
+        letter-spacing:6px;text-transform:uppercase;color:var(--coral-dark);margin-bottom:36px}
+.kicker .n{display:inline-flex;align-items:center;justify-content:center;width:58px;height:58px;border-radius:50%;
+           background:var(--coral);color:#fff;letter-spacing:0;font-size:28px}
+h1,h2{font-family:Fraunces,serif;font-weight:700;letter-spacing:-1px;line-height:1.04}
+h1{font-size:120px}
+h2{font-size:100px}
+em{font-style:italic;font-weight:700}
+.c{color:var(--coral)}
+.coral .c{color:var(--sticky)}
+.sub{font-weight:600;font-size:44px;line-height:1.38;color:var(--ink-soft);margin-top:44px}
+.dark .sub{color:#eadbdc}
+.coral .sub{color:#fff1ea}
+.hand{font-family:Caveat,cursive;font-weight:700}
+
+.swipe{display:inline-flex;align-items:center;gap:18px;align-self:flex-start;margin-top:72px;
+       font-weight:700;font-size:38px;background:var(--ink);color:var(--cream);padding:22px 26px 22px 38px;border-radius:999px}
+.swipe b{display:inline-flex;align-items:center;justify-content:center;width:62px;height:62px;border-radius:50%;
+         background:var(--coral);color:#fff;font-size:34px}
+.coral .swipe{background:var(--cream);color:var(--ink)}
+
+/* ---------- shared components ---------- */
+.card{position:relative;background:var(--paper);border-radius:36px;padding:52px 56px;
+      box-shadow:0 2px 0 rgba(43,31,46,.04),0 30px 70px -20px rgba(91,46,40,.28)}
+.card.hl{outline:4px solid var(--coral);outline-offset:-4px}
+.sticky{position:relative;background:var(--sticky);padding:48px 52px 56px;border-radius:6px 6px 24px 6px;
+        box-shadow:0 30px 60px -24px rgba(120,80,20,.45)}
+.sticky::before{content:"";position:absolute;top:-22px;left:50%;width:160px;height:46px;transform:translateX(-50%) rotate(-3deg);
+                background:rgba(255,255,255,.55);box-shadow:0 2px 6px rgba(0,0,0,.06)}
+
+/* ---------- debug: show TikTok UI zones (export.js uses it for safe-zone-check.png) ---------- */
+body.debug .slide::before{content:"";position:absolute;inset:0;z-index:60;pointer-events:none;
+  background:
+    linear-gradient(rgba(0,120,255,.28),rgba(0,120,255,.28)) top/100% 150px no-repeat,
+    linear-gradient(rgba(0,120,255,.28),rgba(0,120,255,.28)) bottom/100% 380px no-repeat,
+    linear-gradient(rgba(0,120,255,.28),rgba(0,120,255,.28)) right 0 top 700px/130px 840px no-repeat}
