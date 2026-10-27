@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – jõulukingid hindeskaalal</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* 1: cover gauge */
+  .gauge{display:block;width:760px;height:430px;margin:0 auto 30px}
+  .plum .kicker{color:var(--sticky)}
+
+  /* 2-6: rated gift */
+  .row{display:flex;align-items:center;gap:56px;margin-top:10px}
+  .tile{position:relative;flex:none;width:380px;height:380px;background:var(--paper);border-radius:28px;
+        display:flex;align-items:center;justify-content:center;font-size:200px;line-height:1;
+        box-shadow:0 2px 0 rgba(43,31,46,.04),0 34px 70px -24px rgba(91,46,40,.45)}
+  .tile::before{content:"";position:absolute;top:-20px;left:50%;width:150px;height:44px;transform:translateX(-50%) rotate(-4deg);
+                background:rgba(255,231,168,.85);box-shadow:0 2px 6px rgba(0,0,0,.06)}
+  .score{font-family:Fraunces,serif;font-weight:700;line-height:.86;letter-spacing:-4px}
+  .score b{display:block;font-size:270px;font-style:italic}
+  .score span{display:block;font-size:76px;letter-spacing:-1px;color:var(--mute);margin-top:18px}
+  .score .face{font-size:84px;letter-spacing:0;margin-top:26px;display:block}
+  .low b{color:var(--ink-soft)}
+  .high b{color:var(--coral)}
+  h2.item{font-size:96px;margin-top:64px}
+  .meter{display:flex;gap:10px;margin-top:34px}
+  .meter i{flex:1;height:30px;border-radius:15px;background:rgba(43,31,46,.09)}
+  .meter i.on{background:var(--coral)}
+  .low .meter i.on{background:var(--ink-soft)}
+  .verdict{position:relative;margin-top:56px;align-self:flex-start;max-width:100%;transform:rotate(-1.5deg)}
+  .verdict .hand{font-size:60px;line-height:1.05;color:#5a4320}
+
+  /* 6: the 10/10 */
+  .dark .tile{background:linear-gradient(145deg,#ff7b6b,#e2503f);box-shadow:0 0 0 18px rgba(255,107,91,.14),0 0 160px 20px rgba(255,107,91,.35)}
+  .dark .tile::before{background:rgba(255,231,168,.9)}
+  .dark .score span{color:#b9a7b9}
+  .dark .score b{color:var(--gold);text-shadow:0 0 60px rgba(242,181,68,.5)}
+  .dark .meter i{background:rgba(255,255,255,.14)}
+  .dark .meter i.on{background:linear-gradient(90deg,var(--coral),var(--gold))}
+  .dark .verdict{background:rgba(255,248,240,.08);border:2px solid rgba(255,248,240,.16);border-radius:28px;padding:34px 40px;transform:none}
+  .dark .verdict p{font-weight:600;font-size:42px;line-height:1.35;color:#f3e6e6}
+  .price{display:inline-block;margin-top:22px;font-weight:800;font-size:30px;letter-spacing:3px;color:var(--ink);background:var(--gold);
+         padding:12px 22px;border-radius:999px}
+  .spark{position:absolute;color:var(--gold);z-index:1}
+
+  /* 7: CTA */
+  .tag{position:relative;margin-top:70px;width:100%;background:var(--paper);border-radius:30px 30px 30px 30px;padding:56px 56px 60px 120px;text-align:left;
+       box-shadow:0 34px 70px -26px rgba(91,46,40,.45);transform:rotate(-2deg)}
+  .tag::before{content:"";position:absolute;left:46px;top:50%;width:34px;height:34px;margin-top:-17px;border-radius:50%;
+               background:var(--cream);box-shadow:inset 0 2px 4px rgba(0,0,0,.12)}
+  .tag .lbl{font-weight:800;font-size:24px;letter-spacing:5px;color:var(--mute)}
+  .tag .hand{font-size:72px;color:var(--plum);margin-top:6px}
+  .tag .hand::after{content:"";display:inline-block;width:5px;height:62px;background:var(--coral);vertical-align:-10px;margin-left:8px}
+  .string{position:absolute;left:-150px;top:50%;width:200px;height:120px}
+  .url{display:inline-flex;align-items:center;gap:18px;margin-top:90px;background:var(--ink);color:var(--cream);
+       font-weight:800;font-size:44px;padding:28px 48px;border-radius:999px}
+  .url span{color:var(--coral)}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <!-- brand mark (from the site header) -->
+  <symbol id="mark" viewBox="0 0 120 170">
+    <path d="M64,95 C34,72 14,52 14,32 C14,12 34,2 49,12 C57,18 61,26 64,32 C67,26 71,18 79,12 C94,2 114,12 114,32 C114,52 94,72 64,95 Z" stroke="currentColor" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+    <line x1="64" y1="95" x2="64" y2="146" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>
+    <path d="M64,60 C85,55 100,40 108,15" stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M64,90 C82,88 95,78 103,58" stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <ellipse cx="46" cy="152" rx="21" ry="14" fill="currentColor" transform="rotate(-18 46 152)"/>
+  </symbol>
+  <symbol id="staff" viewBox="0 0 1160 300">
+    <path d="M0 60 C320 -10 760 200 1160 70"/><path d="M0 100 C320 30 760 240 1160 110"/>
+    <path d="M0 140 C320 70 760 280 1160 150"/><path d="M0 180 C320 110 760 320 1160 190"/>
+    <path d="M0 220 C320 150 760 360 1160 230"/>
+  </symbol>
+</svg>
+
+<!-- 1: cover -->
+<section class="slide plum">
+  <svg class="staff" style="top:1260px;height:300px" viewBox="0 0 1160 300" preserveAspectRatio="none"><use href="#staff"/></svg>
+  <div class="progress"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="safe">
+    <svg class="gauge" id="gauge" viewBox="0 0 760 430"></svg>
+    <div class="kicker">🎄 Aus hinnang</div>
+    <h1 style="font-size:112px">Jõulukingid<br>hindeskaalal<br><em class="c" style="white-space:nowrap">1–10</em>.</h1>
+    <p class="swipe">Viimane saab 10/10 <b>→</b></p>
+  </div>
+  <div class="brand"><svg viewBox="0 0 120 170"><use href="#mark"/></svg>Lauluhing</div>
+</section>
+
+<!-- 2: socks -->
+<section class="slide low">
+  <svg class="staff" style="top:1300px;height:300px" viewBox="0 0 1160 300" preserveAspectRatio="none"><use href="#staff"/></svg>
+  <div class="progress"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="safe">
+    <div class="kicker">Kink 1/5</div>
+    <div class="row">
+      <div class="tile" style="transform:rotate(-4deg)">🧦</div>
+      <div class="score"><b>2</b><span>/10</span><span class="face">🥱</span></div>
+    </div>
+    <h2 class="item">Sokid</h2>
+    <div class="meter" data-score="2"></div>
+    <div class="sticky verdict"><div class="hand">kolmas paar sel aastal…</div></div>
+  </div>
+  <div class="brand"><svg viewBox="0 0 120 170"><use href="#mark"/></svg>Lauluhing</div>
+</section>
+
+<!-- 3: gift card -->
+<section class="slide low">
+  <svg class="staff" style="top:1300px;height:300px" viewBox="0 0 1160 300" preserveAspectRatio="none"><use href="#staff"/></svg>
+  <div class="progress"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div class="safe">
+    <div class="kicker">Kink 2/5</div>
+    <div class="row">
+      <div class="tile" style="transform:rotate(3deg)">💳</div>
+      <div class="score"><b>4</b><span>/10</span><span class="face">😐</span></div>
+    </div>
+    <h2 class="item">Kinkekaart</h2>
+    <div class="meter" data-score="4"></div>
+    <div class="sticky verdict"><div class="hand">praktiline. aga ütleb ka:<br>„ma ei teadnud, mida osta“</div></div>
+  </div>
+  <div class="brand"><svg viewBox="0 0 120 170"><use href="#mark"/></svg>Lauluhing</div>
+</section>
+
+<!-- 4: chocolates -->
+<section class="slide high">
+  <svg class="staff" style="top:1300px;height:300px" viewBox="0 0 1160 300" preserveAspectRatio="none"><use href="#staff"/></svg>
+  <div class="progress"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <div class="safe">
+    <div class="kicker">Kink 3/5</div>
+    <div class="row">
+      <div class="tile" style="transform:rotate(-3deg)">🍫</div>
+      <div class="score"><b>5</b><span>/10</span><span class="face">🙂</span></div>
+    </div>
+    <h2 class="item">Šokolaadikarp</h2>
+    <div class="meter" data-score="5"></div>
+    <div class="sticky verdict"><div class="hand">maitsev. kaob enne<br>aastavahetust 🫣</div></div>
+  </div>
+  <div class="brand"><svg viewBox="0 0 120 170"><use href="#mark"/></svg>Lauluhing</div>
+</section>
+
+<!-- 5: perfume -->
+<section class="slide high">
+  <svg class="staff" style="top:1300px;height:300px" viewBox="0 0 1160 300" preserveAspectRatio="none"><use href="#staff"/></svg>
+  <div class="progress"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+  <div class="safe">
+    <div class="kicker">Kink 4/5</div>
+    <div class="row">
+      <div class="tile" style="transform:rotate(4deg)">🌸</div>
+      <div class="score"><b>7</b><span>/10</span><span class="face">😊</span></div>
+    </div>
+    <h2 class="item">Parfüüm</h2>
+    <div class="meter" data-score="7"></div>
+    <div class="sticky verdict"><div class="hand">super, kui tead tema lõhna.<br>kui ei tea… 3/10</div></div>
+  </div>
+  <div class="brand"><svg viewBox="0 0 120 170"><use href="#mark"/></svg>Lauluhing</div>
+</section>
+
+<!-- 6: the song -->
+<section class="slide dark high">
+  <span class="spark" style="left:520px;top:300px;font-size:60px">✦</span>
+  <span class="spark" style="left:900px;top:1020px;font-size:36px">✦</span>
+  <span class="spark" style="left:860px;top:640px;font-size:44px">✦</span>
+  <div class="progress"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+  <div class="safe">
+    <div class="kicker" style="color:var(--gold)">Kink 5/5</div>
+    <div class="row">
+      <div class="tile" style="transform:rotate(-3deg)"><svg viewBox="0 0 120 170" style="width:170px;color:#fff"><use href="#mark"/></svg></div>
+      <div class="score"><b>10</b><span>/10</span><span class="face">🥹</span></div>
+    </div>
+    <h2 class="item" style="font-size:88px">Laul tema<br><em class="c">enda</em> loost</h2>
+    <div class="meter" data-score="10"></div>
+    <div class="verdict">
+      <p>Ainus kink, mida saab ikka ja jälle uuesti lahti pakkida.</p>
+      <span class="price">ALATES 29,95 €</span>
+    </div>
+  </div>
+  <div class="brand"><svg viewBox="0 0 120 170"><use href="#mark"/></svg>Lauluhing</div>
+</section>
+
+<!-- 7: CTA -->
+<section class="slide">
+  <svg class="staff" style="top:1250px;height:300px" viewBox="0 0 1160 300" preserveAspectRatio="none"><use href="#staff"/></svg>
+  <div class="progress"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+  <div class="safe center">
+    <h2>Mis oli <em class="c">sinu</em> 10/10 kink?</h2>
+    <p class="sub">Kirjuta kommentaari 👇</p>
+    <div class="tag">
+      <span style="position:absolute;right:46px;top:50%;margin-top:-70px;font-size:130px;line-height:1;transform:rotate(8deg)">🎁</span>
+      <div class="lbl">MINU 10/10</div>
+      <div class="hand">see kink oli…</div>
+    </div>
+    <p class="url">🎄 Telli: <span>lauluhing.com</span></p>
+  </div>
+  <div class="brand"><svg viewBox="0 0 120 170"><use href="#mark"/></svg>Lauluhing</div>
+</section>
+
+<script>
+  // Score meters.
+  document.querySelectorAll('.meter').forEach(m => {
+    const s = +m.dataset.score;
+    for (let i = 1; i <= 10; i++) {
+      const b = document.createElement('i');
+      if (i <= s) b.className = 'on';
+      m.appendChild(b);
+    }
+  });
+
+  // Cover gauge: ten segments on a half circle, needle pointing past 9 with a "?".
+  const g = document.getElementById('gauge');
+  const cx = 380, cy = 390, r1 = 230, r2 = 340;
+  const pt = (a, r) => [cx + r * Math.cos(a), cy - r * Math.sin(a)];
+  const cols = ['#a98bb0','#b58fae','#c494a9','#d397a0','#e19a93','#ee9a84','#f99573','#ff8a66','#ffa35a','#f2b544'];
+  let s = '';
+  for (let i = 0; i < 10; i++) {
+    const gap = 0.025, a0 = Math.PI - i * Math.PI / 10 - gap, a1 = Math.PI - (i + 1) * Math.PI / 10 + gap;
+    const [x0, y0] = pt(a0, r2), [x1, y1] = pt(a1, r2), [x2, y2] = pt(a1, r1), [x3, y3] = pt(a0, r1);
+    s += `<path d="M${x0} ${y0} A${r2} ${r2} 0 0 1 ${x1} ${y1} L${x2} ${y2} A${r1} ${r1} 0 0 0 ${x3} ${y3} Z" fill="${cols[i]}"/>`;
+    const [tx, ty] = pt(Math.PI - (i + .5) * Math.PI / 10, (r1 + r2) / 2);
+    s += `<text x="${tx}" y="${ty + 13}" text-anchor="middle" font-family="Inter" font-weight="800" font-size="36" fill="#fff8f0">${i + 1}</text>`;
+  }
+  const na = Math.PI * 0.07, [nx, ny] = pt(na, 200);
+  s += `<line x1="${cx}" y1="${cy}" x2="${nx}" y2="${ny}" stroke="#fff8f0" stroke-width="16" stroke-linecap="round"/>`;
+  s += `<circle cx="${cx}" cy="${cy}" r="40" fill="#fff8f0"/>`;
+  s += `<text x="${cx}" y="${cy + 18}" text-anchor="middle" font-family="Fraunces" font-weight="700" font-size="54" fill="#6c4b73">?</text>`;
+  g.innerHTML = s;
+</script>
+</body>
+</html>

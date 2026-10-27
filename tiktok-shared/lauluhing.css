@@ -49,10 +49,17 @@ body{background:#d9cfc6;font-family:Inter,"Noto Color Emoji",sans-serif;color:va
     radial-gradient(900px 800px at 0% 100%, rgba(108,75,115,.40), transparent 70%),
     linear-gradient(160deg,#ff6b5b,#d9442f)}
 
+/* plum variant: third cover colour so series covers differ in the feed */
+.slide.plum{color:var(--cream);
+  background:
+    radial-gradient(900px 800px at 100% 0%, rgba(242,181,68,.40), transparent 65%),
+    radial-gradient(900px 800px at 0% 100%, rgba(255,107,91,.45), transparent 70%),
+    linear-gradient(165deg,#7d5686,#3f2747)}
+
 /* faint music staff sweeping behind the content */
 .staff{position:absolute;left:-40px;right:-40px;z-index:0;pointer-events:none}
 .staff{fill:none;stroke:var(--ink);stroke-opacity:.07;stroke-width:3}
-.dark .staff,.coral .staff{stroke:#fff;stroke-opacity:.14}
+.dark .staff,.coral .staff,.plum .staff{stroke:#fff;stroke-opacity:.14}
 
 /* ---------- TikTok safe zone ----------
    TikTok covers ~150 px at the top, ~380 px at the bottom and a button column
@@ -64,14 +71,14 @@ body{background:#d9cfc6;font-family:Inter,"Noto Color Emoji",sans-serif;color:va
 .progress{position:absolute;top:170px;left:100px;right:150px;display:flex;gap:12px;z-index:3}
 .progress i{flex:1;height:8px;border-radius:4px;background:rgba(43,31,46,.10)}
 .progress i.on{background:var(--coral)}
-.dark .progress i,.coral .progress i{background:rgba(255,255,255,.22)}
-.dark .progress i.on{background:var(--coral)}
+.dark .progress i,.coral .progress i,.plum .progress i{background:rgba(255,255,255,.22)}
+.dark .progress i.on,.plum .progress i.on{background:var(--coral)}
 .coral .progress i.on{background:var(--cream)}
 
 .brand{position:absolute;left:100px;bottom:430px;display:flex;align-items:center;gap:14px;z-index:3;
        font-weight:800;font-size:26px;letter-spacing:7px;text-transform:uppercase}
 .brand svg{width:30px;height:auto;color:var(--coral)}
-.dark .brand,.coral .brand{color:var(--cream)}
+.dark .brand,.coral .brand,.plum .brand{color:var(--cream)}
 .coral .brand svg{color:var(--cream)}
 
 /* ---------- type ---------- */
@@ -86,7 +93,7 @@ em{font-style:italic;font-weight:700}
 .c{color:var(--coral)}
 .coral .c{color:var(--sticky)}
 .sub{font-weight:600;font-size:44px;line-height:1.38;color:var(--ink-soft);margin-top:44px}
-.dark .sub{color:#eadbdc}
+.dark .sub,.plum .sub{color:#eadbdc}
 .coral .sub{color:#fff1ea}
 .hand{font-family:Caveat,cursive;font-weight:700}
 
@@ -94,7 +101,7 @@ em{font-style:italic;font-weight:700}
        font-weight:700;font-size:38px;background:var(--ink);color:var(--cream);padding:22px 26px 22px 38px;border-radius:999px}
 .swipe b{display:inline-flex;align-items:center;justify-content:center;width:62px;height:62px;border-radius:50%;
          background:var(--coral);color:#fff;font-size:34px}
-.coral .swipe{background:var(--cream);color:var(--ink)}
+.coral .swipe,.dark .swipe,.plum .swipe{background:var(--cream);color:var(--ink)}
 
 /* ---------- shared components ---------- */
 .card{position:relative;background:var(--paper);border-radius:36px;padding:52px 56px;
