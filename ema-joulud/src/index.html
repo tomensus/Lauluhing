@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – Eesti ema jõuludel (video)</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  body{background:#000;margin:0}
+  .slide{margin:0}
+  .lights{position:absolute;top:110px;left:0;width:1080px;height:220px;z-index:1}
+  .top{position:absolute;left:100px;right:150px;top:250px;z-index:5;text-align:center}
+  .count{position:absolute;left:0;right:0;top:390px;z-index:4;text-align:center;font-family:Fraunces,serif;font-style:italic;
+         font-weight:700;font-size:64px;color:var(--coral)}
+  .coral .count,.plum .count{color:var(--sticky)}
+  .vis{position:absolute;left:0;right:0;top:470px;height:500px;z-index:3;display:flex;align-items:center;justify-content:center}
+  .emoji{font-family:"Noto Color Emoji";font-size:290px;line-height:1;filter:drop-shadow(0 30px 40px rgba(0,0,0,.25))}
+  .note{position:absolute;left:150px;right:190px;top:960px;z-index:4;display:flex;justify-content:center}
+  .note .sticky{transform:rotate(-3deg)}
+  .note .hand{font-size:58px;line-height:1.05;color:#5a4320;white-space:nowrap}
+
+  /* captions: TikTok-style, word by word, current word highlighted */
+  .cap{position:absolute;left:100px;right:150px;top:1170px;z-index:6;text-align:center;
+       font-family:"TikTok Sans",Inter,"Noto Color Emoji",sans-serif;font-weight:900;font-size:76px;line-height:1.16;color:#fff;
+       -webkit-text-stroke:11px #111;paint-order:stroke fill;text-shadow:0 5px 0 #111;letter-spacing:.5px}
+  .cap.big{font-size:84px;top:1080px}
+  .cap .w{display:inline-block;margin:0 .04em}
+  .cap .w.now{color:#ffd84d}
+
+  /* song card (payoff) */
+  .song{display:flex;flex-direction:column;align-items:center;gap:40px}
+  .player{display:flex;align-items:center;gap:24px;background:var(--paper);border-radius:999px;padding:20px 34px 20px 20px;width:760px;
+          box-shadow:0 30px 60px -28px rgba(91,46,40,.5)}
+  .player .pb{flex:none;width:100px;height:100px;border-radius:50%;background:var(--coral);display:flex;align-items:center;justify-content:center}
+  .player .t{flex:1;text-align:left}
+  .player .t b{display:block;font-family:Fraunces,serif;font-size:42px;line-height:1.1;color:var(--ink)}
+  .player .t small{display:block;font-weight:700;font-size:26px;color:var(--mute);margin-top:6px}
+  .wave{display:flex;align-items:center;gap:5px;height:76px;width:200px}
+  .wave i{flex:1;border-radius:3px;background:var(--coral)}
+  .url{display:inline-flex;align-items:center;gap:16px;background:var(--ink);color:var(--cream);font-weight:800;font-size:44px;
+       padding:24px 44px;border-radius:999px}
+  .url svg{width:34px;color:var(--coral)}
+  .url span{color:var(--coral)}
+  .glow{width:420px;height:420px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+        background:radial-gradient(circle,rgba(255,107,91,.45),rgba(255,107,91,.08) 55%,transparent 70%)}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="mark" viewBox="0 0 120 170">
+    <path d="M64,95 C34,72 14,52 14,32 C14,12 34,2 49,12 C57,18 61,26 64,32 C67,26 71,18 79,12 C94,2 114,12 114,32 C114,52 94,72 64,95 Z" stroke="currentColor" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+    <line x1="64" y1="95" x2="64" y2="146" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>
+    <path d="M64,60 C85,55 100,40 108,15" stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M64,90 C82,88 95,78 103,58" stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <ellipse cx="46" cy="152" rx="21" ry="14" fill="currentColor" transform="rotate(-18 46 152)"/>
+  </symbol>
+  <symbol id="play" viewBox="0 0 80 90"><path d="M12 8 L72 45 L12 82 Z" fill="currentColor" stroke="currentColor" stroke-width="10" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="slide" id="stage">
+  <svg class="lights" viewBox="0 0 1080 220"></svg>
+  <div class="top tt sm" id="top"></div>
+  <div class="count" id="count"></div>
+  <div class="vis" id="vis"></div>
+  <div class="note" id="note"></div>
+  <div class="cap" id="cap"></div>
+</div>
+
+<script>
+  // ---------- timeline (seconds). README.md has the same lines as a reading script. ----------
+  const SONG = `<div class="song">
+      <div class="player"><div class="pb"><svg width="38" height="42" style="color:#fff;margin-left:6px"><use href="#play"/></svg></div>
+        <div class="t"><b>Laul emale 🎄</b><small>Näide</small></div><div class="wave">${
+        Array.from({length: 20}, (_, i) => `<i style="height:${25 + Math.round(70 * Math.abs(Math.sin(i * 1.7) * Math.cos(i * .45)))}%"></i>`).join('')}</div></div>
+      <div class="url"><svg viewBox="0 0 120 170"><use href="#mark"/></svg><span>lauluhing.com</span></div></div>`;
+
+  const VIS = [
+    { t0: 0,    theme: 'plum',  emoji: '🤶', lights: true },
+    { t0: 3.0,  theme: 'cream', emoji: '🎁', n: 1, note: '(on küll)' },
+    { t0: 6.0,  theme: 'coral', emoji: '🍲', n: 2, note: 'tegi süüa 30-le. meid on neli.' },
+    { t0: 9.0,  theme: 'cream', emoji: '🍽️', n: 3, note: 'juba kolmas taldrik' },
+    { t0: 12.0, theme: 'plum',  emoji: '🧣', n: 4, note: 'sa oled autoga' },
+    { t0: 15.0, theme: 'cream', emoji: '💸', n: 5, note: '…ja kingib sulle ise viis asja' },
+    { t0: 18.0, theme: 'coral', emoji: '🎅', n: 6, note: 'sa oled 34' },
+    { t0: 21.6, theme: 'dark',  html: '<div class="glow"><span class="emoji" style="font-size:230px">🤍</span></div>', lights: true },
+    { t0: 28.2, theme: 'cream', html: SONG },
+    { t0: 31.4, theme: 'cream', emoji: '🎁', note: 'ja nii igal aastal' },
+  ];
+  const CAP = [
+    { t0: 0.15, t1: 3.0,  text: 'Asjad, mida iga Eesti ema jõuludel ütleb:', big: true },
+    { t0: 3.1,  t1: 6.0,  text: '„Mulle pole midagi vaja.“' },
+    { t0: 6.1,  t1: 9.0,  text: '„Kes see kõik ära sööb?“' },
+    { t0: 9.1,  t1: 12.0, text: '„Võta veel, ma tegin sulle.“' },
+    { t0: 12.1, t1: 15.0, text: '„Pane müts pähe, väljas on külm!“' },
+    { t0: 15.1, t1: 18.0, text: '„Ära sa nüüd raha raiska.“' },
+    { t0: 18.1, t1: 21.6, text: '„Kas sa jõuluvanale luuletust ka oskad?“' },
+    { t0: 21.7, t1: 24.5, text: 'Aga ühte asja ta kunagi ei ütle:' },
+    { t0: 24.5, t1: 26.4, text: 'mida ta päriselt tahab.' },
+    { t0: 26.4, t1: 28.2, text: 'Et sa mäletaksid. 🤍' },
+    { t0: 28.3, t1: 31.4, text: 'Näiteks laulu tema enda loost.' },
+    { t0: 31.5, t1: 33.5, text: '„Aga mulle pole ju midagi vaja…“ 🙄' },
+  ];
+  const TOP = [
+    { t0: 0,    t1: 3.0,  text: 'nr 6 on liiga tõsi 😭' },
+    { t0: 3.0,  t1: 21.6, text: 'iga Eesti ema jõuludel 🎄' },
+    { t0: 28.2, t1: 31.4, text: 'mida sinu ema alati ütleb? 👇' },
+  ];
+  window.DURATION = 33.5;
+
+  // ---------- rendering ----------
+  const $ = id => document.getElementById(id);
+  const stage = $('stage');
+  const clamp = x => Math.max(0, Math.min(1, x));
+  const outBack = x => { const c = 1.70158; return 1 + (c + 1) * (x - 1) ** 3 + c * (x - 1) ** 2; };
+  const outCubic = x => 1 - (1 - x) ** 3;
+  const active = (list, t) => { let a = null; for (const it of list) if (t >= it.t0 && (it.t1 === undefined || t < it.t1)) a = it; return a; };
+
+  // lights
+  (() => {
+    const pt = t => {
+      const seg = t < .5 ? [[-20,40],[270,150],[540,60]] : [[540,60],[810,-30],[1100,50]];
+      const u = t < .5 ? t * 2 : t * 2 - 1;
+      return [0, 1].map(k => (1-u)**2*seg[0][k] + 2*(1-u)*u*seg[1][k] + u*u*seg[2][k]);
+    };
+    const cols = ['#f2b544', '#ff6b5b', '#fff1d6', '#f6c568', '#ff8a7a'];
+    let s = '<path d="M-20 40 Q 270 150 540 60 T 1100 50" fill="none" stroke="rgba(255,248,240,.35)" stroke-width="3"/>';
+    for (let i = 1; i < 16; i++) {
+      const [x, y] = pt(i / 16), c = cols[i % cols.length];
+      s += `<circle class="halo" cx="${x}" cy="${y + 22}" r="34" fill="${c}" opacity=".18"/>` +
+           `<rect x="${x - 5}" y="${y}" width="10" height="12" rx="2" fill="rgba(255,248,240,.5)"/>` +
+           `<ellipse cx="${x}" cy="${y + 24}" rx="11" ry="15" fill="${c}"/>`;
+    }
+    document.querySelector('.lights').innerHTML = s;
+  })();
+
+  let lastVis = null, lastCap = null, lastTop = null;
+  window.render = (t, opts = { captions: true }) => {
+    // visual beat
+    const v = active(VIS, t);
+    if (v !== lastVis) {
+      stage.className = 'slide ' + (v.theme === 'cream' ? '' : v.theme);
+      $('vis').innerHTML = v.html || `<span class="emoji">${v.emoji}</span>`;
+      $('note').innerHTML = v.note ? `<div class="sticky"><div class="hand">${v.note}</div></div>` : '';
+      $('count').textContent = v.n ? `nr ${v.n}` : '';
+      document.querySelector('.lights').style.display = v.lights ? '' : 'none';
+      lastVis = v;
+    }
+    const lt = t - v.t0;
+    const pop = outBack(clamp(lt / 0.38));
+    const bob = Math.sin(lt * 2.4) * 10;
+    const zoom = 1 + lt * 0.012;
+    $('vis').style.transform = `translateY(${bob}px) scale(${(0.55 + 0.45 * pop) * zoom})`;
+    $('vis').style.opacity = clamp(lt / 0.12);
+    $('count').style.opacity = clamp(lt / 0.2);
+    const nIn = outBack(clamp((lt - 0.9) / 0.35));
+    $('note').style.opacity = clamp((lt - 0.9) / 0.15);
+    $('note').style.transform = `translateY(${(1 - nIn) * 40}px) scale(${0.85 + 0.15 * nIn})`;
+    document.querySelectorAll('.lights .halo').forEach((h, i) => h.setAttribute('opacity', (0.1 + 0.14 * (0.5 + 0.5 * Math.sin(t * 3 + i * 1.3))).toFixed(3)));
+
+    // top text box
+    const tp = active(TOP, t);
+    if (tp !== lastTop) { $('top').innerHTML = tp ? `<span>${tp.text}</span>` : ''; lastTop = tp; }
+
+    // captions: words appear at reading pace, newest word highlighted
+    const c = opts.captions ? active(CAP, t) : null;
+    if (c !== lastCap) {
+      $('cap').className = 'cap' + (c && c.big ? ' big' : '');
+      $('cap').innerHTML = c ? c.text.split(' ').map(w => `<span class="w">${w}</span>`).join(' ') : '';
+      lastCap = c;
+    }
+    if (c) {
+      const ws = $('cap').querySelectorAll('.w');
+      const span = Math.min((c.t1 - c.t0) * 0.75, ws.length * 0.34);
+      const shown = Math.min(ws.length, Math.floor((t - c.t0) / (span / ws.length)) + 1);
+      ws.forEach((w, i) => {
+        w.style.visibility = i < shown ? 'visible' : 'hidden';
+        w.classList.toggle('now', i === shown - 1 && t - c.t0 < span + 0.25);
+        const age = (t - c.t0) - i * (span / ws.length);
+        w.style.transform = `scale(${i < shown ? 0.8 + 0.2 * outBack(clamp(age / 0.18)) : 1})`;
+      });
+    }
+  };
+  window.render(0);
+</script>
+</body>
+</html>
