@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – Eesti jõulubingo</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* No logo or progress bar until the last slide: the post should read as a
+     creator's bingo, not an ad. TikTok draws its own slide dots. */
+  .lights{position:absolute;top:120px;left:0;width:1080px;height:220px;z-index:1}
+
+  /* bingo card */
+  .card-bingo{position:relative;width:840px;background:var(--paper);border-radius:34px;padding:34px 30px 30px;
+              box-shadow:0 40px 90px -30px rgba(0,0,0,.6)}
+  .card-bingo .head{text-align:center;margin-bottom:22px}
+  .card-bingo .head b{display:block;font-family:Fraunces,serif;font-weight:700;font-size:66px;letter-spacing:-1px;line-height:1;color:var(--ink)}
+  .card-bingo .head b em{color:var(--coral)}
+  .card-bingo .head small{display:block;font-weight:800;font-size:20px;letter-spacing:6px;color:var(--mute);margin-top:10px}
+  .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+  .cell{position:relative;aspect-ratio:1;border-radius:20px;background:var(--cream-2);border:3px solid var(--line);
+        display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10px 10px 12px;
+        font-family:"TikTok Sans",Inter,sans-serif;font-weight:700;font-size:24px;line-height:1.18;color:var(--ink);overflow-wrap:anywhere}
+  .cell .e{font-size:50px;line-height:1;margin-bottom:10px;font-family:"Noto Color Emoji"}
+  .cell.gold{background:linear-gradient(145deg,#ffe39a,#f2b544);border-color:#e9a52f}
+  .cell .ring{position:absolute;inset:-8px;width:calc(100% + 16px);height:calc(100% + 16px);overflow:visible;pointer-events:none}
+
+  /* 1: cover */
+  .cover-card{transform:rotate(-5deg) scale(.86);transform-origin:top left;margin:60px 0 0 30px}
+
+  /* 3: scoring */
+  .scores{display:flex;flex-direction:column;gap:22px;margin-top:56px}
+  .sc{display:flex;align-items:center;gap:30px;background:var(--paper);border-radius:28px;padding:26px 34px;color:var(--ink);
+      box-shadow:0 24px 50px -26px rgba(0,0,0,.6)}
+  .sc .r{flex:none;width:200px;font-family:Fraunces,serif;font-weight:700;font-size:60px;letter-spacing:-1px;color:var(--coral)}
+  .sc p{font-family:"TikTok Sans",Inter,"Noto Color Emoji",sans-serif;font-weight:700;font-size:38px;line-height:1.2}
+  .sc.max{background:linear-gradient(145deg,#ffe39a,#f2b544)}
+  .sc.max .r{color:var(--ink)}
+
+  /* 4: the hardest square */
+  .big-cell{width:520px;margin:60px auto 0;transform:rotate(-4deg);font-size:46px;border-width:5px;border-radius:36px;
+            box-shadow:0 0 0 22px rgba(242,181,68,.14),0 0 140px 30px rgba(242,181,68,.35)}
+  .big-cell .e{font-size:120px;margin-bottom:22px}
+
+  /* 5: payoff + brand */
+  .player{display:flex;align-items:center;gap:24px;background:var(--paper);border-radius:999px;padding:20px 30px 20px 20px;margin-top:56px;
+          box-shadow:0 30px 60px -28px rgba(91,46,40,.5)}
+  .player .pb{flex:none;width:96px;height:96px;border-radius:50%;background:var(--coral);display:flex;align-items:center;justify-content:center}
+  .player .t{flex:1;text-align:left}
+  .player .t b{display:block;font-family:Fraunces,serif;font-size:40px;line-height:1.1}
+  .player .t small{display:block;font-weight:700;font-size:26px;color:var(--mute);margin-top:6px}
+  .wave{display:flex;align-items:center;gap:5px;height:70px;width:190px}
+  .wave i{flex:1;border-radius:3px;background:var(--coral)}
+  .url{display:inline-flex;align-items:center;gap:18px;margin-top:60px;background:var(--ink);color:var(--cream);
+       font-weight:800;font-size:44px;padding:28px 48px;border-radius:999px}
+  .url span{color:var(--coral)}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <!-- brand mark (from the site header) -->
+  <symbol id="mark" viewBox="0 0 120 170">
+    <path d="M64,95 C34,72 14,52 14,32 C14,12 34,2 49,12 C57,18 61,26 64,32 C67,26 71,18 79,12 C94,2 114,12 114,32 C114,52 94,72 64,95 Z" stroke="currentColor" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+    <line x1="64" y1="95" x2="64" y2="146" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>
+    <path d="M64,60 C85,55 100,40 108,15" stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M64,90 C82,88 95,78 103,58" stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <ellipse cx="46" cy="152" rx="21" ry="14" fill="currentColor" transform="rotate(-18 46 152)"/>
+  </symbol>
+  <symbol id="ring" viewBox="0 0 100 100"><path d="M52 6 C80 5 95 24 94 50 C93 78 74 95 48 94 C22 93 6 76 6 50 C6 24 24 8 58 9" fill="none" stroke="#ff6b5b" stroke-width="5" stroke-linecap="round"/></symbol>
+  <symbol id="play" viewBox="0 0 80 90"><path d="M12 8 L72 45 L12 82 Z" fill="currentColor" stroke="currentColor" stroke-width="10" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- 1: cover -->
+<section class="slide dark">
+  <svg class="lights" viewBox="0 0 1080 220"></svg>
+  <div class="safe" style="justify-content:flex-start;padding-top:70px">
+    <div class="tt" style="font-size:76px;line-height:1.36;white-space:nowrap"><span>Eesti jõulubingo 🎄</span></div>
+    <div class="tt sm" style="margin-top:22px"><span>kihla vean, et sinu pere saab</span><br><span>vähemalt 8 ruutu 😭</span></div>
+    <div class="cover-card" data-bingo data-rings="0,1,2,5,7,8,9,13"></div>
+  </div>
+</section>
+
+<!-- 2: the card -->
+<section class="slide dark">
+  <svg class="lights" viewBox="0 0 1080 220"></svg>
+  <div class="safe" style="left:100px;right:140px">
+    <div class="tt sm" style="text-align:center;margin-bottom:34px"><span>salvesta jõuluõhtuks 📌</span></div>
+    <div data-bingo></div>
+  </div>
+</section>
+
+<!-- 3: scoring -->
+<section class="slide dark">
+  <svg class="lights" viewBox="0 0 1080 220"></svg>
+  <div class="safe">
+    <div class="tt"><span>Mitu ruutu said?</span></div>
+    <div class="scores">
+      <div class="sc"><div class="r">0–5</div><p>kas te üldse olete eestlased? 😳</p></div>
+      <div class="sc"><div class="r">6–10</div><p>klassikaline Eesti pere 🇪🇪</p></div>
+      <div class="sc"><div class="r">11–15</div><p>teie jõuludest võiks sarja teha 📺</p></div>
+      <div class="sc max"><div class="r">16</div><p>peaaegu võimatu. üks ruut on liiga raske… 👀</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4: the hardest square -->
+<section class="slide dark">
+  <svg class="lights" viewBox="0 0 1080 220"></svg>
+  <div class="safe center">
+    <div class="tt"><span>Kõige raskem ruut:</span></div>
+    <div class="cell gold big-cell"><span class="e">🥹</span>Keegi nutab<br>kingi peale</div>
+    <div class="tt sm" style="margin-top:90px"><span>sokkide pärast pole veel</span><br><span>keegi nutnud 🧦</span></div>
+  </div>
+</section>
+
+<!-- 5: payoff + brand -->
+<section class="slide">
+  <div class="safe center">
+    <div class="tt"><span>Selle ruudu saab</span><br><span>ette ära teha 🤫</span></div>
+    <h2 style="font-size:84px;margin-top:56px">Laul, mis on kirjutatud tema <em class="c">enda</em> loost.</h2>
+    <div class="player">
+      <div class="pb"><svg width="36" height="40" style="color:#fff;margin-left:6px"><use href="#play"/></svg></div>
+      <div class="t"><b>Laul emale 🎄</b><small>Näide</small></div>
+      <div class="wave" data-bars="20"></div>
+    </div>
+    <p class="url">Telli: <span>lauluhing.com</span></p>
+    <p class="sub" style="font-size:40px;margin-top:40px">Kirjuta, mitu ruutu said 👇</p>
+  </div>
+  <div class="brand"><svg viewBox="0 0 120 170"><use href="#mark"/></svg>Lauluhing</div>
+</section>
+
+<script>
+  const cells = [
+    ['🥩', 'Verivorst ja hapukapsas. Jälle.'],
+    ['👵', '„Söö veel, sa oled nii kõhn“'],
+    ['💍', '„Kas sul juba keegi on?“'],
+    ['🎁', 'Kingipaber pannakse järgmiseks aastaks alles'],
+    ['🎅', 'Jõuluvanale tuleb luuletus öelda'],
+    ['📺', 'Telekas käib „Üksinda kodus“'],
+    ['🔥', 'Jõulusaun enne sööki'],
+    ['😴', 'Keegi magab diivanil enne kella 9'],
+    ['🧦', 'Keegi saab sokke'],
+    ['🎶', '„Püha öö“ – keegi laulab valesti'],
+    ['🎄', 'Kuusk on viltu'],
+    ['🤔', 'Jõuluvana hääl on kahtlaselt tuttav'],
+    ['🚗', 'Kink pakitakse autos'],
+    ['🍪', 'Piparkoogi&shy;tainas on poest'],
+    ['🍲', 'Sama toit kolm päeva järjest'],
+    ['🥹', 'Keegi nutab kingi peale'],
+  ];
+  document.querySelectorAll('[data-bingo]').forEach(el => {
+    const rings = (el.dataset.rings || '').split(',').filter(Boolean).map(Number);
+    el.classList.add('card-bingo');
+    el.innerHTML = '<div class="head"><b>Eesti <em>jõulu</em>bingo</b><small>MÄRGI, MIS SU PERES JUHTUB</small></div>' +
+      '<div class="grid">' + cells.map(([e, t], i) =>
+        `<div class="cell${i === 15 ? ' gold' : ''}"><span class="e">${e}</span>${t}` +
+        (rings.includes(i) ? `<svg class="ring" style="transform:rotate(${(i * 37) % 30 - 15}deg)"><use href="#ring"/></svg>` : '') +
+        '</div>').join('') + '</div>';
+  });
+
+  document.querySelectorAll('.wave').forEach(w => {
+    for (let i = 0; i < +w.dataset.bars; i++) {
+      const b = document.createElement('i');
+      b.style.height = 25 + Math.round(70 * Math.abs(Math.sin(i * 1.7) * Math.cos(i * 0.45))) + '%';
+      w.appendChild(b);
+    }
+  });
+
+  // Strings of Christmas lights across the top of the dark slides.
+  const pt = t => {
+    const seg = t < .5 ? [[-20,40],[270,150],[540,60]] : [[540,60],[810,-30],[1100,50]];
+    const u = t < .5 ? t * 2 : t * 2 - 1;
+    return [0, 1].map(k => (1-u)**2*seg[0][k] + 2*(1-u)*u*seg[1][k] + u*u*seg[2][k]);
+  };
+  const cols = ['#f2b544', '#ff6b5b', '#fff1d6', '#f6c568', '#ff8a7a'];
+  let s = '<path d="M-20 40 Q 270 150 540 60 T 1100 50" fill="none" stroke="rgba(255,248,240,.35)" stroke-width="3"/>';
+  for (let i = 1; i < 16; i++) {
+    const [x, y] = pt(i / 16), c = cols[i % cols.length];
+    s += `<circle cx="${x}" cy="${y + 22}" r="34" fill="${c}" opacity=".18"/>` +
+         `<rect x="${x - 5}" y="${y}" width="10" height="12" rx="2" fill="rgba(255,248,240,.5)"/>` +
+         `<ellipse cx="${x}" cy="${y + 24}" rx="11" ry="15" fill="${c}"/>`;
+  }
+  document.querySelectorAll('.lights').forEach(l => l.innerHTML = s);
+</script>
+</body>
+</html>

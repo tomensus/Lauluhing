@@ -5,6 +5,8 @@
 @font-face{font-family:Fraunces;font-weight:600;font-style:italic;src:url(fonts/fraunces600i.ttf)}
 @font-face{font-family:Fraunces;font-weight:700;font-style:italic;src:url(fonts/fraunces700i.ttf)}
 @font-face{font-family:Caveat;font-weight:700;src:url(fonts/caveat700.ttf)}
+@font-face{font-family:"TikTok Sans";font-weight:700;src:url(fonts/tiktoksans700.ttf)}
+@font-face{font-family:"TikTok Sans";font-weight:900;src:url(fonts/tiktoksans900.ttf)}
 
 :root{
   --cream:#fff8f0;
@@ -118,3 +120,11 @@ body.debug .slide::before{content:"";position:absolute;inset:0;z-index:60;pointe
     linear-gradient(rgba(0,120,255,.28),rgba(0,120,255,.28)) top/100% 150px no-repeat,
     linear-gradient(rgba(0,120,255,.28),rgba(0,120,255,.28)) bottom/100% 380px no-repeat,
     linear-gradient(rgba(0,120,255,.28),rgba(0,120,255,.28)) right 0 top 700px/130px 840px no-repeat}
+
+/* ---------- native TikTok text ----------
+   The in-app "text with background" look: black TikTok Sans on white boxes that
+   follow each line. Reads as a creator post rather than an ad. */
+.tt{font-family:"TikTok Sans",Inter,"Noto Color Emoji",sans-serif;font-weight:900;font-size:56px;line-height:1.42;color:#111}
+.tt span{background:#fff;padding:6px 22px;border-radius:16px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.tt.sm{font-size:44px;font-weight:700}
+.tt.inv span{background:#111;color:#fff}
