@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – Eesti jõulud: vali üks</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* Full-bleed "this or that" split: A on top (coral), B below (plum).
+     No logo or progress bar until the last slide. */
+  .slide.split{background:#3f2747;color:var(--cream)}
+  .half{position:absolute;left:0;right:0;overflow:hidden}
+  .half.a{top:0;height:880px;
+    background:radial-gradient(800px 600px at 90% 10%,rgba(242,181,68,.45),transparent 65%),linear-gradient(160deg,#ff7b6b,#e2503f)}
+  .half.b{top:880px;bottom:0;
+    background:radial-gradient(800px 700px at 0% 100%,rgba(255,107,91,.35),transparent 70%),linear-gradient(165deg,#7d5686,#3f2747)}
+  .ghost{position:absolute;font-family:Fraunces,serif;font-style:italic;font-weight:700;font-size:620px;line-height:1;color:#fff;opacity:.10}
+  .a .ghost{right:-20px;top:120px}
+  .b .ghost{left:-30px;top:-60px}
+
+  .zone{position:absolute;left:100px;right:150px;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .zone.a{top:250px;height:600px}
+  .zone.b{top:960px;height:520px}
+  .pick{display:inline-flex;align-items:center;justify-content:center;width:86px;height:86px;border-radius:50%;
+        background:var(--cream);color:var(--ink);font-family:Fraunces,serif;font-weight:700;font-size:54px;margin-bottom:16px;
+        box-shadow:0 14px 30px -12px rgba(0,0,0,.45)}
+  .em{font-family:"Noto Color Emoji";font-size:160px;line-height:1;filter:drop-shadow(0 24px 30px rgba(0,0,0,.3))}
+  .label{font-family:Fraunces,serif;font-weight:700;font-size:74px;line-height:1.05;letter-spacing:-.5px;margin-top:18px;
+         text-shadow:0 4px 20px rgba(0,0,0,.15)}
+  .label small{display:block;font-family:"TikTok Sans",Inter,sans-serif;font-weight:700;font-size:38px;letter-spacing:0;opacity:.85;margin-top:12px}
+  .note{position:relative;z-index:4;margin-top:44px}
+  .note.sticky{padding:26px 32px 30px}
+  .note .hand{font-size:46px;line-height:1.05;color:#5a4320;white-space:nowrap}
+  .count{position:absolute;top:250px;left:100px;z-index:4}
+
+  .vs{position:absolute;left:175px;top:880px;z-index:5;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;
+      background:var(--cream);color:var(--ink);display:flex;align-items:center;justify-content:center;
+      font-family:"TikTok Sans",Inter,sans-serif;font-weight:900;font-size:54px;
+      box-shadow:0 0 0 12px rgba(255,248,240,.25),0 20px 40px -10px rgba(0,0,0,.5)}
+
+  /* cover */
+  .answer{display:inline-flex;gap:12px;margin-top:40px}
+  .answer i{font-style:normal;width:96px;height:110px;border-radius:22px;background:var(--cream);color:var(--ink);
+            display:flex;align-items:center;justify-content:center;font-family:Fraunces,serif;font-weight:700;font-size:64px;
+            box-shadow:0 14px 30px -14px rgba(0,0,0,.5)}
+  .answer i.q{background:rgba(255,248,240,.18);color:var(--cream);border:3px dashed rgba(255,248,240,.6)}
+
+  /* final */
+  .dim > :not(.note){opacity:.55;filter:saturate(.6)}
+  .win .em{filter:drop-shadow(0 0 40px rgba(242,181,68,.7))}
+  .win .label{color:var(--sticky)}
+  .goldmark{display:flex;align-items:center;justify-content:center;width:150px;height:150px;border-radius:50%;
+            background:linear-gradient(145deg,#ffd77a,#f2b544);box-shadow:0 0 0 16px rgba(242,181,68,.18),0 0 90px 10px rgba(242,181,68,.45)}
+  .goldmark svg{width:78px;color:#fff}
+  .url{display:inline-flex;align-items:center;gap:14px;margin-top:30px;background:var(--cream);color:var(--ink);
+       font-weight:800;font-size:38px;padding:20px 36px;border-radius:999px}
+  .url svg{width:28px;color:var(--coral)}
+  .url span{color:var(--coral-dark)}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <!-- brand mark (from the site header) -->
+  <symbol id="mark" viewBox="0 0 120 170">
+    <path d="M64,95 C34,72 14,52 14,32 C14,12 34,2 49,12 C57,18 61,26 64,32 C67,26 71,18 79,12 C94,2 114,12 114,32 C114,52 94,72 64,95 Z" stroke="currentColor" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+    <line x1="64" y1="95" x2="64" y2="146" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>
+    <path d="M64,60 C85,55 100,40 108,15" stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M64,90 C82,88 95,78 103,58" stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <ellipse cx="46" cy="152" rx="21" ry="14" fill="currentColor" transform="rotate(-18 46 152)"/>
+  </symbol>
+</svg>
+
+<!-- 1: cover -->
+<section class="slide split">
+  <div class="half a"><span class="ghost">A</span></div>
+  <div class="half b"><span class="ghost">B</span></div>
+  <div class="zone a">
+    <div class="tt" style="font-size:88px;line-height:1.34"><span>Eesti jõulud:</span><br><span>vali üks 🎄</span></div>
+    <div class="tt sm" style="margin-top:30px"><span>6 valikut. ainult üks võib olla õige.</span></div>
+  </div>
+  <div class="vs">VS</div>
+  <div class="zone b">
+    <div class="tt sm" style="white-space:nowrap;font-size:40px"><span>kirjuta oma vastused kommentaari 👇</span></div>
+    <div class="answer"><i>A</i><i>B</i><i>B</i><i class="q">?</i><i class="q">?</i><i class="q">?</i></div>
+  </div>
+</section>
+
+<!-- 2: verivorst -->
+<section class="slide split">
+  <div class="half a"><span class="ghost">A</span></div>
+  <div class="half b"><span class="ghost">B</span></div>
+  <div class="count tt sm"><span>1/6</span></div>
+  <div class="zone a">
+    <span class="pick">A</span><span class="em">🫐</span>
+    <div class="label">Verivorst<small>pohlamoosiga</small></div>
+  </div>
+  <div class="vs">VS</div>
+  <div class="zone b">
+    <span class="pick">B</span><span class="em">🙅</span>
+    <div class="label">Verivorst<small>ilma moosita</small></div>
+    <div class="note sticky" style="transform:rotate(4deg)"><div class="hand">ilma? julge.</div></div>
+  </div>
+</section>
+
+<!-- 3: piparkoogid vs kringel -->
+<section class="slide split">
+  <div class="half a"><span class="ghost">A</span></div>
+  <div class="half b"><span class="ghost">B</span></div>
+  <div class="count tt sm"><span>2/6</span></div>
+  <div class="zone a">
+    <span class="pick">A</span><span class="em">🍪</span>
+    <div class="label">Piparkoogid</div>
+    <div class="note sticky" style="transform:rotate(-4deg)"><div class="hand">tainas on parem 🤫</div></div>
+  </div>
+  <div class="vs">VS</div>
+  <div class="zone b">
+    <span class="pick">B</span><span class="em">🥨</span>
+    <div class="label">Jõulukringel</div>
+  </div>
+</section>
+
+<!-- 4: kuusk -->
+<section class="slide split">
+  <div class="half a"><span class="ghost">A</span></div>
+  <div class="half b"><span class="ghost">B</span></div>
+  <div class="count tt sm"><span>3/6</span></div>
+  <div class="zone a">
+    <span class="pick">A</span><span class="em">🌲</span>
+    <div class="label">Päris kuusk<small>okkad on veel jaanipäeval</small></div>
+  </div>
+  <div class="vs">VS</div>
+  <div class="zone b">
+    <span class="pick">B</span><span class="em">🎄</span>
+    <div class="label">Plastkuusk</div>
+    <div class="note sticky" style="transform:rotate(4deg)"><div class="hand">sama kuusk 15 aastat</div></div>
+  </div>
+</section>
+
+<!-- 5: kingid -->
+<section class="slide split">
+  <div class="half a"><span class="ghost">A</span></div>
+  <div class="half b"><span class="ghost">B</span></div>
+  <div class="count tt sm"><span>4/6</span></div>
+  <div class="zone a">
+    <span class="pick">A</span><span class="em">🌙</span>
+    <div class="label">Kingid lahti<small>jõululaupäeva õhtul</small></div>
+  </div>
+  <div class="vs">VS</div>
+  <div class="zone b">
+    <span class="pick">B</span><span class="em">☀️</span>
+    <div class="label">Kingid lahti<small>esimese püha hommikul</small></div>
+    <div class="note sticky" style="transform:rotate(4deg)"><div class="hand">kes jaksab oodata?!</div></div>
+  </div>
+</section>
+
+<!-- 6: film -->
+<section class="slide split">
+  <div class="half a"><span class="ghost">A</span></div>
+  <div class="half b"><span class="ghost">B</span></div>
+  <div class="count tt sm"><span>5/6</span></div>
+  <div class="zone a">
+    <span class="pick">A</span><span class="em">🏠</span>
+    <div class="label">„Üksinda kodus“</div>
+    <div class="note sticky" style="transform:rotate(-4deg)"><div class="hand">igal aastal mõlemad</div></div>
+  </div>
+  <div class="vs">VS</div>
+  <div class="zone b">
+    <span class="pick">B</span><span class="em">💚</span>
+    <div class="label">„Grinch“</div>
+  </div>
+</section>
+
+<!-- 7: the gift (brand) -->
+<section class="slide split">
+  <div class="half a"><span class="ghost">A</span></div>
+  <div class="half b"><span class="ghost">B</span></div>
+  <div class="count tt sm"><span>6/6</span></div>
+  <div class="zone a dim">
+    <span class="pick">A</span><span class="em">🧦</span>
+    <div class="label">Sokid<small>kolmas paar sel aastal</small></div>
+    <div class="note sticky" style="transform:rotate(-4deg)"><div class="hand">see oli lihtne 😌</div></div>
+  </div>
+  <div class="vs">VS</div>
+  <div class="zone b win">
+    <span class="pick" style="background:var(--gold)">B</span><span class="goldmark"><svg viewBox="0 0 120 170"><use href="#mark"/></svg></span>
+    <div class="label" style="font-size:66px">Laul tema enda loost</div>
+    <div class="url"><svg viewBox="0 0 120 170"><use href="#mark"/></svg><span>lauluhing.com</span></div>
+  </div>
+</section>
+
+</body>
+</html>
