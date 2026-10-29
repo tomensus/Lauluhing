@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – kuidas teha kink, mida mäletatakse</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* Crayon / marker drawing look on white, after a reference post the owner shared.
+     Drawings are generated below: crayon scribble fills clipped to shapes + wobbly outlines. */
+  @font-face{font-family:Kalam;font-weight:700;src:url(../../tiktok-shared/fonts/kalam.ttf)}
+  .slide{background:#fff;color:#111}
+  .slide::after{display:none}
+  .safe{top:200px;bottom:420px;justify-content:flex-start;align-items:center;text-align:center}
+  .k{font-family:Kalam,cursive;font-weight:700;filter:url(#grain);line-height:1}
+  .num{font-family:PM,cursive;font-weight:400;font-size:120px}
+  @font-face{font-family:PM;src:url(../../tiktok-shared/fonts/permanentmarker.ttf)}
+  .red{color:#e3151b}
+  .t1{font-size:150px;margin-top:10px;white-space:nowrap}
+  .t2{font-size:96px;margin-top:6px;white-space:nowrap}
+  .sub{font-family:Kalam,cursive;font-weight:700;font-size:58px;color:#111;margin-top:34px;filter:url(#grain);line-height:1.15}
+  .art{display:block;margin-top:30px}
+  .handle{position:absolute;left:0;right:0;bottom:440px;text-align:center;font-family:Kalam,cursive;font-weight:700;font-size:36px;color:#222;z-index:3}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <filter id="grain" x="-5%" y="-10%" width="110%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="1" seed="3" result="n"/>
+    <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.9 1.4" result="m"/>
+    <feComposite in="SourceGraphic" in2="m" operator="in" result="t"/>
+    <feTurbulence type="turbulence" baseFrequency=".03" numOctaves="2" seed="7" result="w"/>
+    <feDisplacementMap in="t" in2="w" scale="4"/>
+  </filter>
+  <filter id="rough1" x="-10%" y="-10%" width="120%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="1" result="w"/>
+    <feDisplacementMap in="SourceGraphic" in2="w" scale="7"/>
+  </filter>
+  <filter id="rough2" x="-10%" y="-10%" width="120%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="2" seed="9" result="w"/>
+    <feDisplacementMap in="SourceGraphic" in2="w" scale="6"/>
+  </filter>
+  <filter id="waxy" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="1" seed="5" result="n"/>
+    <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.8 1.5" result="m"/>
+    <feComposite in="SourceGraphic" in2="m" operator="in"/>
+  </filter>
+</svg>
+
+<!-- 1: cover -->
+<section class="slide">
+  <div class="safe" style="top:230px">
+    <div class="k t2" style="font-size:94px">KUIDAS TEHA KINK,</div>
+    <div class="k t1 red" style="font-size:92px;margin-top:14px">MIDA MÄLETATAKSE.</div>
+    <svg class="art" id="art1" width="880" height="760" viewBox="0 0 1000 864"></svg>
+  </div>
+  <div class="handle">lauluhing.com</div>
+</section>
+
+<!-- 2: listen -->
+<section class="slide">
+  <div class="safe">
+    <div class="k num">1.</div>
+    <div class="k t1 red">KUULA,</div>
+    <div class="k t2">MIDA TA RÄÄGIB</div>
+    <div class="sub">Ta ütleb ise,<br>mis on talle tähtis.</div>
+    <svg class="art" id="art2" width="880" height="600" viewBox="0 0 1000 682"></svg>
+  </div>
+  <div class="handle">lauluhing.com</div>
+</section>
+
+<!-- 3: remember -->
+<section class="slide">
+  <div class="safe">
+    <div class="k num">2.</div>
+    <div class="k t1 red">MÄLETA</div>
+    <div class="k t2">VÄIKESI HETKI</div>
+    <div class="sub">Just need on kõige suuremad.</div>
+    <svg class="art" id="art3" width="880" height="600" viewBox="0 0 1000 682"></svg>
+  </div>
+  <div class="handle">lauluhing.com</div>
+</section>
+
+<!-- 4: personal -->
+<section class="slide">
+  <div class="safe">
+    <div class="k num">3.</div>
+    <div class="k t1 red">TEE SEE</div>
+    <div class="k t2">ISIKLIKUKS</div>
+    <div class="sub">Tema nimi. Teie lugu.</div>
+    <svg class="art" id="art4" width="880" height="600" viewBox="0 0 1000 682"></svg>
+  </div>
+  <div class="handle">lauluhing.com</div>
+</section>
+
+<!-- 5: song -->
+<section class="slide">
+  <div class="safe">
+    <div class="k num">4.</div>
+    <div class="k t1 red">PANE SEE</div>
+    <div class="k t2">LAULU</div>
+    <div class="sub">Teie mälestustest saab laul,<br>mida ta kuulab ikka ja jälle.</div>
+    <svg class="art" id="art5" width="880" height="520" viewBox="0 0 1000 590"></svg>
+  </div>
+  <div class="handle">lauluhing.com</div>
+</section>
+
+<script>
+  // ---------- tiny crayon drawing kit ----------
+  const NS = 'http://www.w3.org/2000/svg';
+  let seed = 12345;
+  const rnd = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+  const jit = a => (rnd() - .5) * 2 * a;
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent && parent.appendChild(e); return e; };
+  let clipN = 0;
+
+  // Crayon fill: diagonal zigzag scribbles clipped to the shape.
+  function fill(svg, d, color, o = {}) {
+    const { angle = -35, gap = 7, w = 7, op = .95, passes = 2 } = o;
+    const id = 'c' + (clipN++);
+    const cp = el('clipPath', { id }, svg); el('path', { d }, cp);
+    const probe = el('path', { d }, svg); const bb = probe.getBBox(); probe.remove();
+    const g = el('g', { 'clip-path': `url(#${id})`, filter: 'url(#waxy)' }, svg);
+    const cx = bb.x + bb.width / 2, cy = bb.y + bb.height / 2, R = Math.hypot(bb.width, bb.height) / 2 + 20;
+    for (let p = 0; p < passes; p++) {
+      const a = angle + (p ? 70 + jit(10) : jit(6));
+      let pts = [];
+      for (let v = -R; v < R; v += gap) {
+        pts.push(`${(-R + jit(10)).toFixed(1)},${(v + jit(3)).toFixed(1)}`);
+        pts.push(`${(R + jit(10)).toFixed(1)},${(v + gap / 2 + jit(3)).toFixed(1)}`);
+      }
+      el('polyline', { points: pts.join(' '), fill: 'none', stroke: color, 'stroke-width': w * (p ? .8 : 1), 'stroke-linejoin': 'round',
+        opacity: p ? op * .75 : op, transform: `translate(${cx} ${cy}) rotate(${a})` }, g);
+    }
+    return g;
+  }
+  // Wobbly marker outline, drawn twice for a hand-drawn feel.
+  function line(svg, d, color = '#1a1a1a', w = 5, o = {}) {
+    el('path', { d, fill: 'none', stroke: color, 'stroke-width': w, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', filter: 'url(#rough1)', opacity: o.op ?? .95 }, svg);
+    el('path', { d, fill: 'none', stroke: color, 'stroke-width': w * .55, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', filter: 'url(#rough2)', opacity: .6 }, svg);
+  }
+  const shape = (svg, d, color, outline = '#1a1a1a', o = {}) => { fill(svg, d, color, o); if (outline) line(svg, d, outline, o.ow ?? 5); };
+
+  const circ = (cx, cy, r) => `M${cx - r} ${cy} a${r} ${r} 0 1 0 ${2 * r} 0 a${r} ${r} 0 1 0 ${-2 * r} 0 Z`;
+  const rect = (x, y, w, h) => `M${x} ${y} H${x + w} V${y + h} H${x} Z`;
+  const ell = (cx, cy, rx, ry) => `M${cx - rx} ${cy} a${rx} ${ry} 0 1 0 ${2 * rx} 0 a${rx} ${ry} 0 1 0 ${-2 * rx} 0 Z`;
+  const heartD = (x, y, s) => `M${x} ${y + 30 * s} C${x - 46 * s} ${y - 4 * s} ${x - 30 * s} ${y - 40 * s} ${x} ${y - 18 * s} C${x + 30 * s} ${y - 40 * s} ${x + 46 * s} ${y - 4 * s} ${x} ${y + 30 * s} Z`;
+
+  function heart(svg, x, y, s = 1) { shape(svg, heartD(x, y, s), '#e3151b', '#b80d12', { gap: 7, w: 4.5, ow: 4 }); }
+  function sun(svg, x, y, r) {
+    shape(svg, circ(x, y, r), '#ffd21a', '#e6b800', { gap: 8 });
+    for (let i = 0; i < 10; i++) { const a = i / 10 * Math.PI * 2 + .2;
+      line(svg, `M${x + Math.cos(a) * (r + 20)} ${y + Math.sin(a) * (r + 20)} L${x + Math.cos(a) * (r + 56)} ${y + Math.sin(a) * (r + 56)}`, '#ffcc00', 7); }
+  }
+  function cloud(svg, x, y, s = 1) {
+    const d = `M${x} ${y} c${-40 * s} 0 ${-50 * s} ${-44 * s} ${-14 * s} ${-52 * s} c${6 * s} ${-36 * s} ${62 * s} ${-44 * s} ${78 * s} ${-14 * s} c${26 * s} ${-26 * s} ${80 * s} ${-12 * s} ${70 * s} ${26 * s} c${36 * s} ${4 * s} ${34 * s} ${42 * s} ${0} ${40 * s} Z`;
+    shape(svg, d, '#cfe4fb', '#2f7fd6', { gap: 11, w: 4, op: .8, ow: 4.5 });
+  }
+  function note(svg, x, y, s = 1, c = '#1a1a1a') {
+    shape(svg, ell(x, y, 22 * s, 16 * s), c, c, { gap: 5, w: 5, ow: 4 });
+    line(svg, `M${x + 20 * s} ${y - 4 * s} V${y - 90 * s} C${x + 40 * s} ${y - 70 * s} ${x + 62 * s} ${y - 66 * s} ${x + 58 * s} ${y - 40 * s}`, c, 6);
+  }
+  function hair(svg, cx, cy, r) {
+    let d = `M${cx - r} ${cy}`;
+    for (let i = 0; i < 70; i++) { const a = Math.PI + rnd() * Math.PI, rr = r * (.55 + rnd() * .6);
+      d += ` Q${cx + Math.cos(a) * rr * 1.2 + jit(12)} ${cy + Math.sin(a) * rr * 1.1 + jit(12)} ${cx + Math.cos(a) * rr} ${cy + Math.sin(a) * rr * 1.05}`; }
+    line(svg, d, '#151515', 6);
+    fill(svg, `M${cx - r - 4} ${cy + 4} A${r + 4} ${r + 8} 0 0 1 ${cx + r + 4} ${cy + 4} Q${cx} ${cy - r * .3} ${cx - r - 4} ${cy + 4} Z`, '#151515', { gap: 6, w: 6 });
+  }
+  // person standing at (x, baseline y). opts: shirt, pants, arms: 'down'|'up'|'front', face: true
+  function person(svg, x, y, s = 1, o = {}) {
+    const { shirt = '#2f6fe0', pants = '#7a4a22', arms = 'down', skin = '#f3c9a2', hairOn = true } = o;
+    const P = (dx, dy) => `${x + dx * s} ${y + dy * s}`;
+    // legs
+    shape(svg, `M${P(-46, -190)} L${P(46, -190)} L${P(44, -24)} L${P(10, -24)} L${P(0, -150)} L${P(-10, -24)} L${P(-44, -24)} Z`, pants, '#1a1a1a', { gap: 8 });
+    shape(svg, ell(x - 30 * s, y - 14 * s, 30 * s, 14 * s), '#1a1a1a', '#1a1a1a', { gap: 5 });
+    shape(svg, ell(x + 30 * s, y - 14 * s, 30 * s, 14 * s), '#1a1a1a', '#1a1a1a', { gap: 5 });
+    // shirt
+    shape(svg, `M${P(-62, -310)} L${P(62, -310)} L${P(88, -262)} L${P(60, -246)} L${P(52, -186)} L${P(-52, -186)} L${P(-60, -246)} L${P(-88, -262)} Z`, shirt, '#1a1a1a', { gap: 7 });
+    // arms start at the sleeve and end in a hand
+    const armPaths = {
+      down: [[-76, -256, -98, -166], [76, -256, 98, -166]],
+      up: [[-74, -276, -136, -404], [74, -276, 136, -404]],
+      front: [[-72, -254, -40, -214], [72, -254, 40, -214]],
+      wave: [[-76, -256, -98, -166], [74, -276, 140, -396]],
+    }[arms];
+    for (const [x1, y1, x2, y2] of armPaths) {
+      el('path', { d: `M${P(x1, y1)} L${P(x2, y2)}`, stroke: '#1a1a1a', 'stroke-width': 28 * s, 'stroke-linecap': 'round', filter: 'url(#rough1)' }, svg);
+      el('path', { d: `M${P(x1, y1)} L${P(x2, y2)}`, stroke: skin, 'stroke-width': 19 * s, 'stroke-linecap': 'round', filter: 'url(#rough1)' }, svg);
+      shape(svg, circ(x + x2 * s, y + y2 * s, 15 * s), skin, '#1a1a1a', { gap: 6, op: .8, ow: 4 });
+    }
+    // head
+    shape(svg, circ(x, y - 362 * s, 44 * s), skin, '#1a1a1a', { gap: 10, op: .75, ow: 4.5 });
+    if (o.face !== false) {
+      shape(svg, circ(x - 15 * s, y - 366 * s, 4 * s), '#1a1a1a', null, { gap: 3, w: 4 });
+      shape(svg, circ(x + 15 * s, y - 366 * s, 4 * s), '#1a1a1a', null, { gap: 3, w: 4 });
+      line(svg, `M${P(-16, -346)} Q${P(0, -330)} ${P(16, -346)}`, '#1a1a1a', 4.5);
+      if (o.closed) { /* closed happy eyes over the dots */ }
+    }
+    if (hairOn) hair(svg, x, y - 382 * s, 46 * s);
+    return { handL: [x + armPaths[0][2] * s, y + armPaths[0][3] * s], handR: [x + armPaths[1][2] * s, y + armPaths[1][3] * s] };
+  }
+  function gift(svg, x, y, w, h, o = {}) {
+    const { box = '#e3151b', ribbon = '#ffd21a' } = o;
+    shape(svg, rect(x, y, w, h), box, '#1a1a1a', { gap: 9 });
+    shape(svg, rect(x - w * .06, y - h * .22, w * 1.12, h * .24), box, '#1a1a1a', { gap: 8, angle: 20 });
+    shape(svg, rect(x + w * .44, y - h * .22, w * .12, h * 1.22), ribbon, '#1a1a1a', { gap: 6, w: 4.5, ow: 4 });
+    const bx = x + w / 2, by = y - h * .22;
+    shape(svg, `M${bx} ${by} C${bx - w * .5} ${by - h * .55} ${bx - w * .55} ${by - h * .05} ${bx} ${by} Z`, ribbon, '#1a1a1a', { gap: 6, w: 4.5, ow: 4 });
+    shape(svg, `M${bx} ${by} C${bx + w * .5} ${by - h * .55} ${bx + w * .55} ${by - h * .05} ${bx} ${by} Z`, ribbon, '#1a1a1a', { gap: 6, w: 4.5, ow: 4 });
+  }
+  function sparkle(svg, x, y, s = 1, c = '#ffcc00') {
+    line(svg, `M${x} ${y - 22 * s} V${y + 22 * s} M${x - 22 * s} ${y} H${x + 22 * s} M${x - 12 * s} ${y - 12 * s} L${x + 12 * s} ${y + 12 * s} M${x + 12 * s} ${y - 12 * s} L${x - 12 * s} ${y + 12 * s}`, c, 5);
+  }
+  function ground(svg, y, x1 = 30, x2 = 970) { line(svg, `M${x1} ${y} C${x1 + 200} ${y - 6} ${x2 - 300} ${y + 8} ${x2} ${y - 2}`, '#1a1a1a', 5); }
+
+  // ---------- slide 1: on top of a hill with a gift ----------
+  (() => { const s = document.getElementById('art1');
+    shape(s, `M30 864 L130 650 L250 720 L360 600 L520 864 Z`, '#3b86e8', '#1f5fc0', { gap: 10, op: .8 });
+    shape(s, `M560 864 L700 620 L800 690 L890 600 L975 864 Z`, '#3b86e8', '#1f5fc0', { gap: 10, op: .8 });
+    shape(s, `M150 864 C220 700 330 560 470 540 C560 528 640 560 700 640 C780 740 830 820 870 864 Z`, '#36b44a', '#1d7a2c', { gap: 9 });
+    sun(s, 835, 150, 70); cloud(s, 190, 220, 1.1); cloud(s, 700, 330, .8);
+    const p = person(s, 480, 560, .95, { arms: 'up', shirt: '#2f6fe0', pants: '#7a4a22' });
+    gift(s, p.handR[0] - 60, p.handR[1] - 86, 110, 92);
+    heart(s, 300, 330, 1); heart(s, 640, 250, .8); heart(s, 360, 180, .6);
+  })();
+
+  // ---------- slide 2: listening ----------
+  (() => { const s = document.getElementById('art2');
+    ground(s, 668);
+    person(s, 300, 660, 1.1, { arms: 'down', shirt: '#e3151b', pants: '#2b3a67' });
+    person(s, 700, 660, 1.1, { arms: 'front', shirt: '#36b44a', pants: '#7a4a22' });
+    // notebook in the listener's hands
+    shape(s, rect(650, 372, 100, 112), '#fff7d6', '#1a1a1a', { gap: 12, op: .6, ow: 4.5 });
+    line(s, 'M666 404 H734 M666 428 H726 M666 452 H716', '#2f6fe0', 4);
+    // speech bubble with a tail pointing at the speaker
+    shape(s, `M60 30 H440 Q470 30 470 60 V170 Q470 200 440 200 H330 L290 250 L292 200 H60 Q30 200 30 170 V60 Q30 30 60 30 Z`, '#ffffff', '#1a1a1a', { gap: 30, op: 0, ow: 5 });
+    heart(s, 160, 115, 1.3); note(s, 290, 150, .9); sparkle(s, 400, 90, .9);
+    // little "listening" marks by the listener
+    line(s, 'M790 200 Q812 222 790 246 M818 184 Q850 222 818 262', '#1a1a1a', 5);
+  })();
+
+  // ---------- slide 3: photos of small moments ----------
+  (() => { const s = document.getElementById('art3');
+    function polaroid(x, y, w, h, rot, draw) {
+      const g = el('g', { transform: `rotate(${rot} ${x + w / 2} ${y + h / 2})` }, s);
+      shape(g, rect(x, y, w, h), '#ffffff', '#1a1a1a', { gap: 40, op: 0, ow: 5 });
+      const ix = x + 22, iy = y + 22, iw = w - 44, ih = h * .7;
+      draw(g, ix, iy, iw, ih);
+      line(g, rect(ix, iy, iw, ih), '#1a1a1a', 4);
+      shape(g, rect(x + w / 2 - 50, y - 22, 100, 40), '#f3e3a6', null, { gap: 6, w: 6, op: .7 });
+    }
+    polaroid(60, 120, 280, 330, -8, (g, x, y, w, h) => {
+      shape(g, rect(x, y, w, h), '#7fc0ff', null, { gap: 9, op: .8 });
+      shape(g, `M${x} ${y + h} L${x} ${y + h * .62} C${x + w * .3} ${y + h * .5} ${x + w * .7} ${y + h * .75} ${x + w} ${y + h * .58} L${x + w} ${y + h} Z`, '#f2d28a', null, { gap: 8 });
+      shape(g, circ(x + w * .74, y + h * .3, 26), '#ffd21a', '#e6b800', { gap: 6, ow: 3.5 });
+    });
+    polaroid(360, 80, 290, 340, 4, (g, x, y, w, h) => {
+      shape(g, rect(x, y, w, h), '#ffe0b8', null, { gap: 9, op: .8 });
+      // two small figures on a bench
+      shape(g, rect(x + 30, y + h * .66, w - 60, 18), '#7a4a22', '#1a1a1a', { gap: 6, ow: 3.5 });
+      for (const [fx, c] of [[x + w * .36, '#e3151b'], [x + w * .64, '#2f6fe0']]) {
+        shape(g, circ(fx, y + h * .36, 22), '#f3c9a2', '#1a1a1a', { gap: 6, op: .7, ow: 3.5 });
+        shape(g, `M${fx - 28} ${y + h * .66} L${fx - 22} ${y + h * .47} L${fx + 22} ${y + h * .47} L${fx + 28} ${y + h * .66} Z`, c, '#1a1a1a', { gap: 6, ow: 3.5 });
+      }
+      heart(g, x + w * .5, y + h * .17, .6);
+    });
+    polaroid(670, 140, 270, 320, -5, (g, x, y, w, h) => {
+      shape(g, rect(x, y, w, h), '#ffd6e0', null, { gap: 9, op: .8 });
+      // birthday cake
+      shape(g, rect(x + w * .2, y + h * .45, w * .6, h * .4), '#fff2c4', '#1a1a1a', { gap: 8, ow: 3.5 });
+      shape(g, rect(x + w * .2, y + h * .45, w * .6, h * .1), '#e3151b', null, { gap: 5 });
+      for (const cx of [.35, .5, .65]) { line(g, `M${x + w * cx} ${y + h * .45} V${y + h * .3}`, '#2f6fe0', 6); shape(g, ell(x + w * cx, y + h * .25, 7, 11), '#ffb000', null, { gap: 3, w: 4 }); }
+    });
+    sparkle(s, 960, 90, .9); heart(s, 40, 560, .8); sparkle(s, 520, 560, .8, '#e3151b');
+  })();
+
+  // ---------- slide 4: a personal gift ----------
+  (() => { const s = document.getElementById('art4');
+    ground(s, 600);
+    gift(s, 330, 300, 340, 290, { box: '#2f6fe0', ribbon: '#e3151b' });
+    // tag on a string
+    line(s, 'M500 236 C560 260 620 300 690 330', '#1a1a1a', 4);
+    const tg = el('g', { transform: 'rotate(12 760 370)' }, s);
+    shape(tg, `M680 326 L846 326 L880 370 L846 414 L680 414 Z`, '#fff7d6', '#1a1a1a', { gap: 14, op: .6, ow: 4.5 });
+    const t = el('text', { x: 700, y: 388, 'font-family': 'Kalam', 'font-weight': 700, 'font-size': 44, fill: '#e3151b', filter: 'url(#grain)' }, tg); t.textContent = 'EMALE';
+    sparkle(s, 220, 220, 1.2); sparkle(s, 860, 170, 1); sparkle(s, 170, 470, .8, '#e3151b');
+    heart(s, 860, 520, .9); heart(s, 250, 120, .7);
+  })();
+
+  // ---------- slide 5: listening to the song ----------
+  (() => { const s = document.getElementById('art5');
+    sun(s, 860, 120, 60);
+    const x = 470, y = 580;
+    person(s, x, y, 1.05, { arms: 'down', shirt: '#e3151b', pants: '#2b3a67' });
+    // headphones over the head
+    line(s, `M${x - 56} ${y - 384} C${x - 66} ${y - 512} ${x + 66} ${y - 512} ${x + 56} ${y - 384}`, '#1f5fc0', 13);
+    shape(s, ell(x - 52, y - 378, 18, 30), '#2f6fe0', '#1a1a1a', { gap: 6, ow: 4.5 });
+    shape(s, ell(x + 52, y - 378, 18, 30), '#2f6fe0', '#1a1a1a', { gap: 6, ow: 4.5 });
+    note(s, 230, 260, 1.1); note(s, 690, 220, .9, '#2f6fe0'); note(s, 160, 430, .8, '#e3151b');
+    heart(s, 330, 130, .9); heart(s, 760, 380, 1); sparkle(s, 640, 90, .9);
+    ground(s, 580, 120, 880);
+  })();
+</script>
+</body>
+</html>
