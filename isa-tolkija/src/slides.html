@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – Eesti isa tõlkesõnastik</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* Translator-app look. No logo until the last slide. */
+  .slide.night{color:var(--cream);
+    background:
+      radial-gradient(900px 700px at 100% 0%, rgba(242,181,68,.30), transparent 65%),
+      radial-gradient(900px 800px at 0% 100%, rgba(108,75,115,.65), transparent 70%),
+      linear-gradient(170deg,#33284a,#1f1828)}
+  .slide.night::after{mix-blend-mode:screen;opacity:.06;filter:invert(1)}
+
+  .count{position:absolute;top:250px;left:100px;z-index:4}
+  .tr{position:relative;width:100%;background:var(--paper);color:var(--ink);border-radius:36px;overflow:hidden;
+      box-shadow:0 40px 90px -30px rgba(0,0,0,.65)}
+  .tr .bar{display:flex;align-items:center;justify-content:space-between;padding:26px 32px;border-bottom:3px solid var(--line);
+           font-family:"TikTok Sans",Inter,sans-serif;font-weight:700;font-size:30px}
+  .tr .lang{padding:12px 22px;border-radius:999px;background:var(--cream-2)}
+  .tr .lang.to{background:#ffe3dc;color:var(--coral-dark)}
+  .tr .swap{width:62px;height:62px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center}
+  .tr .src,.tr .dst{padding:38px 40px 46px}
+  .tr .src{font-family:"TikTok Sans",Inter,sans-serif;font-weight:700;font-size:68px;line-height:1.16}
+  .tr .dst{background:#fff6f2;border-top:3px solid var(--line);font-family:Fraunces,serif;font-weight:700;font-size:78px;line-height:1.08;color:var(--coral-dark)}
+  .tr .dst small{display:block;font-family:"TikTok Sans",Inter,sans-serif;font-weight:700;font-size:36px;line-height:1.3;color:var(--ink-soft);margin-top:18px}
+  .tr .ico{display:flex;gap:22px;margin-top:22px;color:var(--mute)}
+  .tr .ico svg{width:38px;height:38px}
+  .use{display:flex;align-items:center;gap:30px;margin-top:64px}
+  .use .sticky{flex:1;transform:rotate(-2deg);padding:30px 38px 36px}
+  .use .lbl{font-weight:800;font-size:22px;letter-spacing:5px;color:#8a6a2a}
+  .use .hand{font-size:52px;line-height:1.05;color:#5a4320;margin-top:4px}
+  .sticker{flex:none;font-family:"Noto Color Emoji";font-size:140px;line-height:1;transform:rotate(10deg);
+           filter:drop-shadow(0 18px 24px rgba(0,0,0,.35))}
+
+  /* twist */
+  .glowcard{box-shadow:0 0 0 18px rgba(242,181,68,.12),0 0 160px 30px rgba(242,181,68,.30),0 40px 90px -30px rgba(0,0,0,.65)}
+  .rare{display:inline-block;margin-top:14px;font-family:"TikTok Sans",Inter,sans-serif;font-weight:700;font-size:28px;
+        color:var(--ink-soft);background:var(--cream-2);padding:8px 18px;border-radius:999px}
+
+  /* brand */
+  .player{display:flex;align-items:center;gap:24px;background:var(--paper);border-radius:999px;padding:20px 30px 20px 20px;margin-top:54px;width:100%;
+          box-shadow:0 30px 60px -28px rgba(91,46,40,.5)}
+  .player .pb{flex:none;width:100px;height:100px;border-radius:50%;background:var(--coral);display:flex;align-items:center;justify-content:center}
+  .player .t{flex:1;text-align:left}
+  .player .t b{display:block;font-family:Fraunces,serif;font-size:42px;line-height:1.1}
+  .player .t small{display:block;font-weight:700;font-size:26px;color:var(--mute);margin-top:6px}
+  .wave{display:flex;align-items:center;gap:5px;height:76px;width:200px}
+  .wave i{flex:1;border-radius:3px;background:var(--coral)}
+  .facts{display:flex;gap:16px;margin-top:34px}
+  .facts span{font-weight:700;font-size:30px;padding:14px 24px;border-radius:999px;background:var(--paper);color:var(--ink-soft);
+              box-shadow:0 14px 30px -20px rgba(91,46,40,.5)}
+  .url{display:inline-flex;align-items:center;gap:16px;margin-top:50px;background:var(--ink);color:var(--cream);
+       font-weight:800;font-size:44px;padding:26px 46px;border-radius:999px}
+  .url span{color:var(--coral)}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <!-- brand mark (from the site header) -->
+  <symbol id="mark" viewBox="0 0 120 170">
+    <path d="M64,95 C34,72 14,52 14,32 C14,12 34,2 49,12 C57,18 61,26 64,32 C67,26 71,18 79,12 C94,2 114,12 114,32 C114,52 94,72 64,95 Z" stroke="currentColor" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+    <line x1="64" y1="95" x2="64" y2="146" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>
+    <path d="M64,60 C85,55 100,40 108,15" stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M64,90 C82,88 95,78 103,58" stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <ellipse cx="46" cy="152" rx="21" ry="14" fill="currentColor" transform="rotate(-18 46 152)"/>
+  </symbol>
+  <symbol id="swap" viewBox="0 0 40 40"><path d="M8 14 H32 M26 8 L32 14 L26 20 M32 26 H8 M14 20 L8 26 L14 32" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="spk" viewBox="0 0 40 40"><path d="M6 15 H13 L22 7 V33 L13 25 H6 Z" fill="currentColor"/><path d="M27 13 C31 17 31 23 27 27 M31 9 C37 15 37 25 31 31" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></symbol>
+  <symbol id="copy" viewBox="0 0 40 40"><rect x="12" y="12" width="22" height="22" rx="4" fill="none" stroke="currentColor" stroke-width="3.4"/><path d="M8 27 V10 a4 4 0 0 1 4 -4 H26" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></symbol>
+  <symbol id="play" viewBox="0 0 80 90"><path d="M12 8 L72 45 L12 82 Z" fill="currentColor" stroke="currentColor" stroke-width="10" stroke-linejoin="round"/></symbol>
+</svg>
+
+<template id="tr">
+  <div class="tr">
+    <div class="bar"><span class="lang">👨 Isa keel</span><span class="swap"><svg width="34" height="34"><use href="#swap"/></svg></span><span class="lang to">🇪🇪 Eesti keel</span></div>
+    <div class="src"><slot-src></slot-src><div class="ico"><svg><use href="#spk"/></svg></div></div>
+    <div class="dst"><slot-dst></slot-dst><div class="ico"><svg><use href="#spk"/></svg><svg><use href="#copy"/></svg></div></div>
+  </div>
+</template>
+
+<!-- 1: cover -->
+<section class="slide night">
+  <div class="safe" style="justify-content:flex-start;padding-top:20px">
+    <div class="tt" style="font-size:80px;line-height:1.36"><span>Eesti isa</span><br><span>tõlkesõnastik 👨</span></div>
+    <div class="tt sm" style="margin-top:22px"><span>lõpuks keegi tõlkis selle ära 😭</span></div>
+    <div style="margin-top:50px" data-tr
+         data-src="„Ma ainult puhkan silmi.“" data-dst="Ta magab.<small>Juba 40 minutit. Teler on ikka sees.</small>"></div>
+    <div class="use"><div class="sticky"><div class="lbl">KASUTUS</div><div class="hand">pühapäev, 14.00,<br>diivan, pult käes</div></div><span class="sticker">😴</span></div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="slide night">
+  <div class="count tt sm"><span>1/4</span></div>
+  <div class="safe">
+    <div data-tr data-src="„Küsi emalt.“" data-dst="Ma ei tea.<small>Aga seda ma ei tunnista.</small>"></div>
+    <div class="use"><div class="sticky"><div class="lbl">KASUTUS</div><div class="hand">iga kord, kui küsid<br>midagi kooli kohta</div></div><span class="sticker">🤷‍♂️</span></div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="slide night">
+  <div class="count tt sm"><span>2/4</span></div>
+  <div class="safe">
+    <div data-tr data-src="„Mis siin meistrit kutsuda, teen ise.“" data-dst="Meister tuleb ikka.<small>Kahe nädala pärast.<br>Ja parandab ka isa töö.</small>"></div>
+    <div class="use"><div class="sticky"><div class="lbl">KASUTUS</div><div class="hand">kraan tilgub juba<br>kolmandat kuud</div></div><span class="sticker">🔧</span></div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="slide night">
+  <div class="count tt sm"><span>3/4</span></div>
+  <div class="safe">
+    <div data-tr data-src="„Me oleme kohe kohal.“" data-dst="Veel 45 minutit.<small>Ja tanklas ei peatuta. Pea vastu.</small>"></div>
+    <div class="use"><div class="sticky"><div class="lbl">KASUTUS</div><div class="hand">navi näitab 1 h 10 min</div></div><span class="sticker">🚗</span></div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="slide night">
+  <div class="count tt sm"><span>4/4</span></div>
+  <div class="safe">
+    <div data-tr data-src="„Ära emale ütle.“" data-dst="Teil on nüüd saladus.<small>Elu lõpuni.</small>"></div>
+    <div class="use"><div class="sticky"><div class="lbl">KASUTUS</div><div class="hand">tankla hot dog enne õhtusööki</div></div><span class="sticker">🤫</span></div>
+  </div>
+</section>
+
+<!-- 6: twist -->
+<section class="slide dark">
+  <div class="safe">
+    <div class="tt sm" style="text-align:center;margin-bottom:50px"><span>üks lause, mida ta</span><br><span>peaaegu kunagi ei ütle:</span></div>
+    <div data-tr class="glow-wrap" data-src="„Ma olen sinu<br>üle uhke.“<br><span class=&quot;rare&quot;>öeldud: väga harva</span>" data-dst="Ta mõtleb seda<br>iga päev. 🤍"></div>
+  </div>
+</section>
+
+<!-- 7: brand -->
+<section class="slide">
+  <div class="safe center">
+    <div class="tt" style="white-space:nowrap;font-size:52px"><span>Isadepäev on 8. novembril 👨</span></div>
+    <h2 style="font-size:96px;margin-top:56px">Ütle <em class="c">sina</em><br>seda talle.</h2>
+    <p class="sub" style="margin-top:30px">Laulus, mis on kirjutatud<br>tema enda loost.</p>
+    <div class="player">
+      <div class="pb"><svg width="38" height="42" style="color:#fff;margin-left:6px"><use href="#play"/></svg></div>
+      <div class="t"><b>Laul isale 👨</b><small>Näide</small></div>
+      <div class="wave" data-bars="20"></div>
+    </div>
+    <div class="facts"><span>Tavaline 5 päeva</span><span>Express 4 h</span></div>
+    <p class="url">Telli: <span>lauluhing.com</span></p>
+    <p class="sub" style="font-size:38px;margin-top:34px">Mida sinu isa alati ütleb? 👇</p>
+  </div>
+  <div class="brand"><svg viewBox="0 0 120 170"><use href="#mark"/></svg>Lauluhing</div>
+</section>
+
+<script>
+  const tpl = document.getElementById('tr').innerHTML;
+  document.querySelectorAll('[data-tr]').forEach(el => {
+    el.innerHTML = tpl.replace('<slot-src></slot-src>', el.dataset.src).replace('<slot-dst></slot-dst>', el.dataset.dst);
+    if (el.classList.contains('glow-wrap')) el.firstElementChild.classList.add('glowcard');
+  });
+  document.querySelectorAll('.wave').forEach(w => {
+    for (let i = 0; i < +w.dataset.bars; i++) {
+      const b = document.createElement('i');
+      b.style.height = 25 + Math.round(70 * Math.abs(Math.sin(i * 1.7) * Math.cos(i * 0.45))) + '%';
+      w.appendChild(b);
+    }
+  });
+</script>
+</body>
+</html>
