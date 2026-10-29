@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – parimad kingid ei ole poes</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* Deliberately quiet: one line, one short sub-line, one line drawing per slide. */
+  .safe{align-items:center;text-align:center}
+  .ico{width:240px;height:240px;margin-bottom:80px}
+  .ico *{fill:none;stroke:var(--coral);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+  h1{font-size:118px;line-height:1.06}
+  .sub{font-size:48px;margin-top:50px;max-width:760px}
+  .hint{margin-top:90px;font-weight:600;font-size:36px;color:var(--mute)}
+  .url{display:inline-flex;align-items:center;gap:14px;margin-top:80px;font-weight:700;font-size:40px;color:var(--ink-soft)}
+  .url svg{width:28px;color:var(--coral)}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <!-- brand mark (from the site header) -->
+  <symbol id="mark" viewBox="0 0 120 170">
+    <path d="M64,95 C34,72 14,52 14,32 C14,12 34,2 49,12 C57,18 61,26 64,32 C67,26 71,18 79,12 C94,2 114,12 114,32 C114,52 94,72 64,95 Z" stroke="currentColor" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+    <line x1="64" y1="95" x2="64" y2="146" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>
+    <path d="M64,60 C85,55 100,40 108,15" stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M64,90 C82,88 95,78 103,58" stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <ellipse cx="46" cy="152" rx="21" ry="14" fill="currentColor" transform="rotate(-18 46 152)"/>
+  </symbol>
+</svg>
+
+<!-- 1 -->
+<section class="slide">
+  <div class="safe">
+    <svg class="ico" viewBox="0 0 120 120">
+      <rect x="18" y="48" width="84" height="58" rx="6"/><rect x="12" y="34" width="96" height="16" rx="5"/>
+      <path d="M60 34 V106"/><path d="M60 34 C48 14 28 18 34 30 C38 36 52 34 60 34 C68 34 82 36 86 30 C92 18 72 14 60 34"/>
+    </svg>
+    <h1>Parimad kingid ei ole <em class="c">poes</em>.</h1>
+    <p class="hint">Kolm näidet →</p>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <div class="safe">
+    <svg class="ico" viewBox="0 0 120 120">
+      <path d="M30 12 H90 M30 108 H90"/><path d="M36 12 C36 40 58 48 60 60 C62 48 84 40 84 12"/><path d="M36 108 C36 80 58 72 60 60 C62 72 84 80 84 108"/>
+      <path d="M48 100 C52 92 68 92 72 100"/>
+    </svg>
+    <h1>Sinu <em class="c">aeg</em>.</h1>
+    <p class="sub">Üks õhtu koos, ilma telefonita.</p>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <div class="safe">
+    <svg class="ico" viewBox="0 0 120 120">
+      <path d="M78 14 L100 36 L46 90 L20 98 L28 72 Z"/><path d="M70 22 L92 44"/>
+      <path d="M14 112 C28 104 36 116 48 108 C58 102 66 114 78 108 C88 104 96 110 106 106"/>
+    </svg>
+    <h1>Sinu <em class="c">käekiri</em>.</h1>
+    <p class="sub">Kaart, kuhu kirjutad rohkem kui „palju õnne“.</p>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="slide">
+  <div class="safe">
+    <svg class="ico" viewBox="0 0 120 170" style="width:180px;height:255px"><use href="#mark" style="color:var(--coral)"/></svg>
+    <h1>Laul teie <em class="c">loost</em>.</h1>
+    <p class="sub">Sellest, mida ainult<br>teie kaks teate.</p>
+    <p class="url"><svg viewBox="0 0 120 170"><use href="#mark"/></svg>lauluhing.com</p>
+  </div>
+</section>
+
+</body>
+</html>
