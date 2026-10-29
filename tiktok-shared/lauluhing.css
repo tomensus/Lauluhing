@@ -1,4 +1,4 @@
-/* Shared look for Lauluhing TikTok Photo Mode carousels (1080x1920).
+/* Shared look for Lauluhing TikTok Photo Mode carousels (1080x1920, or 1080x1440 with body.r34).
    Colours and type follow the site (css/styles.css). */
 @font-face{font-family:Fraunces;font-weight:600;src:url(fonts/fraunces600.ttf)}
 @font-face{font-family:Fraunces;font-weight:700;src:url(fonts/fraunces700.ttf)}
@@ -120,6 +120,19 @@ body.debug .slide::before{content:"";position:absolute;inset:0;z-index:60;pointe
     linear-gradient(rgba(0,120,255,.28),rgba(0,120,255,.28)) top/100% 150px no-repeat,
     linear-gradient(rgba(0,120,255,.28),rgba(0,120,255,.28)) bottom/100% 380px no-repeat,
     linear-gradient(rgba(0,120,255,.28),rgba(0,120,255,.28)) right 0 top 700px/130px 840px no-repeat}
+
+/* ---------- 3:4 format (1080x1440), the default for new carousels ----------
+   Put class="r34" on <body>. TikTok shows a 3:4 photo centred in the 9:16 screen
+   with 240 px bars above and below, so only the image's bottom ~140 px sits under
+   the caption and the button column covers the right edge between y 460 and 1300. */
+body.r34 .slide{height:1440px}
+body.r34 .safe{top:120px;bottom:200px}
+body.r34 .progress{top:60px}
+body.r34 .brand{bottom:200px}
+body.r34.debug .slide::before{
+  background:
+    linear-gradient(rgba(0,120,255,.28),rgba(0,120,255,.28)) bottom/100% 140px no-repeat,
+    linear-gradient(rgba(0,120,255,.28),rgba(0,120,255,.28)) right 0 top 460px/130px 840px no-repeat}
 
 /* ---------- native TikTok text ----------
    The in-app "text with background" look: black TikTok Sans on white boxes that
