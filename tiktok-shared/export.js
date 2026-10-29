@@ -44,7 +44,7 @@ const W = 1080, H = 1920;
   await page.evaluate(() => document.body.classList.add('debug'));
   fs.writeFileSync(path.join(dir, 'safe-zone-check.png'), await downsample(await slides[0].screenshot()));
 
-  const sheet = await browser.newPage({ viewport: { width: 400 + 260 * files.length, height: 500 } });
+  const sheet = await browser.newPage({ viewport: { width: 40 + 260 * files.length, height: 500 } });
   const imgs = files.map(f => `<img src="data:image/png;base64,${fs.readFileSync(f).toString('base64')}">`).join('');
   await sheet.setContent(`<body style="margin:0;padding:30px;background:#eee;display:flex;gap:20px;width:max-content">
     <style>img{width:240px;height:427px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.12)}</style>${imgs}</body>`);

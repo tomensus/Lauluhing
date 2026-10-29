@@ -2,7 +2,7 @@
 
 4 slaidi, 9:16 (1080×1920), tekst TikToki turvaalas. Allikas: `src/slides.html` (ühine stiil `tiktok-shared/lauluhing.css`), eksport repo juurest: `node tiktok-shared/export.js parimad-kingid`. `safe-zone-check.png` näitab TikToki kasutajaliidese alasid sinisega, seda ei postitata.
 
-Rahulik ja lihtne: igal slaidil üks lause, üks lühike alamtekst ja üks joonistus. Pole hooajaline, sobib postitada igal ajal.
+Rahulik ja lihtne: igal slaidil üks lause, üks lühike alamtekst ja kaarakna kujuline illustratsioon. Värvid on valitud usaldusväärsed ja rahulikud: sügav sinine, salvei roheline, liiv ja pehme kuld. Pole hooajaline, sobib postitada igal ajal.
 
 | # | Slaid | Alamtekst |
 |---|-------|-----------|
