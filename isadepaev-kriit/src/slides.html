@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – isadepäev (kriidijoonistus)</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* Crayon drawing look (kit in tiktok-shared/crayon.js), 3:4. */
+  @font-face{font-family:Kalam;font-weight:700;src:url(../../tiktok-shared/fonts/kalam.ttf)}
+  .slide{background:#fff;color:#111}
+  .slide::after{display:none}
+  .safe{justify-content:center;align-items:center;text-align:center}
+  .k{font-family:Kalam,cursive;font-weight:700;filter:url(#grain);line-height:1.02;white-space:nowrap}
+  .red{color:#e3151b}
+  .t1{font-size:96px}
+  .t2{font-size:96px;margin-top:6px}
+  .sub{font-family:Kalam,cursive;font-weight:700;font-size:52px;color:#111;margin-top:22px;filter:url(#grain);line-height:1.15}
+  .art{display:block;margin-top:24px}
+  .price{display:flex;align-items:baseline;justify-content:center;gap:40px;margin-top:26px}
+  .old{position:relative;font-size:84px;color:#333}
+  .old svg{position:absolute;left:-14px;top:0;width:calc(100% + 28px);height:100%;overflow:visible}
+  .new{font-size:150px}
+</style>
+</head>
+<body class="r34">
+<script src="../../tiktok-shared/crayon.js"></script>
+
+<!-- 1: hook -->
+<section class="slide">
+  <div class="safe">
+    <div class="k t1">ISA ÜTLEB, ET TAL</div>
+    <div class="k t2 red">POLE MIDAGI VAJA.</div>
+    <svg class="art" id="a1" width="860" height="700" viewBox="0 0 1000 814"></svg>
+  </div>
+</section>
+
+<!-- 2: the song -->
+<section class="slide">
+  <div class="safe">
+    <div class="k t1">SIIS KINGI TALLE</div>
+    <div class="k t2 red" style="font-size:130px">LAUL.</div>
+    <div class="sub">Tema enda loost.</div>
+    <svg class="art" id="a2" width="860" height="600" viewBox="0 0 1000 698"></svg>
+  </div>
+</section>
+
+<!-- 3: how -->
+<section class="slide">
+  <div class="safe">
+    <div class="k t1">SINA RÄÄGID,</div>
+    <div class="k t2 red">MINA KIRJUTAN.</div>
+    <div class="sub">Kirjuta mulle paar mälestust<br>oma isast.</div>
+    <svg class="art" id="a3" width="860" height="580" viewBox="0 0 1000 674"></svg>
+  </div>
+</section>
+
+<!-- 4: price -->
+<section class="slide">
+  <div class="safe">
+    <div class="k t1 red">ISADEPÄEVA SOODUS</div>
+    <div class="price">
+      <span class="k old">49,95 €<svg id="strike" viewBox="0 0 200 100" preserveAspectRatio="none"></svg></span>
+      <span class="k new red">29,95 €</span>
+    </div>
+    <div class="sub" style="margin-top:6px">Isadepäev on 8. novembril.</div>
+    <svg class="art" id="a4" width="820" height="520" viewBox="0 0 1000 634"></svg>
+  </div>
+</section>
+
+<!-- 5: contact -->
+<section class="slide">
+  <div class="safe">
+    <div class="k t1 red" style="font-size:120px">KIRJUTA MULLE</div>
+    <div class="sub">TikToki sõnumitesse või</div>
+    <div class="k" style="font-size:76px;margin-top:10px">lauluhing@gmail.com</div>
+    <svg class="art" id="a5" width="860" height="600" viewBox="0 0 1000 698"></svg>
+  </div>
+</section>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const qmark = (svg, x, y, s, c = '#e3151b') => {
+    line(svg, `M${x - 16 * s} ${y - 24 * s} C${x - 16 * s} ${y - 52 * s} ${x + 26 * s} ${y - 52 * s} ${x + 24 * s} ${y - 26 * s} C${x + 22 * s} ${y - 8 * s} ${x} ${y - 6 * s} ${x} ${y + 14 * s}`, c, 8);
+    shape(svg, circ(x, y + 36 * s, 6 * s), c, null, { gap: 3, w: 5 });
+  };
+
+  // 1: dad shrugging
+  (() => { const s = $('a1');
+    ground(s, 790);
+    person(s, 500, 782, 1.6, { arms: 'shrug', shirt: '#2f6fe0', pants: '#7a4a22', mustache: '#5a3a1e' });
+    qmark(s, 250, 150, 1.4); qmark(s, 760, 120, 1.2, '#1a1a1a'); qmark(s, 820, 330, .9);
+    // small gift on the floor
+    gift(s, 760, 690, 110, 92, { box: '#e3151b', ribbon: '#ffd21a' });
+  })();
+
+  // 2: dad listening with headphones
+  (() => { const s = $('a2');
+    const x = 480, y = 680, k = 1.4;
+    person(s, x, y, k, { arms: 'down', shirt: '#36b44a', pants: '#2b3a67', mustache: '#5a3a1e' });
+    line(s, `M${x - 56 * k} ${y - 384 * k} C${x - 66 * k} ${y - 512 * k} ${x + 66 * k} ${y - 512 * k} ${x + 56 * k} ${y - 384 * k}`, '#1f5fc0', 15);
+    shape(s, ell(x - 52 * k, y - 378 * k, 18 * k, 30 * k), '#e3151b', '#1a1a1a', { gap: 6, ow: 4.5 });
+    shape(s, ell(x + 52 * k, y - 378 * k, 18 * k, 30 * k), '#e3151b', '#1a1a1a', { gap: 6, ow: 4.5 });
+    note(s, 190, 220, 1.3); note(s, 760, 170, 1.1, '#2f6fe0'); note(s, 150, 470, 1, '#e3151b');
+    heart(s, 300, 110, 1.1); heart(s, 800, 420, 1.2); sun(s, 880, 70, 50);
+    ground(s, 680, 120, 880);
+  })();
+
+  // 3: memory note becomes a song
+  (() => { const s = $('a3');
+    const g = el('g', { transform: 'rotate(-5 290 340)' }, s);
+    shape(g, rect(70, 90, 440, 500), '#fff7d6', '#1a1a1a', { gap: 14, op: .55, ow: 5 });
+    const t = (y, txt, size = 46, c = '#1f2f4a') => { const e = el('text', { x: 110, y, 'font-family': 'Kalam', 'font-weight': 700, 'font-size': size, fill: c, filter: 'url(#grain)' }, g); e.textContent = txt; };
+    t(170, 'Minu isa:', 54, '#e3151b');
+    t(250, '• kalal järve ääres'); t(320, '• tema „isa naljad“'); t(390, '• esimene jalgratas');
+    t(545, 'NÄIDE', 30, '#888');
+    // arrow to a song sheet
+    line(s, 'M540 330 C600 300 640 300 690 330 M664 304 L692 332 L660 352', '#1a1a1a', 7);
+    const g2 = el('g', { transform: 'rotate(5 830 340)' }, s);
+    shape(g2, rect(720, 150, 230, 320), '#ffffff', '#1a1a1a', { gap: 30, op: 0, ow: 5 });
+    for (const yy of [210, 270, 330, 390]) line(g2, `M745 ${yy} H925`, '#2f6fe0', 3);
+    note(g2, 790, 260, .8); note(g2, 870, 330, .7, '#e3151b'); note(g2, 800, 400, .6);
+    heart(s, 880, 560, 1); sparkle(s, 640, 520, 1);
+  })();
+
+  // 4: price with a scribbled-out old price and a gift
+  (() => {
+    const st = $('strike');
+    line(st, 'M0 58 C60 52 140 56 200 46', '#e3151b', 5);
+    const s = $('a4');
+    ground(s, 610);
+    gift(s, 330, 300, 340, 290, { box: '#2f6fe0', ribbon: '#e3151b' });
+    line(s, 'M500 236 C560 260 620 300 690 330', '#1a1a1a', 4);
+    const tg = el('g', { transform: 'rotate(12 760 370)' }, s);
+    shape(tg, `M680 326 L846 326 L880 370 L846 414 L680 414 Z`, '#fff7d6', '#1a1a1a', { gap: 14, op: .6, ow: 4.5 });
+    const t = el('text', { x: 712, y: 388, 'font-family': 'Kalam', 'font-weight': 700, 'font-size': 48, fill: '#e3151b', filter: 'url(#grain)' }, tg); t.textContent = 'ISALE';
+    sparkle(s, 200, 220, 1.2); sparkle(s, 880, 170, 1); heart(s, 190, 480, 1); heart(s, 880, 540, .9);
+  })();
+
+  // 5: phone with messages and an envelope
+  (() => { const s = $('a5');
+    // phone
+    shape(s, `M200 60 H460 Q490 60 490 90 V620 Q490 650 460 650 H200 Q170 650 170 620 V90 Q170 60 200 60 Z`, '#2b2b2b', '#1a1a1a', { gap: 7 });
+    el('rect', { x: 192, y: 110, width: 276, height: 480, rx: 6, fill: '#f7f9ff' }, s);
+    shape(s, `M215 170 H420 Q440 170 440 190 V240 Q440 260 420 260 H250 L225 285 V260 H215 Q200 260 200 245 V185 Q200 170 215 170 Z`, '#cfe4fb', '#1a1a1a', { gap: 8, ow: 4 });
+    const tx = (x, y, txt, c = '#1a1a1a') => { const e = el('text', { x, y, 'font-family': 'Kalam', 'font-weight': 700, 'font-size': 34, fill: c }, s); e.textContent = txt; };
+    tx(222, 225, 'Tere! 🙂');
+    shape(s, `M230 310 H440 Q460 310 460 330 V430 Q460 450 440 450 H420 V475 L395 450 H230 Q210 450 210 430 V330 Q210 310 230 310 Z`, '#ffd6d6', '#1a1a1a', { gap: 8, ow: 4 });
+    tx(232, 362, 'Tahaksin laulu'); tx(232, 412, 'isale'); heart(s, 340, 400, .45);
+    tx(222, 520, 'Näide', '#888');
+    // envelope
+    const g = el('g', { transform: 'rotate(8 760 420)' }, s);
+    shape(g, rect(590, 300, 330, 220), '#fff7d6', '#1a1a1a', { gap: 12, op: .6, ow: 5 });
+    line(g, 'M592 304 L755 430 L918 304', '#1a1a1a', 5);
+    heart(g, 755, 470, 1.1);
+    sparkle(s, 900, 180, 1.2); note(s, 640, 220, 1, '#2f6fe0'); heart(s, 560, 620, .8);
+  })();
+</script>
+</body>
+</html>
