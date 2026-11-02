@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – isadepäeva laul</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* Calm, trustworthy palette (see parimad-kingid/): navy, sage, sand, soft gold. 3:4 format. */
+  :root{--navy:#1f2f4a;--navy-soft:#4a5870;--sage:#7f9a8c;--sand:#e8dcc8;--paper2:#f8f3ea;--gold:#c9a35d;--gold-deep:#9c7a3c}
+  .slide{color:var(--navy);
+    background:
+      radial-gradient(800px 600px at 100% 0%, rgba(201,163,93,.16), transparent 70%),
+      radial-gradient(800px 600px at 0% 100%, rgba(127,154,140,.18), transparent 70%),
+      var(--paper2)}
+  .safe{align-items:center;text-align:center;justify-content:center}
+  .arch{width:560px;height:600px;flex:none;filter:drop-shadow(0 34px 50px rgba(31,47,74,.22))}
+  .arch svg{display:block;width:100%;height:100%}
+  .rule{width:80px;height:3px;border-radius:2px;background:var(--gold);margin:44px 0 30px}
+  h1{font-family:Fraunces,serif;font-weight:600;font-size:80px;line-height:1.06;letter-spacing:-1px;color:var(--navy)}
+  h1 em{font-weight:600;color:var(--gold-deep)}
+  .sub{font-weight:500;font-size:38px;line-height:1.4;color:var(--navy-soft);margin-top:22px}
+  .kicker{font-weight:700;font-size:26px;letter-spacing:6px;color:var(--gold-deep);margin-bottom:26px;text-transform:uppercase}
+
+  /* steps */
+  .steps{display:flex;flex-direction:column;gap:22px;width:100%;margin-top:44px;text-align:left}
+  .step{display:flex;align-items:center;gap:28px;background:#fffdf8;border-radius:28px;padding:26px 32px;
+        box-shadow:0 20px 40px -26px rgba(31,47,74,.45)}
+  .step .n{flex:none;width:78px;height:78px;border-radius:50%;background:var(--navy);color:var(--paper2);display:flex;align-items:center;
+           justify-content:center;font-family:Fraunces,serif;font-weight:600;font-size:40px}
+  .step p{font-weight:700;font-size:38px;line-height:1.15}
+  .step p span{display:block;font-weight:500;font-size:30px;color:var(--navy-soft);margin-top:6px}
+
+  /* prices */
+  .tiers{display:flex;gap:16px;width:100%;margin-top:40px}
+  .tier{flex:1;background:#fffdf8;border-radius:26px;padding:24px 10px 22px;box-shadow:0 20px 40px -26px rgba(31,47,74,.45)}
+  .tier .t{font-family:Fraunces,serif;font-weight:600;font-size:46px}
+  .tier .p{font-weight:700;font-size:30px;color:var(--gold-deep);margin-top:6px}
+  .tier .n{font-weight:600;font-size:22px;letter-spacing:2px;text-transform:uppercase;color:var(--navy-soft);margin-top:8px}
+  .tier.hi{background:var(--navy);color:var(--paper2)}
+  .tier.hi .n{color:#c8d0dc}
+  .tier.hi .p{color:var(--gold)}
+
+  /* contact */
+  .contact{display:flex;flex-direction:column;gap:18px;width:100%;margin-top:40px}
+  .c{display:flex;align-items:center;gap:24px;background:#fffdf8;border-radius:999px;padding:18px 34px 18px 18px;text-align:left;
+     box-shadow:0 20px 40px -26px rgba(31,47,74,.45)}
+  .c .ic{flex:none;width:84px;height:84px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center}
+  .c .ic svg{width:44px;height:44px}
+  .c b{display:block;font-weight:700;font-size:38px;color:var(--navy)}
+  .c small{display:block;font-weight:500;font-size:26px;color:var(--navy-soft)}
+</style>
+</head>
+<body class="r34">
+
+<svg width="0" height="0" style="position:absolute">
+  <!-- brand mark (from the site header) -->
+  <symbol id="mark" viewBox="0 0 120 170">
+    <path d="M64,95 C34,72 14,52 14,32 C14,12 34,2 49,12 C57,18 61,26 64,32 C67,26 71,18 79,12 C94,2 114,12 114,32 C114,52 94,72 64,95 Z" stroke="currentColor" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+    <line x1="64" y1="95" x2="64" y2="146" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>
+    <path d="M64,60 C85,55 100,40 108,15" stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M64,90 C82,88 95,78 103,58" stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <ellipse cx="46" cy="152" rx="21" ry="14" fill="currentColor" transform="rotate(-18 46 152)"/>
+  </symbol>
+  <symbol id="note" viewBox="0 0 40 50"><path d="M14 40 V8 L36 3 V33" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><ellipse cx="9" cy="41" rx="8" ry="6" fill="currentColor"/><ellipse cx="31" cy="34" rx="8" ry="6" fill="currentColor"/></symbol>
+  <defs>
+    <clipPath id="archClip"><path d="M0 576 V280 A280 280 0 0 1 560 280 V576 Q560 600 536 600 H24 Q0 600 0 576 Z"/></clipPath>
+    <radialGradient id="glow"><stop offset="0" stop-color="#f3d9a4" stop-opacity=".8"/><stop offset="1" stop-color="#f3d9a4" stop-opacity="0"/></radialGradient>
+    <linearGradient id="night" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#172339"/><stop offset="1" stop-color="#34496d"/></linearGradient>
+    <linearGradient id="sageBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7f9a8c"/><stop offset="1" stop-color="#c8d3c3"/></linearGradient>
+    <linearGradient id="goldG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e2c07e"/><stop offset="1" stop-color="#b38a45"/></linearGradient>
+    <linearGradient id="chair" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5f45"/><stop offset="1" stop-color="#6b4632"/></linearGradient>
+  </defs>
+</svg>
+
+<!-- 1: cover -->
+<section class="slide">
+  <div class="safe">
+    <div class="arch"><svg viewBox="0 0 560 600">
+      <g clip-path="url(#archClip)">
+        <rect width="560" height="600" fill="url(#night)"/>
+        <!-- window with moon -->
+        <rect x="70" y="110" width="170" height="210" rx="8" fill="#22314f" stroke="#c9a35d" stroke-width="4" opacity=".9"/>
+        <path d="M155 110 V320 M70 215 H240" stroke="#c9a35d" stroke-width="4" opacity=".9"/>
+        <circle cx="200" cy="160" r="22" fill="#f6e7c4"/><circle cx="210" cy="152" r="20" fill="#22314f"/>
+        <circle cx="105" cy="140" r="2.4" fill="#f8f3ea"/><circle cx="120" cy="270" r="2" fill="#f8f3ea" opacity=".7"/>
+        <!-- lamp glow -->
+        <circle cx="488" cy="250" r="230" fill="url(#glow)" opacity=".7"/>
+        <path d="M462 200 H514 L532 252 H444 Z" fill="#e9d6ad"/>
+        <rect x="484" y="252" width="8" height="120" fill="#b38a45"/>
+        <!-- floor -->
+        <rect y="470" width="560" height="130" fill="#2a2a3c"/>
+        <rect y="470" width="560" height="6" fill="#3b3b52"/>
+        <!-- armchair -->
+        <path d="M120 300 Q120 260 160 260 H300 Q340 260 340 300 V420 H120 Z" fill="url(#chair)"/>
+        <rect x="96" y="360" width="60" height="120" rx="24" fill="#7a523b"/>
+        <rect x="304" y="360" width="60" height="120" rx="24" fill="#7a523b"/>
+        <rect x="140" y="400" width="180" height="62" rx="16" fill="#8f6449"/>
+        <rect x="120" y="470" width="14" height="40" fill="#4a3022"/><rect x="326" y="470" width="14" height="40" fill="#4a3022"/>
+        <!-- side table with radio -->
+        <rect x="390" y="430" width="120" height="14" rx="4" fill="#c9a35d"/>
+        <rect x="400" y="444" width="10" height="60" fill="#9c7a3c"/><rect x="490" y="444" width="10" height="60" fill="#9c7a3c"/>
+        <rect x="398" y="372" width="104" height="60" rx="12" fill="#e8dcc8"/>
+        <circle cx="428" cy="402" r="16" fill="#1f2f4a"/><rect x="452" y="388" width="38" height="6" rx="3" fill="#9c7a3c"/><rect x="452" y="402" width="30" height="6" rx="3" fill="#9c7a3c"/>
+        <!-- music -->
+        <g style="color:#e2c07e"><use href="#note" x="400" y="300" width="34" height="42"/><use href="#note" x="456" y="270" width="26" height="32" opacity=".8"/><use href="#note" x="372" y="250" width="22" height="28" opacity=".6"/></g>
+      </g>
+      <path d="M12 588 V280 A268 268 0 0 1 548 280 V588" fill="none" stroke="#c9a35d" stroke-width="3" opacity=".7"/>
+    </svg></div>
+    <div class="rule"></div>
+    <h1>Isa ütleb, et tal pole<br>midagi <em>vaja</em>.</h1>
+    <p class="sub">Siis kingi talle midagi, mida poest ei saa →</p>
+  </div>
+</section>
+
+<!-- 2: the product -->
+<section class="slide">
+  <div class="safe">
+    <div class="arch"><svg viewBox="0 0 560 600">
+      <g clip-path="url(#archClip)">
+        <rect width="560" height="600" fill="url(#sageBg)"/>
+        <circle cx="420" cy="200" r="240" fill="url(#glow)" opacity=".5"/>
+        <g transform="rotate(-5 280 360)">
+          <rect x="100" y="170" width="360" height="380" rx="10" fill="#fbf8f2"/>
+          <text x="134" y="236" font-family="Caveat" font-weight="700" font-size="48" fill="#1f2f4a">Laul isale</text>
+          <path d="M134 252 H300" stroke="#c9a35d" stroke-width="3"/>
+          <text x="134" y="312" font-family="Caveat" font-weight="700" font-size="38" fill="#4a5870">• kalal järve ääres</text>
+          <text x="134" y="364" font-family="Caveat" font-weight="700" font-size="38" fill="#4a5870">• tema „isa naljad“</text>
+          <text x="134" y="416" font-family="Caveat" font-weight="700" font-size="38" fill="#4a5870">• esimene jalgratas</text>
+          <text x="134" y="490" font-family="Inter" font-weight="700" font-size="20" letter-spacing="4" fill="#9c7a3c">NÄIDE</text>
+        </g>
+        <g style="color:#1f2f4a"><use href="#note" x="420" y="120" width="44" height="54"/><use href="#note" x="470" y="200" width="30" height="38" opacity=".7"/></g>
+      </g>
+      <path d="M12 588 V280 A268 268 0 0 1 548 280 V588" fill="none" stroke="#c9a35d" stroke-width="3" opacity=".7"/>
+    </svg></div>
+    <div class="rule"></div>
+    <h1>Laul isale,<br>tema enda <em>loost</em>.</h1>
+    <p class="sub">Sinu mälestused, tema nimi ja teie naljad<br>päris laulus, mida ta saab ikka ja jälle kuulata.</p>
+  </div>
+</section>
+
+<!-- 3: how -->
+<section class="slide">
+  <div class="safe">
+    <div class="kicker">Nii lihtne see on</div>
+    <h1>Sina räägid.<br>Mina <em>kirjutan</em>.</h1>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><p>Kirjuta mulle oma isast<span>paar mälestust, tema nimi, mõni nali</span></p></div>
+      <div class="step"><span class="n">2</span><p>Vali stiil<span>pop, akustiline, ballaad, rahvamuusika…</span></p></div>
+      <div class="step"><span class="n">3</span><p>Laul jõuab sinuni<span>MP3-failina e-postiga</span></p></div>
+    </div>
+    <p class="sub" style="font-size:32px;margin-top:30px">Muusikat ei pea ise üldse oskama.</p>
+  </div>
+</section>
+
+<!-- 4: timing + price -->
+<section class="slide">
+  <div class="safe">
+    <svg width="300" height="300" viewBox="0 0 300 300" style="filter:drop-shadow(0 30px 40px rgba(31,47,74,.25))">
+      <rect x="20" y="30" width="260" height="250" rx="26" fill="#fffdf8"/>
+      <path d="M20 56 a26 26 0 0 1 26 -26 H254 a26 26 0 0 1 26 26 V96 H20 Z" fill="#1f2f4a"/>
+      <text x="150" y="76" text-anchor="middle" font-family="Inter" font-weight="700" font-size="24" letter-spacing="5" fill="#f8f3ea">NOVEMBER</text>
+      <rect x="80" y="12" width="14" height="40" rx="7" fill="#c9a35d"/><rect x="206" y="12" width="14" height="40" rx="7" fill="#c9a35d"/>
+      <text x="150" y="222" text-anchor="middle" font-family="Fraunces" font-weight="600" font-size="120" fill="#1f2f4a">8</text>
+      <path d="M150 112 C214 110 236 160 230 196 C224 240 176 262 136 254 C92 246 66 210 72 168 C78 132 116 110 168 116" fill="none" stroke="#c9a35d" stroke-width="7" stroke-linecap="round"/>
+    </svg>
+    <h1 style="margin-top:36px">Isadepäev on<br><em>8. novembril</em>.</h1>
+    <div class="tiers">
+      <div class="tier"><div class="t">5 päeva</div><div class="p">29,95 €</div><div class="n">Tavaline</div></div>
+      <div class="tier hi"><div class="t">24 h</div><div class="p">44,95 €</div><div class="n">Prioriteet</div></div>
+      <div class="tier"><div class="t">4 h</div><div class="p">54,95 €</div><div class="n">Express</div></div>
+    </div>
+    <p class="sub" style="font-size:32px;margin-top:26px">Kui miski kripeldab, teen väiksemad parandused.</p>
+  </div>
+</section>
+
+<!-- 5: contact -->
+<section class="slide">
+  <div class="safe">
+    <svg width="150" height="212" viewBox="0 0 120 170" style="color:var(--gold-deep)"><use href="#mark"/></svg>
+    <h1 style="margin-top:34px">Räägi mulle<br>oma <em>isast</em>.</h1>
+    <p class="sub">Kirjuta ja teeme talle koos laulu.</p>
+    <div class="contact">
+      <div class="c"><span class="ic"><svg viewBox="0 0 40 40"><path d="M6 8 H34 V28 H18 L10 35 V28 H6 Z" fill="none" stroke="#f8f3ea" stroke-width="3.2" stroke-linejoin="round"/></svg></span><span><b>TikToki sõnumid</b><small>vajuta profiilil „Sõnum“</small></span></div>
+      <div class="c"><span class="ic"><svg viewBox="0 0 40 40"><rect x="5" y="9" width="30" height="22" rx="3" fill="none" stroke="#f8f3ea" stroke-width="3.2"/><path d="M6 11 L20 22 L34 11" fill="none" stroke="#f8f3ea" stroke-width="3.2" stroke-linejoin="round"/></svg></span><span><b>lauluhing@gmail.com</b><small>kirjuta paar rida oma isast</small></span></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
