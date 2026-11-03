@@ -15,7 +15,7 @@ Stiil on omaniku saadetud ärikonto eeskuju järgi: ruuduline paberitaust, paks 
 ## Postituse tekst
 
 > Kingi ostmine ja kingi tegemine EI OLE sama asi 🎁 Kumba sina eelistad?
-> #kingiidee #kingitus
+> #kingiidee #kingitus #lauluhing
 
 ## Avaldamise seaded (WoopSocial, TikTok)
 

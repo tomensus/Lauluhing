@@ -15,7 +15,7 @@ Stiil on omaniku saadetud eeskuju järgi: valge taust, käsitsi kirjutatud vildi
 ## Postituse tekst
 
 > Kink, mida mäletatakse, ei pea olema kallis 🎁 Mis on kõige meeldejäävam kink, mille oled saanud?
-> #kingiidee #kingitus
+> #kingiidee #kingitus #lauluhing
 
 ## Avaldamise seaded (WoopSocial, TikTok)
 

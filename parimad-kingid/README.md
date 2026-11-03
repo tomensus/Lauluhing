@@ -14,7 +14,7 @@ Rahulik ja lihtne: igal slaidil üks lause, üks lühike alamtekst ja kaarakna k
 ## Postituse tekst
 
 > Mis on parim kink, mille oled saanud? 🤍
-> #kingiidee #kingitus
+> #kingiidee #kingitus #lauluhing
 
 ## Kuidas postitada
 

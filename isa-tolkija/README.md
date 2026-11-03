@@ -24,7 +24,7 @@ Isadepäev on 8. novembril 2026 (novembri teine pühapäev). Postita hiljemalt 1
 ## Postituse tekst
 
 > Märgi oma isa 😂 Mida sinu isa alati ütleb? 👇
-> #isadepäev #eesti
+> #isadepäev #eesti #lauluhing
 
 ## Kuidas postitada
 

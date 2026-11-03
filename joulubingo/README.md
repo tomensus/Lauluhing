@@ -23,7 +23,7 @@ Varasemad karussellid nägid välja nagu brändi reklaam: logo igal slaidil, too
 ## Postituse tekst
 
 > Mitu ruutu sinu pere saab? 😂 Märgi see, kes jääb diivanil magama 👇
-> #jõulud #eesti
+> #jõulud #eesti #lauluhing
 
 ## Kuidas postitada (sama oluline kui pilt)
 

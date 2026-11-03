@@ -43,6 +43,6 @@ Loe ema-lauseid ema häälega (natuke üle mängides). Subtiitrid ilmuvad lugemi
 ## Postituse tekst
 
 > Mida sinu ema alati jõuludel ütleb? 😂 Märgi oma ema 👇
-> #jõulud #eesti
+> #jõulud #eesti #lauluhing
 
 Postita õhtul (u 19–21), vasta esimese tunni jooksul kommentaaridele ja kinnita oma kommentaar, nt „Minu ema: „kas sa sõid?“ 😂“.

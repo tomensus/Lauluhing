@@ -15,7 +15,7 @@ Kriidijoonistuse stiil (valge taust, värvipliiatsiga kritseldatud joonistused, 
 ## Postituse tekst
 
 > Isadepäevaks laul tema enda loost 🎶 Praegu 29,95 € (tavaliselt 49,95 €). Kirjuta mulle TikToki sõnumitesse või lauluhing@gmail.com
-> #isadepäev #kingiidee
+> #isadepäev #kingiidee #lauluhing
 
 ## Avaldamise seaded (WoopSocial, TikTok)
 

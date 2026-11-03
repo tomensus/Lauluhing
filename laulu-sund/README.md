@@ -17,7 +17,7 @@ Slaidi 2 ja 4 sisu on illustreeriv näide, mitte päris kliendi lugu (märgitud 
 ## Postituse tekst
 
 > Jõulukink, mida poest osta ei saa 🎄 Sina räägid loo, meie teeme sellest laulu. Kellele sina selle teeksid? 👇
-> #personaalnelaul #jõulukingitus
+> #personaalnelaul #jõulukingitus #lauluhing
 
 ## Avaldamise seaded (WoopSocial, TikTok)
 

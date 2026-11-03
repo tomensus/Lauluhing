@@ -22,7 +22,7 @@
 ## Postituse tekst
 
 > Kirjuta oma 6 vastust kommentaari 👇 Verivorst ilma moosita on kuritegu, muutke minu meelt 😤
-> #jõulud #eesti
+> #jõulud #eesti #lauluhing
 
 ## Kuidas postitada
 

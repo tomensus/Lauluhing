@@ -15,7 +15,7 @@ Rahulik ja soe müügipostitus: toode tuleb juba slaidil 2. Värvid: sügav sini
 ## Postituse tekst
 
 > Isadepäevaks kink, mida ta päriselt kuulab ikka ja jälle 🤍 Kirjuta mulle TikToki sõnumitesse või lauluhing@gmail.com
-> #isadepäev #kingiidee
+> #isadepäev #kingiidee #lauluhing
 
 ## Kuidas postitada
 

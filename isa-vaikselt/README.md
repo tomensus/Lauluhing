@@ -16,7 +16,7 @@ Kriidijoonistuse stiil. Lapsepõlvemälestused, mida iga laps ära tunneb: posti
 ## Postituse tekst
 
 > Saada see oma õele või vennale 🥹 Mida sinu isa vaikselt tegi? 👇
-> #isadepäev #isa
+> #isadepäev #isa #lauluhing
 
 ## Kuidas postitada
 

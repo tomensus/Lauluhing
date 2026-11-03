@@ -19,7 +19,7 @@ Hinded on brändi humoorikas arvamus, mitte uuringu tulemus. Hind on saidilt.
 ## Postituse tekst
 
 > Hindasime klassikalised jõulukingid ausalt ära 🎄 Kas oled nõus? Mis oli sinu 10/10 kink? 👇
-> #jõulukingitus #personaalnelaul
+> #jõulukingitus #personaalnelaul #lauluhing
 
 ## Avaldamise seaded (WoopSocial, TikTok)
 

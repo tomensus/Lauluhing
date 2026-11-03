@@ -17,7 +17,7 @@ Kriidijoonistuse stiil. Äratundmine ja sildistamine („milline on sinu isa?“
 ## Postituse tekst
 
 > Milline neist on sinu isa? 😂 Märgi oma isa või õde-venda 👇
-> #isadepäev #eesti
+> #isadepäev #eesti #lauluhing
 
 ## Kuidas postitada
 

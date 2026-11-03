@@ -17,7 +17,7 @@ Kõik faktid (hinnad, valmimisajad, parandused) on võetud lauluhing.com lehelt.
 ## Postituse tekst
 
 > Personaalne laul on kallis ja võtab nädalaid? Mitte päris 🎶 Mis müüti sina uskusid – 1, 2, 3 või 4? 👇
-> #personaalnelaul #kingiidee
+> #personaalnelaul #kingiidee #lauluhing
 
 ## Avaldamise seaded (WoopSocial, TikTok)
 
