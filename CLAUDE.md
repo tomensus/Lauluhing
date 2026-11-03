@@ -4,6 +4,8 @@ Eestikeelne bränd: personaalsed laulud kingituseks (lauluhing.com). Sait: `inde
 
 ## Sotsiaalmeedia visuaalid
 
+**Ajutine (kuni 7.11.2026):** kõik uued postitused on isadepäevast (isadepäev on 8. novembril 2026).
+
 Omanik ootab kohe esimesest versioonist parimat võimalikku kvaliteeti, mitte lihtsat mustandit, mida hiljem parandada.
 
 - TikToki karussellid tehakse ühise süsteemiga: `tiktok-shared/lauluhing.css` (värvid, fondid, tekstuur, turvaala) ja `tiktok-shared/export.js`. Kriidijoonistuse stiilis joonistused: `tiktok-shared/crayon.js` (näide `isadepaev-kriit/`). Näited: `laulu-sund/`, `muudid/`.

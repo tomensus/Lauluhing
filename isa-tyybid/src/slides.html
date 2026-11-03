@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – Eesti isade tüübid</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* Crayon drawing look (kit in tiktok-shared/crayon.js), 3:4. One dad type per slide. */
+  @font-face{font-family:Kalam;font-weight:700;src:url(../../tiktok-shared/fonts/kalam.ttf)}
+  .slide{background:#fff;color:#111}
+  .slide::after{display:none}
+  .safe{justify-content:center;align-items:center;text-align:center}
+  .k{font-family:Kalam,cursive;font-weight:700;filter:url(#grain);line-height:1.08}
+  .red{color:#e3151b}
+  .title{font-size:120px;white-space:nowrap}
+  .sub{font-size:58px;margin-top:14px}
+  .art{display:block;margin-top:30px}
+</style>
+</head>
+<body class="r34">
+<script src="../../tiktok-shared/crayon.js"></script>
+
+<!-- 1: cover -->
+<section class="slide">
+  <div class="safe">
+    <div class="k title" style="font-size:104px">EESTI ISADE</div>
+    <div class="k title red" style="font-size:150px">5 TÜÜPI</div>
+    <div class="k sub">Milline on sinu isa?</div>
+    <svg class="art" id="a0" width="860" height="640" viewBox="0 0 1000 744"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k title red">GRILLI-ISA</div>
+    <div class="k sub">Keegi teine grilli ei puutu.</div>
+    <svg class="art" id="a1" width="860" height="720" viewBox="0 0 1000 837"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k title red">GARAAŽI-ISA</div>
+    <div class="k sub">Tal on igaks juhuks kõik olemas.</div>
+    <svg class="art" id="a2" width="860" height="720" viewBox="0 0 1000 837"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k title red">ILMATEATE-ISA</div>
+    <div class="k sub">Kell 21.00 on kõik vait.</div>
+    <svg class="art" id="a3" width="860" height="720" viewBox="0 0 1000 837"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k title red">SAUNA-ISA</div>
+    <div class="k sub">Viskab leili,<br>kuni kõik põgenevad.</div>
+    <svg class="art" id="a4" width="860" height="720" viewBox="0 0 1000 837"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k title red">KALAMEHE-ISA</div>
+    <div class="k sub">Kala oli <span class="red">SEE</span> suur. Päriselt.</div>
+    <svg class="art" id="a5" width="860" height="720" viewBox="0 0 1000 837"></svg>
+  </div>
+</section>
+
+<!-- 7: brand -->
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:68px">Ükskõik, mis tüüpi ta on,</div>
+    <div class="k red" style="font-size:96px;margin-top:6px">temast saab laulu.</div>
+    <div class="k" style="font-size:48px;margin-top:20px">Isadepäevaks: <span class="red">29,95 €</span> <span style="font-size:38px;color:#555">(tavaliselt 49,95 €)</span></div>
+    <svg class="art" id="a6" width="640" height="360" viewBox="0 0 1000 562" style="margin-top:20px"></svg>
+    <div class="k" style="font-size:46px;margin-top:16px">Kirjuta mulle TikToki sõnumitesse<br>või lauluhing@gmail.com</div>
+    <div class="k" style="font-size:40px;margin-top:22px;color:#555">Milline on sinu isa? Kirjuta kommentaari 👇</div>
+  </div>
+</section>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const dad = (svg, x, y, k, o = {}) => person(svg, x, y, k, Object.assign({ shirt: '#2f6fe0', pants: '#7a4a22', mustache: '#5a3a1e' }, o));
+  const text = (svg, x, y, t, size = 40, c = '#1a1a1a', anchor = 'middle') => { const e = el('text', { x, y, 'text-anchor': anchor, 'font-family': 'Kalam', 'font-weight': 700, 'font-size': size, fill: c, filter: 'url(#grain)' }, svg); e.textContent = t; };
+
+  // cover: five little dads in a row
+  (() => { const s = $('a0');
+    ground(s, 700, 30, 970);
+    const shirts = ['#e3151b', '#2f6fe0', '#36b44a', '#ff9a1a', '#7a4fc2'];
+    [120, 310, 500, 690, 880].forEach((x, i) => dad(s, x, 700, .82, { shirt: shirts[i], arms: 'down' }));
+    sun(s, 880, 100, 50); heart(s, 500, 110, 1.2); cloud(s, 200, 150, .9);
+  })();
+
+  // 1: grill
+  (() => { const s = $('a1');
+    ground(s, 810);
+    dad(s, 330, 800, 1.3, { arms: 'reach' });
+    // kettle grill
+    shape(s, `M560 520 A170 120 0 0 0 900 520 Z`, '#1a1a1a', '#1a1a1a', { gap: 6 });
+    line(s, 'M590 560 L560 790 M870 560 L900 790 M730 640 V800', '#1a1a1a', 9);
+    line(s, 'M552 520 H908', '#888', 8);
+    for (const x of [610, 680, 750, 820]) shape(s, ell(x, 508, 28, 12), '#a0522d', '#1a1a1a', { gap: 5, ow: 3.5 });
+    for (const x of [620, 720, 820]) line(s, `M${x} 470 C${x - 20} 430 ${x + 20} 400 ${x} 360 C${x - 20} 320 ${x + 20} 290 ${x} 250`, '#9aa3ad', 7, { op: .7 });
+    // tongs in his hand
+    line(s, 'M525 588 L640 500 M525 600 L640 516', '#888', 6);
+    text(s, 760, 200, 'ÄRA PUUTU!', 46, '#e3151b');
+  })();
+
+  // 2: garage
+  (() => { const s = $('a2');
+    ground(s, 810);
+    // shelf with stuff
+    line(s, 'M560 300 H960 M560 480 H960', '#7a4a22', 12);
+    shape(s, rect(580, 220, 90, 80), '#ff9a1a', '#1a1a1a', { gap: 7, ow: 4 });
+    shape(s, rect(690, 240, 70, 60), '#36b44a', '#1a1a1a', { gap: 7, ow: 4 });
+    shape(s, rect(780, 200, 60, 100), '#e3151b', '#1a1a1a', { gap: 7, ow: 4 });
+    shape(s, rect(860, 250, 80, 50), '#2f6fe0', '#1a1a1a', { gap: 7, ow: 4 });
+    shape(s, rect(590, 410, 120, 70), '#c98a4b', '#1a1a1a', { gap: 7, ow: 4 });
+    shape(s, circ(780, 445, 34), '#1a1a1a', '#1a1a1a', { gap: 6 });
+    shape(s, rect(850, 400, 90, 80), '#ffd21a', '#1a1a1a', { gap: 7, ow: 4 });
+    text(s, 625, 270, 'kruvid', 24); text(s, 650, 455, '1998', 26);
+    // toolbox on the floor
+    shape(s, rect(620, 700, 260, 100), '#e3151b', '#1a1a1a', { gap: 8 });
+    line(s, 'M700 700 V670 H800 V700', '#1a1a1a', 8);
+    dad(s, 330, 800, 1.3, { arms: 'wave' });
+    // wrench in raised hand
+    line(s, 'M478 296 L520 200', '#888', 14);
+    line(s, 'M505 190 C500 170 540 170 535 190', '#888', 10);
+  })();
+
+  // 3: weather forecast on TV
+  (() => { const s = $('a3');
+    ground(s, 810);
+    // armchair seen from the side + dad sitting (simplified: standing in front of TV with finger up)
+    shape(s, rect(560, 300, 380, 280), '#2b2b2b', '#1a1a1a', { gap: 7 });
+    el('rect', { x: 585, y: 325, width: 330, height: 230, fill: '#cfe4fb' }, s);
+    line(s, rect(585, 325, 330, 230), '#1a1a1a', 4);
+    sun(s, 680, 410, 34); cloud(s, 820, 470, .8);
+    text(s, 860, 380, '+3°', 44);
+    line(s, 'M700 580 L680 640 M800 580 L820 640 M660 640 H840', '#1a1a1a', 7);
+    dad(s, 330, 800, 1.3, { arms: 'wave' });
+    text(s, 300, 140, 'PSST!', 56, '#e3151b');
+    shape(s, rect(240, 810, 0, 0), '#fff', null);
+  })();
+
+  // 4: sauna
+  (() => { const s = $('a4');
+    // wooden wall
+    shape(s, rect(40, 120, 920, 690), '#e2b77c', '#7a4a22', { gap: 10, op: .8 });
+    for (const y of [240, 360, 480, 600, 720]) line(s, `M40 ${y} H960`, '#b07f45', 4);
+    // bench
+    shape(s, rect(60, 640, 880, 40), '#c98a4b', '#1a1a1a', { gap: 7 });
+    line(s, 'M120 680 V810 M880 680 V810', '#7a4a22', 14);
+    ground(s, 812, 40, 960);
+    // dad with towel, ladle; bucket
+    dad(s, 330, 812, 1.25, { arms: 'reach', shirt: '#9fd3f5', pants: '#2b3a67' });
+    shape(s, `M680 560 H800 L790 640 H690 Z`, '#c98a4b', '#1a1a1a', { gap: 7 });
+    line(s, 'M520 600 L700 560', '#7a4a22', 9); shape(s, ell(712, 556, 22, 12), '#7a4a22', '#1a1a1a', { gap: 5, ow: 3.5 });
+    // steam
+    for (const x of [560, 680, 800, 900]) line(s, `M${x} 520 C${x - 30} 470 ${x + 30} 430 ${x} 380 C${x - 30} 330 ${x + 30} 290 ${x} 240`, '#ffffff', 12, { op: .9 });
+    text(s, 760, 200, 'VEEL ÜKS!', 50, '#e3151b');
+  })();
+
+  // 5: fisherman showing how big
+  (() => { const s = $('a5');
+    // lake
+    shape(s, `M0 837 V640 C200 610 800 610 1000 640 V837 Z`, '#7fc0ff', '#2f7fd6', { gap: 9, op: .8 });
+    sun(s, 880, 300, 50);
+    dad(s, 500, 640, 1.1, { arms: 'shrug' });
+    // tiny fish in the hand vs "this big"
+    shape(s, ell(335, 300, 30, 14), '#9aa3ad', '#1a1a1a', { gap: 5, ow: 3.5 });
+    shape(s, `M306 300 L286 288 L286 312 Z`, '#9aa3ad', '#1a1a1a', { gap: 5, ow: 3 });
+    line(s, 'M200 130 L800 130 M200 110 V150 M800 110 V150', '#e3151b', 7);
+    text(s, 500, 96, 'SEE SUUR!', 50, '#e3151b');
+    text(s, 300, 360, 'tegelikult', 30, '#555');
+    // fishing rod leaning
+    line(s, 'M820 640 L960 260', '#7a4a22', 9);
+    line(s, 'M960 260 C980 400 970 520 940 600', '#555', 3);
+  })();
+
+  // 7: song card
+  (() => { const s = $('a6');
+    shape(s, `M120 60 H880 Q920 60 920 100 V460 Q920 500 880 500 H120 Q80 500 80 460 V100 Q80 60 120 60 Z`, '#fff7d6', '#1a1a1a', { gap: 14, op: .6, ow: 5 });
+    note(s, 220, 360, 1.6); note(s, 390, 320, 1.2, '#e3151b');
+    text(s, 660, 250, 'Laul isale', 76, '#1a1a1a');
+    heart(s, 700, 380, 1.4);
+  })();
+</script>
+</body>
+</html>
