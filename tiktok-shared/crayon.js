@@ -102,6 +102,7 @@ document.body.insertAdjacentHTML('afterbegin', `<svg width="0" height="0" style=
       front: [[-72, -254, -40, -214], [72, -254, 40, -214]],
       wave: [[-76, -256, -98, -166], [74, -276, 140, -396]],
       shrug: [[-74, -270, -150, -300], [74, -270, 150, -300]],
+      reach: [[-76, -256, -98, -166], [74, -262, 150, -170]],
     }[arms];
     for (const [x1, y1, x2, y2] of armPaths) {
       el('path', { d: `M${P(x1, y1)} L${P(x2, y2)}`, stroke: '#1a1a1a', 'stroke-width': 28 * s, 'stroke-linecap': 'round', filter: 'url(#rough1)' }, svg);
