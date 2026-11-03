@@ -12,7 +12,7 @@ Kriidijoonistuse stiil. Äratundmine ja sildistamine („milline on sinu isa?“
 | 4 | ILMATEATE-ISA | Kell 21.00 on kõik vait. | Teler ilmateatega, „PSST!“ |
 | 5 | SAUNA-ISA | Viskab leili, kuni kõik põgenevad. | Saunalava, kulp, aur, „VEEL ÜKS!“ |
 | 6 | KALAMEHE-ISA | Kala oli SEE suur. Päriselt. | Pisike kala käes, „SEE SUUR!“ |
-| 7 | Bränd | Ükskõik, mis tüüpi ta on, temast saab laulu. 29,95 € (tavaliselt 49,95 €). Kirjuta mulle TikToki sõnumitesse või lauluhing@gmail.com. Milline on sinu isa? Kirjuta kommentaari | Laulukaart |
+| 7 | Bränd | Ükskõik, mis tüüpi ta on, temast saab laulu. Isadepäevaks praegu soodushind! Kirjuta mulle TikToki sõnumitesse või lauluhing@gmail.com. Milline on sinu isa? Kirjuta kommentaari | Laulukaart |
 
 ## Postituse tekst
 

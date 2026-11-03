@@ -57,12 +57,10 @@
 <!-- 4: price -->
 <section class="slide">
   <div class="safe">
-    <div class="k t1 red">ISADEPÄEVA SOODUS</div>
-    <div class="price">
-      <span class="k old">49,95 €<svg id="strike" viewBox="0 0 200 100" preserveAspectRatio="none"></svg></span>
-      <span class="k new red">29,95 €</span>
-    </div>
-    <div class="sub" style="margin-top:6px">Isadepäev on 8. novembril.</div>
+    <div class="k t1">ISADEPÄEVAKS</div>
+    <div class="k" style="font-size:80px;margin-top:6px">on praegu</div>
+    <div class="k new red" style="margin-top:6px">SOODUSHIND!</div>
+    <div class="sub" style="margin-top:6px">Kirjuta mulle ja küsi lähemalt.</div>
     <svg class="art" id="a4" width="820" height="520" viewBox="0 0 1000 634"></svg>
   </div>
 </section>
@@ -124,8 +122,6 @@
 
   // 4: price with a scribbled-out old price and a gift
   (() => {
-    const st = $('strike');
-    line(st, 'M0 58 C60 52 140 56 200 46', '#e3151b', 5);
     const s = $('a4');
     ground(s, 610);
     gift(s, 330, 300, 340, 290, { box: '#2f6fe0', ribbon: '#e3151b' });

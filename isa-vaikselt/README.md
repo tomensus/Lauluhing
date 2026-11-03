@@ -11,7 +11,7 @@ Kriidijoonistuse stiil. Lapsepõlvemälestused, mida iga laps ära tunneb: posti
 | 3 | Ta jooksis rattaga kõrval, kuni sa ise said. | Laps rattal, isa hoiab sadulast |
 | 4 | Ta ütles, et kõht on täis, et sina saaksid viimase tüki. | Laud viimase koogitükiga, „Võta sina, ma olen täis!“ |
 | 5 | Ta mäletab neid kõiki. Kas sina oled talle aitäh öelnud? | Raamitud lapse joonistus „MINA JA ISSI“ |
-| 6 | Ütle seda sel isadepäeval LAULUS. Laul tema enda loost: 29,95 € (tavaliselt 49,95 €). Kirjuta mulle TikToki sõnumitesse või lauluhing@gmail.com | Laulukaart nootidega |
+| 6 | Ütle seda sel isadepäeval LAULUS. Laul tema enda loost. Praegu on soodushind! Kirjuta mulle TikToki sõnumitesse või lauluhing@gmail.com | Laulukaart nootidega |
 
 ## Postituse tekst
 
