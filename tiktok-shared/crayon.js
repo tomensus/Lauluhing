@@ -78,12 +78,12 @@ document.body.insertAdjacentHTML('afterbegin', `<svg width="0" height="0" style=
     shape(svg, ell(x, y, 22 * s, 16 * s), c, c, { gap: 5, w: 5, ow: 4 });
     line(svg, `M${x + 20 * s} ${y - 4 * s} V${y - 90 * s} C${x + 40 * s} ${y - 70 * s} ${x + 62 * s} ${y - 66 * s} ${x + 58 * s} ${y - 40 * s}`, c, 6);
   }
-  function hair(svg, cx, cy, r) {
+  function hair(svg, cx, cy, r, color = '#151515') {
     let d = `M${cx - r} ${cy}`;
     for (let i = 0; i < 70; i++) { const a = Math.PI + rnd() * Math.PI, rr = r * (.55 + rnd() * .6);
       d += ` Q${cx + Math.cos(a) * rr * 1.2 + jit(12)} ${cy + Math.sin(a) * rr * 1.1 + jit(12)} ${cx + Math.cos(a) * rr} ${cy + Math.sin(a) * rr * 1.05}`; }
-    line(svg, d, '#151515', 6);
-    fill(svg, `M${cx - r - 4} ${cy + 4} A${r + 4} ${r + 8} 0 0 1 ${cx + r + 4} ${cy + 4} Q${cx} ${cy - r * .3} ${cx - r - 4} ${cy + 4} Z`, '#151515', { gap: 6, w: 6 });
+    line(svg, d, color, 6);
+    fill(svg, `M${cx - r - 4} ${cy + 4} A${r + 4} ${r + 8} 0 0 1 ${cx + r + 4} ${cy + 4} Q${cx} ${cy - r * .3} ${cx - r - 4} ${cy + 4} Z`, color, { gap: 6, w: 6 });
   }
   // person standing at (x, baseline y). opts: shirt, pants, arms: 'down'|'up'|'front', face: true
   function person(svg, x, y, s = 1, o = {}) {
@@ -117,7 +117,8 @@ document.body.insertAdjacentHTML('afterbegin', `<svg width="0" height="0" style=
       line(svg, `M${P(-16, -346)} Q${P(0, -330)} ${P(16, -346)}`, '#1a1a1a', 4.5);
       if (o.closed) { /* closed happy eyes over the dots */ }
     }
-    if (hairOn) hair(svg, x, y - 382 * s, 46 * s);
+    if (hairOn) hair(svg, x, y - 382 * s, 46 * s, o.hairColor);
+    if (o.glasses) { line(svg, `${circ(x - 16 * s, y - 366 * s, 12 * s)} ${circ(x + 16 * s, y - 366 * s, 12 * s)} M${P(-4, -366)} L${P(4, -366)}`, '#1a1a1a', 3.5); }
     if (o.mustache) shape(svg, `M${P(-26, -340)} C${P(-14, -352)} ${P(-4, -346)} ${P(0, -342)} C${P(4, -346)} ${P(14, -352)} ${P(26, -340)} C${P(14, -334)} ${P(4, -336)} ${P(0, -338)} C${P(-4, -336)} ${P(-14, -334)} ${P(-26, -340)} Z`, o.mustache, '#1a1a1a', { gap: 4, w: 5, ow: 3.5 });
     return { handL: [x + armPaths[0][2] * s, y + armPaths[0][3] * s], handR: [x + armPaths[1][2] * s, y + armPaths[1][3] * s] };
   }
