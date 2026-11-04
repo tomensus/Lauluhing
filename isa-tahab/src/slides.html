@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – mida isa tegelikult tahab</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* Crayon drawing look (kit in tiktok-shared/crayon.js), 3:4. */
+  @font-face{font-family:Kalam;font-weight:700;src:url(../../tiktok-shared/fonts/kalam.ttf)}
+  .slide{background:#fff;color:#111}
+  .slide::after{display:none}
+  .safe{justify-content:center;align-items:center;text-align:center}
+  .k{font-family:Kalam,cursive;font-weight:700;filter:url(#grain);line-height:1.08}
+  .red{color:#e3151b}
+  .art{display:block;margin-top:30px}
+</style>
+</head>
+<body class="r34">
+<script src="../../tiktok-shared/crayon.js"></script>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:96px">MIDA ISA</div>
+    <div class="k red" style="font-size:100px;white-space:nowrap">TEGELIKULT TAHAB?</div>
+    <div class="k" style="font-size:50px;margin-top:14px">isadepäevaks</div>
+    <svg class="art" id="a1" width="860" height="680" viewBox="0 0 1000 790"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:76px;white-space:nowrap">Mitte sokke.</div>
+    <div class="k" style="font-size:76px;white-space:nowrap">Mitte lipsu.</div>
+    <div class="k" style="font-size:76px;white-space:nowrap">Mitte <span class="red">kümnendat kruusi.</span></div>
+    <svg class="art" id="a2" width="900" height="560" viewBox="0 0 1000 622"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:80px">Ta tahab teada,</div>
+    <div class="k red" style="font-size:104px;white-space:nowrap">et sa mäletad.</div>
+    <div class="k" style="font-size:50px;margin-top:14px">Kalaretki. Isa nalju.<br>Esimest jalgratast.</div>
+    <svg class="art" id="a3" width="860" height="620" viewBox="0 0 1000 721"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:80px">Pane need mälestused</div>
+    <div class="k red" style="font-size:130px">LAULU.</div>
+    <div class="k" style="font-size:54px;margin-top:10px">Praegu on <span class="red">soodushind!</span></div>
+    <svg class="art" id="a4" width="700" height="380" viewBox="0 0 1000 543" style="margin-top:24px"></svg>
+    <div class="k" style="font-size:48px;margin-top:20px">Kirjuta mulle TikToki sõnumitesse<br>või lauluhing@gmail.com</div>
+  </div>
+</section>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const dad = (svg, x, y, k, o = {}) => person(svg, x, y, k, Object.assign({ shirt: '#2f6fe0', pants: '#7a4a22', mustache: '#5a3a1e' }, o));
+  const cross = (svg, x, y, r) => line(svg, `M${x - r} ${y - r} L${x + r} ${y + r} M${x + r} ${y - r} L${x - r} ${y + r}`, '#e3151b', 12);
+  const qmark = (svg, x, y, s, c = '#e3151b') => {
+    line(svg, `M${x - 16 * s} ${y - 24 * s} C${x - 16 * s} ${y - 52 * s} ${x + 26 * s} ${y - 52 * s} ${x + 24 * s} ${y - 26 * s} C${x + 22 * s} ${y - 8 * s} ${x} ${y - 6 * s} ${x} ${y + 14 * s}`, c, 8);
+    shape(svg, circ(x, y + 36 * s, 6 * s), c, null, { gap: 3, w: 5 });
+  };
+  const text = (svg, x, y, t, size = 40, c = '#1a1a1a') => { const e = el('text', { x, y, 'text-anchor': 'middle', 'font-family': 'Kalam', 'font-weight': 700, 'font-size': size, fill: c, filter: 'url(#grain)' }, svg); e.textContent = t; };
+
+  // 1: dad thinking, question marks, gift
+  (() => { const s = $('a1');
+    ground(s, 770, 120, 880);
+    dad(s, 500, 762, 1.55, { arms: 'shrug' });
+    qmark(s, 240, 160, 1.5); qmark(s, 770, 130, 1.2, '#1a1a1a'); qmark(s, 820, 360, .9);
+    gift(s, 150, 660, 120, 100, { box: '#36b44a', ribbon: '#e3151b' });
+  })();
+
+  // 2: socks, tie, mug, each crossed out
+  (() => { const s = $('a2');
+    // socks
+    shape(s, `M90 120 H170 V360 Q170 420 120 430 L60 440 Q20 440 22 400 Q24 370 60 360 L90 352 Z`, '#ff9a1a', '#1a1a1a', { gap: 7 });
+    line(s, 'M90 160 H170 M90 190 H170', '#1a1a1a', 4);
+    shape(s, `M200 140 H280 V380 Q280 440 230 450 L170 460 Q130 460 132 420 Q134 390 170 380 L200 372 Z`, '#2f6fe0', '#1a1a1a', { gap: 7 });
+    cross(s, 170, 300, 130);
+    // tie
+    shape(s, `M470 100 H530 L520 150 L560 420 L500 490 L440 420 L480 150 Z`, '#7a4fc2', '#1a1a1a', { gap: 7 });
+    for (const y of [220, 300, 380]) line(s, `M465 ${y} L535 ${y - 30}`, '#ffd21a', 6);
+    cross(s, 500, 300, 130);
+    // mug with "BEST DAD"
+    shape(s, rect(700, 160, 190, 240), '#ffffff', '#1a1a1a', { gap: 30, op: 0, ow: 6 });
+    line(s, 'M890 210 C960 210 960 330 890 330', '#1a1a1a', 8);
+    text(s, 795, 250, 'PARIM', 40, '#2f6fe0'); text(s, 795, 340, 'ISA', 48, '#2f6fe0');
+    cross(s, 800, 290, 130);
+    text(s, 795, 470, 'nr 10', 34, '#555');
+    ground(s, 560, 30, 970);
+  })();
+
+  // 3: dad and grown child hugging, memory bubbles
+  (() => { const s = $('a3');
+    ground(s, 700, 120, 880);
+    dad(s, 400, 692, 1.3, { arms: 'down' });
+    person(s, 600, 692, 1.2, { arms: 'down', shirt: '#e3151b', pants: '#2b3a67' });
+    heart(s, 500, 120, 1.6);
+    // memory bubbles: fish, bike, laughing
+    const bub = (x, y) => shape(s, circ(x, y, 70), '#fff7d6', '#1a1a1a', { gap: 14, op: .55, ow: 4.5 });
+    bub(140, 220); bub(860, 220); bub(130, 470);
+    shape(s, ell(140, 222, 42, 20), '#9aa3ad', '#1a1a1a', { gap: 5, ow: 3.5 }); shape(s, `M100 222 L78 206 L78 238 Z`, '#9aa3ad', '#1a1a1a', { gap: 5, ow: 3 });
+    line(s, 'M820 245 a22 22 0 1 0 1 0 M900 245 a22 22 0 1 0 1 0 M842 245 L862 205 L900 245 M862 205 H880', '#e3151b', 5);
+    text(s, 130, 488, 'HAHA', 40, '#2f6fe0');
+  })();
+
+  // 4: song card
+  (() => { const s = $('a4');
+    shape(s, `M120 50 H880 Q920 50 920 90 V450 Q920 490 880 490 H120 Q80 490 80 450 V90 Q80 50 120 50 Z`, '#fff7d6', '#1a1a1a', { gap: 14, op: .6, ow: 5 });
+    note(s, 230, 360, 1.6); note(s, 400, 320, 1.2, '#e3151b');
+    text(s, 660, 240, 'Laul isale', 76);
+    heart(s, 700, 370, 1.4); sparkle(s, 860, 120, .9);
+  })();
+</script>
+</body>
+</html>
