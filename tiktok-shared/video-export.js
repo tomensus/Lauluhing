@@ -1,7 +1,7 @@
 // Usage: node tiktok-shared/video-export.js <video-folder> [--no-captions]
 // Renders <folder>/src/index.html frame by frame (the page exposes window.DURATION and
 // window.render(t, opts)) and encodes <folder>/video.mp4 (1080x1920, 30 fps, H.264,
-// silent audio track for the voiceover). --no-captions writes video-ilma-subtiitriteta.mp4.
+// silent audio track for the voiceover). H.264 Main 4.1 so phones and apps can open it. --no-captions writes video-ilma-subtiitriteta.mp4.
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
 const { spawn } = require('child_process');
 const path = require('path');
@@ -22,8 +22,8 @@ const FPS = 30;
   const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error',
     '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-',
     '-f', 'lavfi', '-i', 'anullsrc=channel_layout=stereo:sample_rate=48000',
-    '-shortest', '-c:v', 'libx264', '-preset', 'slow', '-crf', '17', '-pix_fmt', 'yuv420p',
-    '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', out], { stdio: ['pipe', 'inherit', 'inherit'] });
+    '-shortest', '-c:v', 'libx264', '-profile:v', 'main', '-level', '4.1', '-preset', 'slow', '-crf', '20', '-pix_fmt', 'yuv420p',
+    '-c:a', 'aac', '-b:a', '128k', '-ar', '44100', '-movflags', '+faststart', out], { stdio: ['pipe', 'inherit', 'inherit'] });
 
   for (let f = 0; f < frames; f++) {
     await page.evaluate(([t, c]) => window.render(t, { captions: c }), [f / FPS, captions]);
