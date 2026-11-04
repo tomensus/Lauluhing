@@ -1,7 +1,9 @@
 # TikTok video: „Teie isa on elus palju näinud“ (isadepäev, vanemale vaatajale)
 
-36 s, 9:16 (1080×1920), 30 fps, H.264. Kriidijoonistuse stiil (`tiktok-shared/crayon.js`). Häält videol pole (vaikne helirada), hääl loetakse peale.
+36 s, 9:16 (1080×1920), 30 fps, H.264 Main 4.1. Kriidijoonistuse stiil (`tiktok-shared/crayon.js`). `*-haalega.mp4` failidel on eestikeelne masinhääl; teistel on vaikne helirada, kui tahad ise peale lugeda.
 
+- `video-haalega.mp4` – **valmis video häälega** ja subtiitritega (hääl: Tartu Ülikooli Neurokõne, kõneleja „Albert“)
+- `video-ilma-subtiitriteta-haalega.mp4` – valmis video häälega, ilma subtiitriteta
 - `video.mp4` – suurte subtiitritega (sõna-sõnalt, praegune sõna punane)
 - `video-ilma-subtiitriteta.mp4` – sama ilma subtiitriteta
 - Allikas: `src/index.html` (ajajoon faili alguses). Renderdus repo juurest: `node tiktok-shared/video-export.js vanaisa-video` (lisa `--no-captions` teise versiooni jaoks).
