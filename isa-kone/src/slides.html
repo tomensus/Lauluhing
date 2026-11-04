@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – iga isa telefonikõne</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* Calm palette (see parimad-kingid/), 3:4. One phone call line per slide. */
+  :root{--navy:#1f2f4a;--navy-soft:#4a5870;--sage:#7f9a8c;--paper2:#f8f3ea;--gold:#c9a35d;--gold-deep:#9c7a3c}
+  .slide{color:var(--navy);
+    background:
+      radial-gradient(800px 600px at 100% 0%, rgba(201,163,93,.18), transparent 70%),
+      radial-gradient(800px 600px at 0% 100%, rgba(127,154,140,.22), transparent 70%),
+      var(--paper2)}
+  .safe{align-items:center;text-align:center;justify-content:center}
+  h1{font-family:Fraunces,serif;font-weight:600;font-size:84px;line-height:1.06;letter-spacing:-1px}
+  h1 em{font-weight:600;color:var(--gold-deep)}
+  .sub{font-weight:500;font-size:38px;line-height:1.4;color:var(--navy-soft);margin-top:22px}
+
+  /* phone */
+  .phone{position:relative;width:470px;height:760px;border-radius:70px;background:#16202f;padding:18px;flex:none;
+         box-shadow:0 40px 70px -30px rgba(31,47,74,.55)}
+  .screen{position:relative;width:100%;height:100%;border-radius:54px;overflow:hidden;display:flex;flex-direction:column;align-items:center;
+          background:linear-gradient(170deg,#3a5372,#1f2f4a 60%,#16202f);color:#f8f3ea}
+  .notch{position:absolute;top:18px;left:50%;width:130px;height:34px;margin-left:-65px;border-radius:20px;background:#0c121b}
+  .label{margin-top:110px;font-weight:500;font-size:26px;opacity:.75}
+  .av{margin-top:30px;width:170px;height:170px;border-radius:50%;background:linear-gradient(145deg,#a9bfb2,#7f9a8c);
+      display:flex;align-items:center;justify-content:center;font-size:96px;font-family:"Noto Color Emoji"}
+  .name{margin-top:26px;font-family:Fraunces,serif;font-weight:600;font-size:56px}
+  .time{margin-top:8px;font-weight:500;font-size:26px;opacity:.7}
+  .btns{position:absolute;bottom:70px;left:0;right:0;display:flex;justify-content:space-around}
+  .btn{width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .btn svg{width:52px;height:52px}
+  .red{background:#d9544a}.green{background:#5fa77a}
+  .bubble{position:relative;width:820px;margin-top:56px;background:#fffdf8;color:var(--navy);border-radius:34px;padding:30px 34px;
+          font-family:Fraunces,serif;font-weight:600;font-size:46px;line-height:1.15;box-shadow:0 30px 50px -24px rgba(31,47,74,.55)}
+  .bubble::before{content:"";position:absolute;top:-18px;left:50%;margin-left:-20px;border:20px solid transparent;border-bottom-color:#fffdf8;border-top:0}
+  .after{margin-top:56px}
+  .count{font-weight:700;font-size:26px;letter-spacing:6px;color:var(--gold-deep);margin-bottom:30px}
+
+  .contact{display:flex;flex-direction:column;gap:18px;width:100%;margin-top:40px}
+  .c{display:flex;align-items:center;gap:24px;background:#fffdf8;border-radius:999px;padding:18px 34px 18px 18px;text-align:left;
+     box-shadow:0 20px 40px -26px rgba(31,47,74,.45)}
+  .c .ic{flex:none;width:84px;height:84px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center}
+  .c .ic svg{width:44px;height:44px}
+  .c b{display:block;font-weight:700;font-size:38px;color:var(--navy)}
+  .c small{display:block;font-weight:500;font-size:26px;color:var(--navy-soft)}
+  .sale{display:inline-block;margin-top:28px;font-weight:700;font-size:34px;color:#fffdf8;background:var(--gold-deep);padding:14px 30px;border-radius:999px}
+</style>
+</head>
+<body class="r34">
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="mark" viewBox="0 0 120 170">
+    <path d="M64,95 C34,72 14,52 14,32 C14,12 34,2 49,12 C57,18 61,26 64,32 C67,26 71,18 79,12 C94,2 114,12 114,32 C114,52 94,72 64,95 Z" stroke="currentColor" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+    <line x1="64" y1="95" x2="64" y2="146" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>
+    <path d="M64,60 C85,55 100,40 108,15" stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M64,90 C82,88 95,78 103,58" stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <ellipse cx="46" cy="152" rx="21" ry="14" fill="currentColor" transform="rotate(-18 46 152)"/>
+  </symbol>
+  <symbol id="hand" viewBox="0 0 40 40"><path d="M11 6 C8 6 5 9 5 13 C6 25 15 34 27 35 C31 35 34 32 34 29 L34 26 L26 22 L22 26 C17 24 16 23 14 18 L18 14 L14 6 Z" fill="#fff"/></symbol>
+</svg>
+
+<template id="phone">
+  <div class="phone"><div class="screen">
+    <div class="notch"></div>
+    <div class="label">{LABEL}</div>
+    <div class="av">👨</div>
+    <div class="name">Issi ❤️</div>
+    <div class="time">{TIME}</div>
+    <div class="btns"><span class="btn red"><svg viewBox="0 0 40 40" style="transform:rotate(135deg)"><use href="#hand"/></svg></span>{GREEN}</div>
+  </div></div>{BUBBLE}
+</template>
+
+<!-- 1: cover -->
+<section class="slide">
+  <div class="safe">
+    <div data-phone data-label="sissetulev kõne" data-time="mobiil"></div>
+    <h1 class="after">Iga isa <em>telefonikõne</em>.</h1>
+    <p class="sub">Sa tead täpselt, mis tuleb →</p>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="count">1. MINUT</div>
+    <div data-phone data-label="kõne" data-nogreen="1" data-time="00:12" data-bubble="„Kuule, ema tahab<br>sinuga rääkida.“"></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="count">2. MINUT</div>
+    <div data-phone data-label="kõne" data-nogreen="1" data-time="01:04" data-bubble="„Kuidas autoga on?<br>Õli vaatasid?“"></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="count">3. MINUT</div>
+    <div data-phone data-label="kõne" data-nogreen="1" data-time="02:31" data-bubble="„Raha sul on?<br>Ära siis ütle, kui pole.“"></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="count">4. MINUT</div>
+    <div data-phone data-label="kõne" data-nogreen="1" data-time="03:58" data-bubble="„No hästi,<br>ma ei hoia sind kinni.“"></div>
+  </div>
+</section>
+
+<!-- 6: twist -->
+<section class="slide">
+  <div class="safe">
+    <div data-phone data-label="kõne lõpetatud" data-time="04:02" data-nogreen="1"></div>
+    <h1 class="after">Ta ei helistanud<br>autoõli <em>pärast</em>.</h1>
+    <p class="sub">Ta tahtis lihtsalt sinu häält kuulda.</p>
+  </div>
+</section>
+
+<!-- 7: brand -->
+<section class="slide">
+  <div class="safe">
+    <svg width="130" height="184" viewBox="0 0 120 170" style="color:var(--gold-deep)"><use href="#mark"/></svg>
+    <h1 style="margin-top:30px">Sel isadepäeval<br>helista <em>sina</em>.</h1>
+    <p class="sub">Ja lase tal kuulata laulu,<br>mis on kirjutatud tema enda loost.</p>
+    <span class="sale">Praegu on soodushind!</span>
+    <div class="contact">
+      <div class="c"><span class="ic"><svg viewBox="0 0 40 40"><path d="M6 8 H34 V28 H18 L10 35 V28 H6 Z" fill="none" stroke="#f8f3ea" stroke-width="3.2" stroke-linejoin="round"/></svg></span><span><b>TikToki sõnumid</b><small>kirjuta mulle oma isast</small></span></div>
+      <div class="c"><span class="ic"><svg viewBox="0 0 40 40"><rect x="5" y="9" width="30" height="22" rx="3" fill="none" stroke="#f8f3ea" stroke-width="3.2"/><path d="M6 11 L20 22 L34 11" fill="none" stroke="#f8f3ea" stroke-width="3.2" stroke-linejoin="round"/></svg></span><span><b>lauluhing@gmail.com</b><small>paar mälestust on piisav</small></span></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const tpl = document.getElementById('phone').innerHTML;
+  const green = '<span class="btn green"><svg viewBox="0 0 40 40"><use href="#hand"/></svg></span>';
+  document.querySelectorAll('[data-phone]').forEach(el => {
+    el.outerHTML = tpl.replace('{LABEL}', el.dataset.label).replace('{TIME}', el.dataset.time)
+      .replace('{GREEN}', el.dataset.nogreen ? '' : green)
+      .replace('{BUBBLE}', el.dataset.bubble ? `<div class="bubble">${el.dataset.bubble}</div>` : '');
+  });
+</script>
+</body>
+</html>
