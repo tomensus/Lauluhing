@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – isadepäeva story</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* Single 9:16 story image in the crayon style (kit in tiktok-shared/crayon.js).
+     Stories cover ~250 px at the top (progress bar, name) and ~260 px at the
+     bottom (reply box), so everything sits between y 260 and 1650. */
+  @font-face{font-family:Kalam;font-weight:700;src:url(../../tiktok-shared/fonts/kalam.ttf)}
+  .slide{background:#fff;color:#111}
+  .slide::after{display:none}
+  .safe{top:270px;bottom:270px;left:80px;right:80px;justify-content:space-between;align-items:center;text-align:center}
+  .k{font-family:Kalam,cursive;font-weight:700;filter:url(#grain);line-height:1.05}
+  .red{color:#e3151b}
+  .price{display:flex;align-items:baseline;justify-content:center;gap:34px}
+  .old{position:relative;font-size:76px;color:#333}
+  .old svg{position:absolute;left:-12px;top:0;width:calc(100% + 24px);height:100%;overflow:visible}
+  .new{font-size:140px}
+  .cta{display:flex;flex-direction:column;align-items:center}
+  .arrow{display:block;margin-top:14px}
+</style>
+</head>
+<body>
+<script src="../../tiktok-shared/crayon.js"></script>
+
+<section class="slide">
+  <div class="safe">
+    <div>
+      <div class="k red" style="font-size:118px">ISADEPÄEVAKS</div>
+      <div class="k" style="font-size:72px;margin-top:6px">laul tema enda loost</div>
+    </div>
+    <svg id="art" width="760" height="520" viewBox="0 0 1000 683"></svg>
+    <div>
+      <div class="k" style="font-size:70px">Praegu on</div>
+      <div class="k red" style="font-size:130px">SOODUSHIND!</div>
+      <div class="k" style="font-size:50px;margin-top:4px">Isadepäev on juba <span class="red">pühapäeval!</span></div>
+    </div>
+    <div class="cta">
+      <div class="k" style="font-size:66px;margin-top:30px">Vasta sellele storyle</div>
+      <div class="k red" style="font-size:66px">ja räägi oma isast 💬</div>
+      <div class="k" style="font-size:42px;margin-top:16px;color:#333">või kirjuta lauluhing@gmail.com</div>
+      <svg class="arrow" id="arrow" width="120" height="110" viewBox="0 0 120 110"></svg>
+    </div>
+  </div>
+</section>
+
+<script>
+  line(document.getElementById('arrow'), 'M60 8 C52 40 66 66 60 96 M34 74 L60 100 L86 72', '#1a1a1a', 8);
+
+  const s = document.getElementById('art');
+  const x = 500, y = 660, k = 1.35;
+  ground(s, y, 140, 860);
+  person(s, x, y, k, { arms: 'down', shirt: '#2f6fe0', pants: '#7a4a22', mustache: '#5a3a1e' });
+  gift(s, 690, 560, 110, 92, { box: '#e3151b', ribbon: '#ffd21a' });
+  line(s, `M${x - 56 * k} ${y - 384 * k} C${x - 66 * k} ${y - 512 * k} ${x + 66 * k} ${y - 512 * k} ${x + 56 * k} ${y - 384 * k}`, '#e3151b', 15);
+  shape(s, ell(x - 52 * k, y - 378 * k, 18 * k, 30 * k), '#e3151b', '#1a1a1a', { gap: 6, ow: 4.5 });
+  shape(s, ell(x + 52 * k, y - 378 * k, 18 * k, 30 * k), '#e3151b', '#1a1a1a', { gap: 6, ow: 4.5 });
+  note(s, 220, 250, 1.3); note(s, 770, 200, 1.1, '#2f6fe0'); note(s, 180, 500, 1, '#e3151b');
+  heart(s, 330, 120, 1.1); heart(s, 820, 380, 1.1); sun(s, 890, 70, 46); sparkle(s, 650, 80, 1);
+</script>
+</body>
+</html>
