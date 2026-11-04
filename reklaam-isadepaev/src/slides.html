@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – isadepäeva reklaam</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* Sales ad in the crayon style (kit in tiktok-shared/crayon.js). 9:16 full screen,
+     because ads play full screen; text stays inside the default TikTok safe zone. */
+  @font-face{font-family:Kalam;font-weight:700;src:url(../../tiktok-shared/fonts/kalam.ttf)}
+  .slide{background:#fff;color:#111}
+  .slide::after{display:none}
+  .safe{justify-content:center;align-items:center;text-align:center}
+  .k{font-family:Kalam,cursive;font-weight:700;filter:url(#grain);line-height:1.06;white-space:nowrap}
+  .red{color:#e3151b}
+  .art{display:block}
+  .row{display:flex;align-items:center;gap:30px;margin-top:34px;text-align:left;width:720px}
+  .row svg{flex:none}
+  .row .k{font-size:64px}
+  .row .k small{display:block;font-size:40px;color:#444;margin-top:4px}
+</style>
+</head>
+<body>
+<script src="../../tiktok-shared/crayon.js"></script>
+
+<!-- 1: hook -->
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:96px">OTSID ISADEPÄEVAKS</div>
+    <div class="k red" style="font-size:170px">KINKI?</div>
+    <svg class="art" id="a1" width="880" height="760" viewBox="0 0 1000 864" style="margin-top:10px"></svg>
+    <div class="k" style="font-size:58px;margin-top:10px">Siin on üks, mida poest ei leia →</div>
+  </div>
+</section>
+
+<!-- 2: what you get -->
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:84px">LAUL ISALE</div>
+    <div class="k red" style="font-size:104px">TEMA ENDA LOOST</div>
+    <svg class="art" id="a2" width="700" height="420" viewBox="0 0 1000 600" style="margin-top:20px"></svg>
+    <div class="row"><svg class="ck" width="90" height="90" viewBox="0 0 100 100"></svg><div class="k">Sinu mälestused<small>päris laulus</small></div></div>
+    <div class="row"><svg class="ck" width="90" height="90" viewBox="0 0 100 100"></svg><div class="k">Tema nimi<small>ja teie naljad</small></div></div>
+    <div class="row"><svg class="ck" width="90" height="90" viewBox="0 0 100 100"></svg><div class="k">Ainult temale<small>teist sellist pole</small></div></div>
+  </div>
+</section>
+
+<!-- 3: how easy -->
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:90px">NII LIHTNE</div>
+    <div class="k red" style="font-size:120px">SEE ONGI:</div>
+    <div class="row" style="margin-top:56px"><svg class="num" data-n="1" width="110" height="110" viewBox="0 0 110 110"></svg><div class="k">Kirjuta mulle<small>TikToki sõnum või e-kiri</small></div></div>
+    <div class="row"><svg class="num" data-n="2" width="110" height="110" viewBox="0 0 110 110"></svg><div class="k">Räägi oma isast<small>paar mälestust on piisav</small></div></div>
+    <div class="row"><svg class="num" data-n="3" width="110" height="110" viewBox="0 0 110 110"></svg><div class="k">Saad valmis laulu<small>MP3-failina e-postiga</small></div></div>
+    <svg class="art" id="a3" width="620" height="330" viewBox="0 0 1000 532" style="margin-top:40px"></svg>
+    <div class="k" style="font-size:46px;margin-top:10px">Muusikat ei pea ise oskama.<br>Väiksemad parandused teen hea meelega.</div>
+  </div>
+</section>
+
+<!-- 4: urgency + CTA -->
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:80px">ISADEPÄEV ON</div>
+    <div class="k red" style="font-size:136px">PÜHAPÄEVAL!</div>
+    <svg class="art" id="a4" width="560" height="430" viewBox="0 0 1000 768" style="margin-top:10px"></svg>
+    <div class="k" style="font-size:70px;margin-top:10px">Praegu on</div>
+    <div class="k red" style="font-size:130px">SOODUSHIND!</div>
+    <div class="k" style="font-size:64px;margin-top:30px">Kirjuta kohe:</div>
+    <div class="k red" style="font-size:72px;margin-top:6px">lauluhing@gmail.com</div>
+    <div class="k" style="font-size:52px;margin-top:8px">või TikToki sõnumitesse 💬</div>
+  </div>
+</section>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const dad = (svg, x, y, k, o = {}) => person(svg, x, y, k, Object.assign({ shirt: '#2f6fe0', pants: '#7a4a22', mustache: '#5a3a1e' }, o));
+  const text = (svg, x, y, t, size = 40, c = '#1a1a1a') => { const e = el('text', { x, y, 'text-anchor': 'middle', 'font-family': 'Kalam', 'font-weight': 700, 'font-size': size, fill: c, filter: 'url(#grain)' }, svg); e.textContent = t; };
+
+  // checkmarks and numbered circles
+  document.querySelectorAll('.ck').forEach(s => { shape(s, circ(50, 50, 42), '#36b44a', '#1d7a2c', { gap: 7 }); line(s, 'M28 52 L44 68 L74 34', '#ffffff', 10); });
+  document.querySelectorAll('.num').forEach(s => {
+    shape(s, circ(55, 55, 48), '#e3151b', '#b80d12', { gap: 7 });
+    const t = el('text', { x: 55, y: 76, 'text-anchor': 'middle', 'font-family': 'Kalam', 'font-weight': 700, 'font-size': 64, fill: '#fff' }, s); t.textContent = s.dataset.n;
+  });
+
+  // 1: dad holding a big gift, "SOODUSHIND" stamp
+  (() => { const s = $('a1');
+    ground(s, 830, 80, 920);
+    dad(s, 360, 822, 1.3, { arms: 'up' });
+    gift(s, 195, 120, 330, 165, { box: '#e3151b', ribbon: '#ffd21a' });
+    note(s, 700, 300, 1.3); note(s, 820, 180, 1, '#2f6fe0'); heart(s, 720, 470, 1.3);
+    const st = el('g', { transform: 'rotate(-12 760 680)' }, s);
+    shape(st, rect(560, 610, 400, 130), '#ffffff', '#e3151b', { gap: 40, op: 0, ow: 9 });
+    text(st, 760, 700, 'SOODUSHIND', 64, '#e3151b');
+  })();
+  // 2: song card
+  (() => { const s = $('a2');
+    shape(s, `M120 60 H880 Q920 60 920 100 V500 Q920 540 880 540 H120 Q80 540 80 500 V100 Q80 60 120 60 Z`, '#fff7d6', '#1a1a1a', { gap: 14, op: .6, ow: 5 });
+    note(s, 230, 420, 1.7); note(s, 400, 370, 1.3, '#e3151b');
+    text(s, 660, 250, 'Laul isale', 84);
+    heart(s, 690, 400, 1.6); sparkle(s, 880, 40, 1.1); sparkle(s, 90, 40, .9);
+  })();
+  // 3: envelope with notes flying out
+  (() => { const s = $('a3');
+    const g = el('g', { transform: 'rotate(-4 500 300)' }, s);
+    shape(g, rect(260, 180, 480, 300), '#fff7d6', '#1a1a1a', { gap: 12, op: .6, ow: 6 });
+    line(g, 'M262 186 L500 360 L738 186', '#1a1a1a', 6);
+    heart(g, 500, 410, 1.3);
+    note(s, 170, 160, 1.1); note(s, 820, 120, 1, '#e3151b'); note(s, 880, 380, .8, '#2f6fe0');
+  })();
+  // 4: calendar with Sunday circled
+  (() => { const s = $('a4');
+    shape(s, rect(200, 80, 600, 620), '#ffffff', '#1a1a1a', { gap: 40, op: 0, ow: 6 });
+    shape(s, rect(200, 80, 600, 140), '#e3151b', '#1a1a1a', { gap: 8, ow: 6 });
+    text(s, 500, 175, 'NOVEMBER', 70, '#ffffff');
+    line(s, 'M300 40 V120 M700 40 V120', '#1a1a1a', 16);
+    text(s, 500, 520, '8', 300, '#1a1a1a');
+    line(s, 'M500 270 C680 262 720 420 700 520 C680 640 520 680 420 650 C300 610 270 470 300 380 C330 300 420 262 560 280', '#e3151b', 10);
+    sparkle(s, 120, 200, 1.2); sparkle(s, 880, 260, 1.1); heart(s, 880, 620, 1.1);
+  })();
+</script>
+</body>
+</html>
