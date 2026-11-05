@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – kui kaua sinu kink kestab</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* Crayon drawing look (kit in tiktok-shared/crayon.js), 3:4. One gift and its "lifetime" per slide. */
+  @font-face{font-family:Kalam;font-weight:700;src:url(../../tiktok-shared/fonts/kalam.ttf)}
+  .slide{background:#fff;color:#111}
+  .slide::after{display:none}
+  .safe{justify-content:center;align-items:center;text-align:center}
+  .k{font-family:Kalam,cursive;font-weight:700;filter:url(#grain);line-height:1.08;white-space:nowrap}
+  .red{color:#e3151b}
+  .art{display:block;margin-top:16px}
+  .name{font-size:110px}
+  .lasts{font-size:58px;margin-top:10px}
+</style>
+</head>
+<body class="r34">
+<script src="../../tiktok-shared/crayon.js"></script>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:92px">KUI KAUA SINU</div>
+    <div class="k red" style="font-size:140px">KINK KESTAB?</div>
+    <svg class="art" id="a1" width="760" height="700" viewBox="0 0 1000 921"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k name">Lilled</div>
+    <div class="k lasts">kestavad: <span class="red">5 päeva</span></div>
+    <svg class="art" id="a2" width="820" height="760" viewBox="0 0 1000 927"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k name">Šokolaad</div>
+    <div class="k lasts">kestab: <span class="red">üks õhtu</span></div>
+    <svg class="art" id="a3" width="820" height="760" viewBox="0 0 1000 927"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k name">Kinkekaart</div>
+    <div class="k lasts">kestab: <span class="red">kuni see sahtlisse ununeb</span></div>
+    <svg class="art" id="a4" width="820" height="760" viewBox="0 0 1000 927"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k name" style="font-size:92px">Laul tema enda loost</div>
+    <div class="k lasts" style="font-size:66px">kestab: <span class="red">igavesti</span></div>
+    <svg class="art" id="a5" width="820" height="760" viewBox="0 0 1000 927"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:76px">Kingi seekord midagi,</div>
+    <div class="k red" style="font-size:104px">mis jääb alles.</div>
+    <svg class="art" id="a6" width="660" height="370" viewBox="0 0 1000 560" style="margin-top:24px"></svg>
+    <div class="k" style="font-size:54px;margin-top:16px">Praegu on <span class="red">soodushind!</span></div>
+    <div class="k" style="font-size:46px;margin-top:14px">Kirjuta mulle TikToki sõnumitesse<br>või lauluhing@gmail.com</div>
+  </div>
+</section>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const text = (svg, x, y, t, size = 40, c = '#1a1a1a') => { const e = el('text', { x, y, 'text-anchor': 'middle', 'font-family': 'Kalam', 'font-weight': 700, 'font-size': size, fill: c, filter: 'url(#grain)' }, svg); e.textContent = t; };
+  const flower = (svg, x, y, s, petal, droop = 0) => {
+    const tx = x + droop * 60 * s, ty = y - 170 * s + Math.abs(droop) * 70 * s;
+    line(svg, `M${x} ${y} C${x} ${y - 80 * s} ${x + droop * 40 * s} ${y - 140 * s} ${tx} ${ty}`, '#1d7a2c', 7);
+    for (let i = 0; i < 6; i++) { const a = i / 6 * Math.PI * 2; shape(svg, circ(tx + Math.cos(a) * 22 * s, ty + Math.sin(a) * 22 * s, 15 * s), petal, '#1a1a1a', { gap: 5, ow: 3 }); }
+    shape(svg, circ(tx, ty, 13 * s), '#ffd21a', '#e6b800', { gap: 4, ow: 3 });
+  };
+
+  // 1: hourglass with a gift and a heart
+  (() => { const s = $('a1');
+    shape(s, rect(310, 80, 380, 40), '#c98a4b', '#1a1a1a', { gap: 7 });
+    shape(s, rect(310, 800, 380, 40), '#c98a4b', '#1a1a1a', { gap: 7 });
+    line(s, 'M340 120 C340 330 470 380 470 460 C470 540 340 590 340 800 M660 120 C660 330 530 380 530 460 C530 540 660 590 660 800', '#1a1a1a', 7);
+    shape(s, `M380 240 H620 C600 330 510 380 500 450 C490 380 400 330 380 240 Z`, '#ffd21a', null, { gap: 6 });
+    shape(s, `M370 800 C380 700 450 650 500 640 C550 650 620 700 630 800 Z`, '#ffd21a', null, { gap: 6 });
+    line(s, 'M500 460 V640', '#e6b800', 4);
+    heart(s, 160, 300, 1.3); gift(s, 760, 620, 140, 120, { box: '#e3151b', ribbon: '#ffd21a' });
+    qm(s, 820, 250); qm(s, 170, 640, '#1a1a1a');
+  })();
+  function qm(svg, x, y, c = '#e3151b') {
+    line(svg, `M${x - 22} ${y - 34} C${x - 22} ${y - 74} ${x + 36} ${y - 74} ${x + 34} ${y - 36} C${x + 32} ${y - 12} ${x} ${y - 8} ${x} ${y + 20}`, c, 9);
+    shape(svg, circ(x, y + 50, 8), c, null, { gap: 3, w: 5 });
+  }
+  // 2: vase with wilting flowers and fallen petals
+  (() => { const s = $('a2');
+    line(s, 'M100 860 H900', '#1a1a1a', 5);
+    flower(s, 470, 560, 2.2, '#ff8fb1', 1.2); flower(s, 500, 560, 2.5, '#c9a0ff', .15); flower(s, 530, 560, 2.2, '#ff8fb1', -1.3);
+    shape(s, `M360 860 C310 760 310 590 390 540 H610 C690 590 690 760 640 860 Z`, '#7fc0ff', '#1a1a1a', { gap: 8 });
+    for (const [x, y] of [[680, 850], [720, 840], [300, 852], [760, 856]]) shape(s, ell(x, y, 14, 7), '#ff8fb1', '#1a1a1a', { gap: 4, ow: 2.5 });
+    text(s, 820, 200, 'päev 5', 54, '#555');
+  })();
+  // 3: empty chocolate box and wrappers
+  (() => { const s = $('a3');
+    line(s, 'M80 860 H920', '#1a1a1a', 5);
+    const lid = el('g', { transform: 'rotate(-10 250 560)' }, s);
+    shape(lid, rect(250, 320, 500, 240), '#e3151b', '#1a1a1a', { gap: 8 });
+    heart(lid, 500, 440, 1.6);
+    shape(s, rect(250, 560, 500, 260), '#7a4a22', '#1a1a1a', { gap: 8 });
+    for (let r = 0; r < 2; r++) for (let c = 0; c < 4; c++) shape(s, circ(320 + c * 120, 630 + r * 110, 38), '#ffffff', '#1a1a1a', { gap: 30, op: 0, ow: 4 });
+    for (const [x, y, r] of [[140, 820, 20], [860, 800, -15], [180, 700, 40]]) {
+      const g = el('g', { transform: `rotate(${r} ${x} ${y})` }, s);
+      shape(g, `M${x - 30} ${y - 10} L${x + 30} ${y - 18} L${x + 26} ${y + 14} L${x - 28} ${y + 18} Z`, '#ffd21a', '#1a1a1a', { gap: 5, ow: 3 });
+    }
+    text(s, 780, 220, 'kõik söödud', 56, '#555');
+  })();
+  // 4: gift card forgotten in a drawer
+  (() => { const s = $('a4');
+    shape(s, rect(140, 300, 720, 520), '#c98a4b', '#1a1a1a', { gap: 8 });
+    shape(s, rect(180, 340, 640, 200), '#e2b77c', '#1a1a1a', { gap: 9 });
+    shape(s, rect(180, 580, 640, 200), '#e2b77c', '#1a1a1a', { gap: 9 });
+    shape(s, rect(440, 420, 120, 30), '#555', '#1a1a1a', { gap: 6, ow: 3 });
+    shape(s, rect(440, 660, 120, 30), '#555', '#1a1a1a', { gap: 6, ow: 3 });
+    // top drawer pulled out with the card inside
+    const g = el('g', { transform: 'rotate(-6 500 200)' }, s);
+    shape(g, rect(330, 130, 340, 200), '#2f6fe0', '#1a1a1a', { gap: 8 });
+    text(g, 500, 240, 'KINKEKAART', 44, '#ffffff');
+    shape(g, rect(360, 280, 140, 22), '#ffd21a', null, { gap: 5 });
+    text(s, 800, 110, '2019', 56, '#555');
+    // cobweb
+    line(s, 'M140 300 L240 300 M140 300 L140 400 M140 300 L215 375 M175 300 Q170 335 140 340 M210 300 Q200 360 140 370', '#888', 3);
+  })();
+  // 5: listening forever, infinity sign
+  (() => { const s = $('a5');
+    const x = 500, y = 880, k = 1.25;
+    ground(s, y, 160, 840);
+    person(s, x, y - 8, k, { shirt: '#7a4fc2', pants: '#4a5870', hairColor: '#bdbdbd', glasses: true, mustache: '#d9d9d9' });
+    line(s, `M${x - 56 * k} ${y - 8 - 384 * k} C${x - 66 * k} ${y - 8 - 512 * k} ${x + 66 * k} ${y - 8 - 512 * k} ${x + 56 * k} ${y - 8 - 384 * k}`, '#e3151b', 14);
+    shape(s, ell(x - 52 * k, y - 8 - 378 * k, 18 * k, 30 * k), '#e3151b', '#1a1a1a', { gap: 6, ow: 4.5 });
+    shape(s, ell(x + 52 * k, y - 8 - 378 * k, 18 * k, 30 * k), '#e3151b', '#1a1a1a', { gap: 6, ow: 4.5 });
+    line(s, 'M500 110 C430 30 330 60 330 110 C330 160 430 190 500 110 C570 30 670 60 670 110 C670 160 570 190 500 110 Z', '#e3151b', 12);
+    note(s, 200, 420, 1.3); note(s, 800, 380, 1.1, '#2f6fe0'); heart(s, 180, 640, 1.1); heart(s, 830, 620, 1.2);
+  })();
+  // 6: song card
+  (() => { const s = $('a6');
+    shape(s, `M120 40 H880 Q920 40 920 80 V480 Q920 520 880 520 H120 Q80 520 80 480 V80 Q80 40 120 40 Z`, '#fff7d6', '#1a1a1a', { gap: 14, op: .6, ow: 5 });
+    note(s, 230, 400, 1.7); note(s, 400, 350, 1.3, '#e3151b');
+    text(s, 660, 230, 'Laul sulle', 84);
+    heart(s, 690, 380, 1.6);
+  })();
+</script>
+</body>
+</html>
