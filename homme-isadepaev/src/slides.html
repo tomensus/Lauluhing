@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – homme on isadepäev</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* Crayon drawing look (kit in tiktok-shared/crayon.js), 3:4. Short and direct: problem, answer, contact. */
+  @font-face{font-family:Kalam;font-weight:700;src:url(../../tiktok-shared/fonts/kalam.ttf)}
+  .slide{background:#fff;color:#111}
+  .slide::after{display:none}
+  .safe{justify-content:center;align-items:center;text-align:center}
+  .k{font-family:Kalam,cursive;font-weight:700;filter:url(#grain);line-height:1.06;white-space:nowrap}
+  .red{color:#e3151b}
+  .art{display:block;margin-top:14px}
+</style>
+</head>
+<body class="r34">
+<script src="../../tiktok-shared/crayon.js"></script>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:100px">HOMME ON</div>
+    <div class="k red" style="font-size:136px">ISADEPÄEV</div>
+    <div class="k" style="font-size:84px">ja sul pole veel kinki?</div>
+    <svg class="art" id="a1" width="840" height="700" viewBox="0 0 1000 833"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:88px">Ära paanitse.</div>
+    <div class="k red" style="font-size:100px">Kingi talle laul.</div>
+    <div class="k" style="font-size:56px;margin-top:10px;color:#333">Tema enda loost.<br>Ilma poodi minemata.</div>
+    <svg class="art" id="a2" width="840" height="720" viewBox="0 0 1000 857"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:92px">KIRJUTA KOHE:</div>
+    <div class="k red" style="font-size:84px;margin-top:10px">lauluhing@gmail.com</div>
+    <div class="k" style="font-size:58px;margin-top:6px">või TikToki sõnumitesse 💬</div>
+    <svg class="art" id="a3" width="640" height="480" viewBox="0 0 1000 750" style="margin-top:20px"></svg>
+    <div class="k" style="font-size:62px;margin-top:10px">Praegu on <span class="red">soodushind!</span></div>
+  </div>
+</section>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const text = (svg, x, y, t, size = 40, c = '#1a1a1a') => { const e = el('text', { x, y, 'text-anchor': 'middle', 'font-family': 'Kalam', 'font-weight': 700, 'font-size': size, fill: c, filter: 'url(#grain)' }, svg); e.textContent = t; };
+  const sweat = (svg, x, y, s = 1) => shape(svg, `M${x} ${y} C${x - 12 * s} ${y + 18 * s} ${x - 12 * s} ${y + 34 * s} ${x} ${y + 34 * s} C${x + 12 * s} ${y + 34 * s} ${x + 12 * s} ${y + 18 * s} ${x} ${y} Z`, '#7fc0ff', '#2f7fd6', { gap: 4, ow: 3 });
+
+  // 1: panicking person, calendar with tomorrow circled, empty hands
+  (() => { const s = $('a1');
+    ground(s, 810, 60, 940);
+    const k = 1.45, x = 330, y = 802;
+    person(s, x, y, k, { arms: 'up', shirt: '#36b44a', pants: '#2b3a67' });
+    // worried mouth over the default smile
+    el('rect', { x: x - 22 * k, y: y - 352 * k, width: 44 * k, height: 24 * k, fill: '#f3c9a2' }, s);
+    shape(s, ell(x, y - 338 * k, 9 * k, 11 * k), '#1a1a1a', '#1a1a1a', { gap: 3, w: 4 });
+    sweat(s, x + 58 * k, y - 400 * k, 1.1); sweat(s, x - 64 * k, y - 380 * k, .8);
+    line(s, `M${x - 160} ${y - 640} l-30 -30 M${x + 160} ${y - 640} l30 -30 M${x} ${y - 700} v-40`, '#e3151b', 7);
+    // calendar
+    shape(s, rect(620, 280, 300, 330), '#ffffff', '#1a1a1a', { gap: 40, op: 0, ow: 6 });
+    shape(s, rect(620, 280, 300, 80), '#e3151b', '#1a1a1a', { gap: 8, ow: 6 });
+    text(s, 770, 335, 'NOVEMBER', 40, '#ffffff');
+    line(s, 'M680 250 V300 M860 250 V300', '#1a1a1a', 12);
+    text(s, 770, 540, '8', 170);
+    line(s, 'M770 395 C870 392 890 480 880 540 C870 600 790 615 740 600 C680 585 665 510 680 460 C695 410 740 395 800 400', '#e3151b', 8);
+    text(s, 770, 680, 'homme!', 60, '#e3151b');
+  })();
+  // 2: relaxed person with phone, song card and notes
+  (() => { const s = $('a2');
+    ground(s, 830, 60, 940);
+    person(s, 300, 822, 1.4, { arms: 'reach', shirt: '#36b44a', pants: '#2b3a67' });
+    // phone in hand
+    shape(s, rect(470, 520, 90, 150), '#2b2b2b', '#1a1a1a', { gap: 7, ow: 4 });
+    el('rect', { x: 480, y: 535, width: 70, height: 120, rx: 6, fill: '#cfe4fb' }, s);
+    heart(s, 515, 595, .55);
+    // song card floating
+    shape(s, `M600 220 H900 Q930 220 930 250 V460 Q930 490 900 490 H600 Q570 490 570 460 V250 Q570 220 600 220 Z`, '#fff7d6', '#1a1a1a', { gap: 14, op: .6, ow: 5 });
+    note(s, 630, 440, 1); note(s, 700, 420, .8, '#e3151b');
+    text(s, 830, 300, 'Laul', 54); text(s, 830, 360, 'isale', 54);
+    heart(s, 860, 430, .9);
+    sparkle(s, 140, 180, 1.2); sparkle(s, 500, 140, 1); note(s, 860, 680, 1, '#2f6fe0');
+  })();
+  // 3: envelope and chat bubble
+  (() => { const s = $('a3');
+    const g = el('g', { transform: 'rotate(-5 380 380)' }, s);
+    shape(g, rect(100, 240, 520, 320), '#fff7d6', '#1a1a1a', { gap: 12, op: .6, ow: 6 });
+    line(g, 'M102 246 L360 430 L618 246', '#1a1a1a', 6);
+    heart(g, 360, 480, 1.4);
+    shape(s, `M680 120 H920 Q950 120 950 150 V300 Q950 330 920 330 H800 L760 380 L768 330 H680 Q650 330 650 300 V150 Q650 120 680 120 Z`, '#cfe4fb', '#1a1a1a', { gap: 9, ow: 5 });
+    for (const x of [740, 800, 860]) shape(s, circ(x, 226, 14), '#1a1a1a', null, { gap: 4, w: 5 });
+    sparkle(s, 880, 560, 1.2); sparkle(s, 60, 120, 1);
+  })();
+</script>
+</body>
+</html>
