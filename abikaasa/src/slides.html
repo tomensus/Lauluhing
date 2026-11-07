@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – teie lugu, laul abikaasale</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* Crayon drawing look (kit in tiktok-shared/crayon.js), 3:4. Older audience: big plain text, formal "teie".
+     The same couple ages across the slides: first meeting, first home, children, today. */
+  @font-face{font-family:Kalam;font-weight:700;src:url(../../tiktok-shared/fonts/kalam.ttf)}
+  .slide{background:#fff;color:#111}
+  .slide::after{display:none}
+  .safe{justify-content:center;align-items:center;text-align:center}
+  .k{font-family:Kalam,cursive;font-weight:700;filter:url(#grain);line-height:1.08;white-space:nowrap}
+  .red{color:#e3151b}
+  .art{display:block;margin-top:14px}
+  .t1{font-size:84px}
+  .t2{font-size:62px;margin-top:6px;color:#333}
+</style>
+</head>
+<body class="r34">
+<script src="../../tiktok-shared/crayon.js"></script>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:80px">Kõik need aastad</div>
+    <div class="k red" style="font-size:110px">ühes laulus.</div>
+    <div class="k t2">Kingitus abikaasale</div>
+    <svg class="art" id="a1" width="820" height="680" viewBox="0 0 1000 829"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k t1 red">Esimene kohtumine.</div>
+    <div class="k t2">Mäletate veel, mis tal seljas oli?</div>
+    <svg class="art" id="a2" width="860" height="780" viewBox="0 0 1000 907"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k t1 red">Esimene kodu.</div>
+    <div class="k t2">Kitsas, aga teie oma.</div>
+    <svg class="art" id="a3" width="860" height="780" viewBox="0 0 1000 907"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k t1 red" style="font-size:74px">Lapsed, mured ja rõõmud.</div>
+    <div class="k t2">Ja ikka koos.</div>
+    <svg class="art" id="a4" width="860" height="780" viewBox="0 0 1000 907"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k t1 red">Ja täna?</div>
+    <div class="k t2">Sama diivan. Sama inimene.</div>
+    <svg class="art" id="a5" width="860" height="780" viewBox="0 0 1000 907"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:74px">Pange see kõik</div>
+    <div class="k red" style="font-size:110px">ühte laulu.</div>
+    <div class="k" style="font-size:48px;margin-top:10px">Pulma-aastapäevaks, sünnipäevaks<br>või lihtsalt niisama.</div>
+    <svg class="art" id="a6" width="600" height="336" viewBox="0 0 1000 560" style="margin-top:20px"></svg>
+    <div class="k" style="font-size:54px;margin-top:14px">Praegu on <span class="red">soodushind!</span></div>
+    <div class="k" style="font-size:46px;margin-top:12px">Kirjutage meile: lauluhing@gmail.com<br>või TikToki sõnumitesse</div>
+  </div>
+</section>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const text = (svg, x, y, t, size = 40, c = '#1a1a1a') => { const e = el('text', { x, y, 'text-anchor': 'middle', 'font-family': 'Kalam', 'font-weight': 700, 'font-size': size, fill: c, filter: 'url(#grain)' }, svg); e.textContent = t; };
+  // the couple: he in blue, she in red, older on slides 1 and 5
+  const him = (svg, x, y, k, o = {}) => person(svg, x, y, k, Object.assign({ shirt: '#2f6fe0', pants: '#4a5870' }, o));
+  const her = (svg, x, y, k, o = {}) => person(svg, x, y, k, Object.assign({ shirt: '#e3151b', pants: '#2b3a67', longHair: true, hairColor: '#7a4a22' }, o));
+  const OLD_HIM = { hairColor: '#cfcfcf', glasses: true, mustache: '#d9d9d9' };
+  const OLD_HER = { hairColor: '#d6d6d6', glasses: true };
+  const holdHands = (svg, a, b) => line(svg, `M${a[0]} ${a[1]} Q${(a[0] + b[0]) / 2} ${a[1] + 24} ${b[0]} ${b[1]}`, '#1a1a1a', 7);
+
+  // 1: older couple holding hands, big heart
+  (() => { const s = $('a1');
+    shape(s, `M60 800 C220 700 420 680 600 690 C780 700 900 740 940 800 Z`, '#36b44a', '#1d7a2c', { gap: 9 });
+    const a = him(s, 400, 740, 1.3, OLD_HIM);
+    const b = her(s, 600, 740, 1.25, OLD_HER);
+    holdHands(s, a.handR, b.handL);
+    heart(s, 500, 150, 2.2); sun(s, 860, 120, 50); heart(s, 180, 260, .9);
+  })();
+  // 2: first meeting, young couple dancing under lights
+  (() => { const s = $('a2');
+    line(s, 'M40 120 Q500 230 960 120', '#1a1a1a', 4);
+    const cols = ['#ffd21a', '#e3151b', '#2f6fe0', '#36b44a', '#ff8fb1'];
+    for (let i = 1; i < 10; i++) { const t = i / 10, x = 40 + 920 * t, y = 120 + 4 * 110 * t * (1 - t); shape(s, ell(x, y + 24, 12, 18), cols[i % 5], '#1a1a1a', { gap: 4, ow: 3 }); }
+    ground(s, 880, 60, 940);
+    const a = him(s, 400, 872, 1.35, { arms: 'reach' });
+    const b = her(s, 610, 872, 1.3, { arms: 'reach' });
+    note(s, 140, 420, 1.2); note(s, 860, 380, 1.1, '#e3151b'); heart(s, 505, 320, 1.1);
+    text(s, 840, 600, '1989', 56, '#555');
+  })();
+  // 3: first home, small house with the couple in front
+  (() => { const s = $('a3');
+    ground(s, 880, 40, 960);
+    shape(s, rect(470, 460, 400, 420), '#ffd9a8', '#1a1a1a', { gap: 9 });
+    shape(s, `M440 470 L670 260 L900 470 Z`, '#e3151b', '#1a1a1a', { gap: 8 });
+    shape(s, rect(630, 700, 90, 180), '#7a4a22', '#1a1a1a', { gap: 7 });
+    shape(s, rect(510, 540, 90, 90), '#cfe4fb', '#1a1a1a', { gap: 9, ow: 4 });
+    shape(s, rect(750, 540, 90, 90), '#cfe4fb', '#1a1a1a', { gap: 9, ow: 4 });
+    line(s, 'M800 300 V220 H850 V340', '#1a1a1a', 6);
+    for (const [x, y] of [[825, 190], [845, 140], [870, 95]]) shape(s, circ(x, y, 18), '#d9d9d9', '#999', { gap: 6, op: .8, ow: 3 });
+    const a = him(s, 160, 872, 1.15);
+    const b = her(s, 330, 872, 1.1);
+    holdHands(s, a.handR, b.handL);
+    heart(s, 250, 300, 1.2);
+  })();
+  // 4: family with two children
+  (() => { const s = $('a4');
+    ground(s, 880, 30, 970);
+    const a = him(s, 230, 872, 1.3, { arms: 'down' });
+    const b = her(s, 770, 872, 1.25, { arms: 'down' });
+    person(s, 430, 872, .75, { shirt: '#36b44a', pants: '#2f6fe0', arms: 'up' });
+    person(s, 580, 872, .65, { shirt: '#ffd21a', pants: '#7a4fc2', arms: 'up', longHair: true, hairColor: '#7a4a22' });
+    heart(s, 500, 260, 1.4); sun(s, 860, 120, 48); cloud(s, 170, 170, .9);
+  })();
+  // 5: older couple on the sofa, TV glow
+  (() => { const s = $('a5');
+    ground(s, 880, 40, 960);
+    // sofa behind them
+    shape(s, rect(120, 480, 760, 200), '#7f9a8c', '#1a1a1a', { gap: 9 });
+    shape(s, rect(90, 560, 90, 230), '#6c8577', '#1a1a1a', { gap: 8 });
+    shape(s, rect(820, 560, 90, 230), '#6c8577', '#1a1a1a', { gap: 8 });
+    shape(s, rect(160, 680, 680, 110), '#8fab9c', '#1a1a1a', { gap: 9 });
+    line(s, 'M160 790 V870 M840 790 V870', '#4a3022', 12);
+    const a = him(s, 380, 830, 1.1, Object.assign({ arms: 'down' }, OLD_HIM));
+    const b = her(s, 620, 830, 1.05, Object.assign({ arms: 'down' }, OLD_HER));
+    holdHands(s, a.handR, b.handL);
+    // seat cushion in front of their legs so they sit on the sofa
+    shape(s, rect(160, 660, 680, 130), '#8fab9c', '#1a1a1a', { gap: 9 });
+    shape(s, rect(90, 560, 90, 230), '#6c8577', '#1a1a1a', { gap: 8 });
+    shape(s, rect(820, 560, 90, 230), '#6c8577', '#1a1a1a', { gap: 8 });
+    heart(s, 500, 230, 1.6); text(s, 830, 230, '35 aastat', 50, '#555');
+  })();
+  // 6: song card
+  (() => { const s = $('a6');
+    shape(s, `M120 40 H880 Q920 40 920 80 V480 Q920 520 880 520 H120 Q80 520 80 480 V80 Q80 40 120 40 Z`, '#fff7d6', '#1a1a1a', { gap: 14, op: .6, ow: 5 });
+    note(s, 230, 400, 1.7); note(s, 400, 350, 1.3, '#e3151b');
+    text(s, 660, 230, 'Meie laul', 84);
+    heart(s, 690, 380, 1.6);
+  })();
+</script>
+</body>
+</html>

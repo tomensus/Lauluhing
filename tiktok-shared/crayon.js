@@ -109,6 +109,8 @@ document.body.insertAdjacentHTML('afterbegin', `<svg width="0" height="0" style=
       el('path', { d: `M${P(x1, y1)} L${P(x2, y2)}`, stroke: skin, 'stroke-width': 19 * s, 'stroke-linecap': 'round', filter: 'url(#rough1)' }, svg);
       shape(svg, circ(x + x2 * s, y + y2 * s, 15 * s), skin, '#1a1a1a', { gap: 6, op: .8, ow: 4 });
     }
+    // long hair falls behind the head to the shoulders
+    if (o.longHair) shape(svg, `M${P(-52, -372)} C${P(-60, -440)} ${P(60, -440)} ${P(52, -372)} L${P(62, -290)} Q${P(0, -280)} ${P(-62, -290)} Z`, o.hairColor || '#151515', '#1a1a1a', { gap: 6, ow: 3.5 });
     // head
     shape(svg, circ(x, y - 362 * s, 44 * s), skin, '#1a1a1a', { gap: 10, op: .75, ow: 4.5 });
     if (o.face !== false) {
