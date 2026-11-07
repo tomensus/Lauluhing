@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – isa reaktsioon kingile</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* Crayon drawing look (kit in tiktok-shared/crayon.js), 3:4. One gift and dad's reply per slide. */
+  @font-face{font-family:Kalam;font-weight:700;src:url(../../tiktok-shared/fonts/kalam.ttf)}
+  .slide{background:#fff;color:#111}
+  .slide::after{display:none}
+  .safe{justify-content:center;align-items:center;text-align:center}
+  .k{font-family:Kalam,cursive;font-weight:700;filter:url(#grain);line-height:1.08;white-space:nowrap}
+  .red{color:#e3151b}
+  .art{display:block;margin-top:14px}
+  .gift{font-size:60px;color:#555}
+  .say{font-size:76px}
+</style>
+</head>
+<body class="r34">
+<script src="../../tiktok-shared/crayon.js"></script>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:110px">ISA REAKTSIOON</div>
+    <div class="k red" style="font-size:150px">KINGILE</div>
+    <svg class="art" id="a1" width="780" height="700" viewBox="0 0 1000 897"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k gift">Kink: sokid</div>
+    <div class="k say red">„Aitäh. Väga praktiline.“</div>
+    <svg class="art" id="a2" width="860" height="780" viewBox="0 0 1000 907"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k gift">Kink: lips</div>
+    <div class="k say red">„Kuhu ma seda panen?“</div>
+    <svg class="art" id="a3" width="860" height="780" viewBox="0 0 1000 907"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k gift">Kink: kinkekaart</div>
+    <div class="k say red">„Oi, tore.“</div>
+    <svg class="art" id="a4" width="860" height="780" viewBox="0 0 1000 907"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k gift">Kink: laul tema enda loost</div>
+    <div class="k say red" style="font-size:84px">(vaikus)</div>
+    <div class="k gift" style="margin-top:4px">…ja üks pisar</div>
+    <svg class="art" id="a5" width="860" height="780" viewBox="0 0 1000 907"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:66px">Mõnikord on parim</div>
+    <div class="k" style="font-size:66px">reaktsioon</div>
+    <div class="k red" style="font-size:110px">vaikus.</div>
+    <svg class="art" id="a6" width="620" height="347" viewBox="0 0 1000 560" style="margin-top:20px"></svg>
+    <div class="k" style="font-size:54px;margin-top:14px">Praegu on <span class="red">soodushind!</span></div>
+    <div class="k" style="font-size:46px;margin-top:12px">Kirjuta mulle TikToki sõnumitesse<br>või lauluhing@gmail.com</div>
+  </div>
+</section>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const text = (svg, x, y, t, size = 40, c = '#1a1a1a') => { const e = el('text', { x, y, 'text-anchor': 'middle', 'font-family': 'Kalam', 'font-weight': 700, 'font-size': size, fill: c, filter: 'url(#grain)' }, svg); e.textContent = t; };
+  const dad = (svg, x, y, k, o = {}) => person(svg, x, y, k, Object.assign({ shirt: '#2f6fe0', pants: '#7a4a22', mustache: '#5a3a1e' }, o));
+  const X = 420, Y = 890, K = 1.45;   // dad's position on slides 2-5
+  const tear = (svg, x, y, s = 1) => shape(svg, `M${x} ${y} C${x - 12 * s} ${y + 18 * s} ${x - 12 * s} ${y + 34 * s} ${x} ${y + 34 * s} C${x + 12 * s} ${y + 34 * s} ${x + 12 * s} ${y + 18 * s} ${x} ${y} Z`, '#7fc0ff', '#2f7fd6', { gap: 4, ow: 3 });
+
+  // 1: dad and a wrapped gift with a question mark
+  (() => { const s = $('a1');
+    ground(s, 870, 120, 880);
+    dad(s, 380, 862, 1.55, { arms: 'shrug' });
+    gift(s, 640, 720, 170, 140, { box: '#e3151b', ribbon: '#ffd21a' });
+    line(s, 'M760 330 C760 280 830 280 828 330 C826 360 795 362 795 395', '#e3151b', 9); shape(s, circ(795, 430, 8), '#e3151b', null, { gap: 3, w: 5 });
+    heart(s, 160, 240, 1.1); sparkle(s, 600, 200, 1.1);
+  })();
+  // 2: socks held up
+  (() => { const s = $('a2');
+    ground(s, Y, 60, 940);
+    dad(s, X, Y - 8, K, { arms: 'reach' });
+    const hx = X + 150 * K, hy = Y - 8 - 170 * K;
+    shape(s, `M${hx} ${hy - 30} H${hx + 70} V${hy + 150} Q${hx + 70} ${hy + 200} ${hx + 30} ${hy + 208} L${hx - 30} ${hy + 214} Q${hx - 60} ${hy + 214} ${hx - 58} ${hy + 184} Q${hx - 56} ${hy + 160} ${hx - 26} ${hy + 152} L${hx} ${hy + 146} Z`, '#ff9a1a', '#1a1a1a', { gap: 7 });
+    line(s, `M${hx} ${hy} H${hx + 70} M${hx} ${hy + 24} H${hx + 70}`, '#1a1a1a', 4);
+    text(s, 800, 280, 'nr 47', 50, '#555');
+  })();
+  // 3: tie, dad shrugging
+  (() => { const s = $('a3');
+    ground(s, Y, 60, 940);
+    dad(s, X, Y - 8, K, { arms: 'shrug' });
+    const g = el('g', { transform: 'rotate(18 780 520)' }, s);
+    shape(g, `M760 360 H800 L794 400 L820 600 L780 650 L740 600 L766 400 Z`, '#7a4fc2', '#1a1a1a', { gap: 7 });
+    for (const y of [450, 520, 590]) line(g, `M752 ${y} L808 ${y - 24}`, '#ffd21a', 5);
+    line(s, 'M140 300 C140 250 200 250 198 300 C196 330 168 332 168 362', '#1a1a1a', 8); shape(s, circ(168, 394, 7), '#1a1a1a', null, { gap: 3, w: 5 });
+  })();
+  // 4: gift card going into a drawer
+  (() => { const s = $('a4');
+    ground(s, Y, 60, 940);
+    dad(s, X - 80, Y - 8, K, { arms: 'reach' });
+    shape(s, rect(620, 600, 300, 280), '#c98a4b', '#1a1a1a', { gap: 8 });
+    shape(s, rect(640, 520, 260, 110), '#e2b77c', '#1a1a1a', { gap: 9 });
+    shape(s, rect(740, 560, 60, 18), '#555', '#1a1a1a', { gap: 5, ow: 3 });
+    const g = el('g', { transform: 'rotate(-20 660 460)' }, s);
+    shape(g, rect(600, 420, 150, 90), '#2f6fe0', '#1a1a1a', { gap: 7 });
+    text(g, 675, 475, 'KAART', 30, '#ffffff');
+    line(s, 'M760 400 C780 430 790 470 770 500 M754 486 L770 502 L790 488', '#888', 5);
+  })();
+  // 5: song: dad listening with headphones, a tear, hand on heart
+  (() => { const s = $('a5');
+    ground(s, Y, 60, 940);
+    dad(s, X + 80, Y - 8, K, { arms: 'front' });
+    const hx = X + 80, hy = Y - 8;
+    line(s, `M${hx - 56 * K} ${hy - 384 * K} C${hx - 66 * K} ${hy - 512 * K} ${hx + 66 * K} ${hy - 512 * K} ${hx + 56 * K} ${hy - 384 * K}`, '#e3151b', 15);
+    shape(s, ell(hx - 52 * K, hy - 378 * K, 18 * K, 30 * K), '#e3151b', '#1a1a1a', { gap: 6, ow: 4.5 });
+    shape(s, ell(hx + 52 * K, hy - 378 * K, 18 * K, 30 * K), '#e3151b', '#1a1a1a', { gap: 6, ow: 4.5 });
+    tear(s, hx + 22 * K, hy - 356 * K, .7);
+    note(s, 180, 380, 1.3); note(s, 820, 330, 1.1, '#2f6fe0'); note(s, 200, 640, 1, '#e3151b'); heart(s, 830, 560, 1.2);
+  })();
+  // 6: song card
+  (() => { const s = $('a6');
+    shape(s, `M120 40 H880 Q920 40 920 80 V480 Q920 520 880 520 H120 Q80 520 80 480 V80 Q80 40 120 40 Z`, '#fff7d6', '#1a1a1a', { gap: 14, op: .6, ow: 5 });
+    note(s, 230, 400, 1.7); note(s, 400, 350, 1.3, '#e3151b');
+    text(s, 660, 230, 'Laul isale', 84);
+    heart(s, 690, 380, 1.6);
+  })();
+</script>
+</body>
+</html>
