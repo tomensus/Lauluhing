@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – milline kink jääb meelde</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* Crayon drawing look (kit in tiktok-shared/crayon.js), 3:4. Drawings shared with meeldejaav-kink-video/. */
+  @font-face{font-family:Kalam;font-weight:700;src:url(../../tiktok-shared/fonts/kalam.ttf)}
+  .slide{background:#fff;color:#111}
+  .slide::after{display:none}
+  .safe{justify-content:center;align-items:center;text-align:center}
+  .k{font-family:Kalam,cursive;font-weight:700;filter:url(#grain);line-height:1.08;white-space:nowrap}
+  .red{color:#e3151b}
+  .art{display:block;margin-top:10px}
+</style>
+</head>
+<body class="r34">
+<script src="../../tiktok-shared/crayon.js"></script>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:80px">Kas sa tead, milline kink</div><div class="k red" style="font-size:88px">jääb päriselt meelde?</div>
+    <svg class="art" id="s1" width="840" height="756" viewBox="0 0 1000 900"></svg>
+  </div>
+</section>
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:84px">Mitte see, mis</div><div class="k red" style="font-size:96px">maksis kõige rohkem.</div>
+    <svg class="art" id="s2" width="840" height="756" viewBox="0 0 1000 900"></svg>
+  </div>
+</section>
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:84px">Vaid see, mis</div><div class="k red" style="font-size:110px">räägib temast.</div>
+    <svg class="art" id="s3" width="840" height="756" viewBox="0 0 1000 900"></svg>
+  </div>
+</section>
+<section class="slide">
+  <div class="safe">
+    <div class="k red" style="font-size:96px">Laul tema enda loost.</div><div class="k" style="font-size:66px">Tema nimi ja teie mälestused.</div>
+    <svg class="art" id="s4" width="840" height="756" viewBox="0 0 1000 900"></svg>
+  </div>
+</section>
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:84px">Seda kuulab ta</div><div class="k red" style="font-size:110px">ikka ja jälle.</div>
+    <svg class="art" id="s5" width="840" height="756" viewBox="0 0 1000 900"></svg>
+  </div>
+</section>
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:84px">Praegu on</div><div class="k red" style="font-size:116px">soodushind!</div><div class="k" style="font-size:62px">Kirjuta mulle:</div>
+    <svg class="art" id="s6" width="840" height="756" viewBox="0 0 1000 900"></svg>
+  </div>
+</section>
+
+<script>
+  // ---------- drawings ----------
+  const $ = id => document.getElementById(id);
+  const text = (svg, x, y, t, size = 40, c = '#1a1a1a') => { const e = el('text', { x, y, 'text-anchor': 'middle', 'font-family': 'Kalam', 'font-weight': 700, 'font-size': size, fill: c, filter: 'url(#grain)' }, svg); e.textContent = t; };
+  const qmark = (svg, x, y, s, c = '#e3151b') => {
+    line(svg, `M${x - 16 * s} ${y - 24 * s} C${x - 16 * s} ${y - 52 * s} ${x + 26 * s} ${y - 52 * s} ${x + 24 * s} ${y - 26 * s} C${x + 22 * s} ${y - 8 * s} ${x} ${y - 6 * s} ${x} ${y + 14 * s}`, c, 8);
+    shape(svg, circ(x, y + 36 * s, 6 * s), c, null, { gap: 3, w: 5 });
+  };
+  const cross = (svg, x, y, r) => line(svg, `M${x - r} ${y - r} L${x + r} ${y + r} M${x + r} ${y - r} L${x - r} ${y + r}`, '#e3151b', 12);
+  const bag = (svg, x, y, w, h, c) => {
+    shape(svg, `M${x} ${y} H${x + w} L${x + w - 10} ${y + h} H${x + 10} Z`, c, '#1a1a1a', { gap: 8 });
+    line(svg, `M${x + w * .3} ${y + 10} V${y - 30} C${x + w * .3} ${y - 70} ${x + w * .7} ${y - 70} ${x + w * .7} ${y - 30} V${y + 10}`, '#1a1a1a', 6);
+  };
+  const headphones = (svg, x, y, k) => {
+    line(svg, `M${x - 56 * k} ${y - 384 * k} C${x - 66 * k} ${y - 512 * k} ${x + 66 * k} ${y - 512 * k} ${x + 56 * k} ${y - 384 * k}`, '#e3151b', 15);
+    shape(svg, ell(x - 52 * k, y - 378 * k, 18 * k, 30 * k), '#e3151b', '#1a1a1a', { gap: 6, ow: 4.5 });
+    shape(svg, ell(x + 52 * k, y - 378 * k, 18 * k, 30 * k), '#e3151b', '#1a1a1a', { gap: 6, ow: 4.5 });
+  };
+
+  // 1: person thinking, gift, question marks
+  (() => { const s = $('s1');
+    ground(s, 860, 120, 880);
+    person(s, 420, 852, 1.6, { arms: 'shrug', shirt: '#36b44a', pants: '#2b3a67' });
+    gift(s, 680, 720, 150, 130, { box: '#e3151b', ribbon: '#ffd21a' });
+    qmark(s, 200, 220, 1.6); qmark(s, 780, 190, 1.3, '#1a1a1a'); qmark(s, 820, 470, 1);
+  })();
+  // 2: expensive shopping bags with price tags, crossed out
+  (() => { const s = $('s2');
+    line(s, 'M80 800 H920', '#1a1a1a', 5);
+    bag(s, 140, 420, 220, 380, '#7a4fc2'); bag(s, 400, 360, 240, 440, '#2f6fe0'); bag(s, 680, 460, 200, 340, '#ff9a1a');
+    for (const [x, y, t] of [[250, 560, '€€€'], [520, 520, '€€€€'], [780, 600, '€€']]) text(s, x, y, t, 52, '#ffffff');
+    cross(s, 500, 560, 300);
+    sparkle(s, 140, 200, 1); sparkle(s, 860, 220, 1.1);
+  })();
+  // 3: person surrounded by memory bubbles
+  (() => { const s = $('s3');
+    ground(s, 860, 120, 880);
+    person(s, 500, 852, 1.5, { shirt: '#e3151b', pants: '#2b3a67', longHair: true, hairColor: '#7a4a22' });
+    const bub = (x, y) => shape(s, circ(x, y, 80), '#fff7d6', '#1a1a1a', { gap: 14, op: .55, ow: 4.5 });
+    bub(170, 230); bub(830, 230); bub(150, 560); bub(850, 560);
+    shape(s, ell(170, 232, 46, 22), '#9aa3ad', '#1a1a1a', { gap: 5, ow: 3.5 }); shape(s, `M126 232 L100 214 L100 250 Z`, '#9aa3ad', '#1a1a1a', { gap: 5, ow: 3 });
+    heart(s, 830, 232, 1.2);
+    shape(s, rect(110, 520, 80, 70), '#fff2c4', '#1a1a1a', { gap: 7, ow: 3.5 }); line(s, 'M130 520 V494 M150 520 V494 M170 520 V494', '#2f6fe0', 5);
+    text(s, 850, 578, 'HAHA', 40, '#2f6fe0');
+    heart(s, 500, 110, 1.3);
+  })();
+  // 4: song card with name
+  (() => { const s = $('s4');
+    shape(s, `M120 180 H880 Q920 180 920 220 V640 Q920 680 880 680 H120 Q80 680 80 640 V220 Q80 180 120 180 Z`, '#fff7d6', '#1a1a1a', { gap: 14, op: .6, ow: 5 });
+    note(s, 240, 560, 1.8); note(s, 420, 510, 1.3, '#e3151b');
+    text(s, 680, 380, 'Laul', 84); text(s, 680, 470, 'Marile', 84, '#e3151b');
+    text(s, 560, 640, 'Näide', 34, '#888');
+    heart(s, 760, 560, 1.2); sparkle(s, 160, 100, 1.2); sparkle(s, 860, 90, 1); note(s, 820, 820, 1, '#2f6fe0');
+  })();
+  // 5: person listening with headphones, eyes happy, notes
+  (() => { const s = $('s5');
+    ground(s, 860, 120, 880);
+    const x = 500, y = 852, k = 1.5;
+    person(s, x, y, k, { shirt: '#e3151b', pants: '#2b3a67', longHair: true, hairColor: '#7a4a22', arms: 'front' });
+    headphones(s, x, y, k);
+    note(s, 180, 300, 1.4); note(s, 820, 260, 1.2, '#2f6fe0'); note(s, 160, 600, 1.1, '#e3151b'); note(s, 840, 560, 1);
+    heart(s, 300, 160, 1.2);
+    // repeat arrows
+    line(s, 'M700 140 C780 120 840 170 830 240 M808 220 L830 244 L852 216', '#1a1a1a', 6);
+  })();
+  // 6: envelope + email
+  (() => { const s = $('s6');
+    const g = el('g', { transform: 'rotate(-5 500 360)' }, s);
+    shape(g, rect(220, 200, 560, 340), '#fff7d6', '#1a1a1a', { gap: 12, op: .6, ow: 6 });
+    line(g, 'M222 206 L500 400 L778 206', '#1a1a1a', 6);
+    heart(g, 500, 460, 1.6);
+    text(s, 500, 690, 'lauluhing@gmail.com', 78, '#e3151b');
+    text(s, 500, 790, 'või TikToki sõnumitesse', 52);
+    sparkle(s, 140, 160, 1.2); sparkle(s, 860, 140, 1.1);
+  })();
+
+</script>
+</body>
+</html>

@@ -4,6 +4,8 @@ Eestikeelne bränd: personaalsed laulud kingituseks (lauluhing.com). Sait: `inde
 
 ## Sotsiaalmeedia visuaalid
 
+**Kui omanik ütleb „video“, mõtleb ta slideshow'd (TikToki pildikarusselli). Ära tee kunagi päris videot (MP4), ainult siis, kui ta ütleb sõnaselgelt, et tahab MP4-videot.**
+
 Omanik ootab kohe esimesest versioonist parimat võimalikku kvaliteeti, mitte lihtsat mustandit, mida hiljem parandada.
 
 - TikToki karussellid tehakse ühise süsteemiga: `tiktok-shared/lauluhing.css` (värvid, fondid, tekstuur, turvaala) ja `tiktok-shared/export.js`. Kriidijoonistuse stiilis joonistused: `tiktok-shared/crayon.js` (näide `isadepaev-kriit/`). Näited: `laulu-sund/`, `muudid/`.
