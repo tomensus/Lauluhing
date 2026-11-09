@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – iga elu on laul</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* Crayon drawing look (kit in tiktok-shared/crayon.js), 3:4. A life told as the parts of a song. */
+  @font-face{font-family:Kalam;font-weight:700;src:url(../../tiktok-shared/fonts/kalam.ttf)}
+  .slide{background:#fff;color:#111}
+  .slide::after{display:none}
+  .safe{justify-content:center;align-items:center;text-align:center}
+  .k{font-family:Kalam,cursive;font-weight:700;filter:url(#grain);line-height:1.08;white-space:nowrap}
+  .red{color:#e3151b}
+  .art{display:block;margin-top:14px}
+  .part{font-size:54px;color:#888;letter-spacing:4px}
+  .line{font-size:92px}
+</style>
+</head>
+<body class="r34">
+<script src="../../tiktok-shared/crayon.js"></script>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:110px">IGA ELU</div>
+    <div class="k red" style="font-size:150px">ON LAUL</div>
+    <div class="k" style="font-size:56px;margin-top:6px;color:#333">Kuula, kuidas see käib →</div>
+    <svg class="art" id="a1" width="780" height="660" viewBox="0 0 1000 846"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k part">1. SALM</div>
+    <div class="k line red">Lapsepõlv.</div>
+    <svg class="art" id="a2" width="860" height="800" viewBox="0 0 1000 930"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k part">2. SALM</div>
+    <div class="k line red">Esimene armastus.</div>
+    <svg class="art" id="a3" width="860" height="800" viewBox="0 0 1000 930"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k part">REFRÄÄN</div>
+    <div class="k line red" style="font-size:80px">Inimesed, kes jäävad.</div>
+    <svg class="art" id="a4" width="860" height="800" viewBox="0 0 1000 930"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k part">VAHEOSA</div>
+    <div class="k line red">Rasked ajad.</div>
+    <div class="k" style="font-size:54px;color:#333">Ja keegi, kes hoidis vihmavarju.</div>
+    <svg class="art" id="a5" width="860" height="740" viewBox="0 0 1000 860"></svg>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="safe">
+    <div class="k" style="font-size:72px">Kõigil on oma laul.</div>
+    <div class="k red" style="font-size:96px">Mina kirjutan selle</div>
+    <div class="k red" style="font-size:96px">päriselt valmis.</div>
+    <svg class="art" id="a6" width="600" height="336" viewBox="0 0 1000 560" style="margin-top:20px"></svg>
+    <div class="k" style="font-size:54px;margin-top:14px">Praegu on <span class="red">soodushind!</span></div>
+    <div class="k" style="font-size:46px;margin-top:12px">Kirjuta mulle TikToki sõnumitesse<br>või lauluhing@gmail.com</div>
+  </div>
+</section>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const text = (svg, x, y, t, size = 40, c = '#1a1a1a') => { const e = el('text', { x, y, 'text-anchor': 'middle', 'font-family': 'Kalam', 'font-weight': 700, 'font-size': size, fill: c, filter: 'url(#grain)' }, svg); e.textContent = t; };
+  const holdHands = (svg, a, b) => line(svg, `M${a[0]} ${a[1]} Q${(a[0] + b[0]) / 2} ${a[1] + 24} ${b[0]} ${b[1]}`, '#1a1a1a', 7);
+
+  // 1: a music staff that turns into a path with little figures along it
+  (() => { const s = $('a1');
+    for (let i = 0; i < 5; i++) line(s, `M40 ${360 + i * 30} C300 ${300 + i * 30} 700 ${440 + i * 30} 960 ${360 + i * 30}`, '#bbb', 3);
+    note(s, 180, 400, 1.4); note(s, 400, 430, 1.2, '#e3151b'); note(s, 620, 460, 1.3, '#2f6fe0'); note(s, 840, 400, 1.2);
+    ground(s, 820, 80, 920);
+    person(s, 230, 812, .55, { shirt: '#ffd21a', pants: '#2f6fe0', arms: 'up' });
+    person(s, 440, 812, .85, { shirt: '#36b44a', pants: '#2b3a67' });
+    person(s, 640, 812, .95, { shirt: '#e3151b', pants: '#2b3a67', longHair: true, hairColor: '#7a4a22' });
+    person(s, 830, 812, .95, { shirt: '#7a4fc2', pants: '#4a5870', hairColor: '#cfcfcf', glasses: true });
+    heart(s, 500, 140, 1.4); sun(s, 880, 110, 46);
+  })();
+  // 2: child on a swing under a tree
+  (() => { const s = $('a2');
+    ground(s, 900, 40, 960);
+    shape(s, rect(130, 330, 60, 570), '#7a4a22', '#1a1a1a', { gap: 7 });
+    shape(s, circ(160, 260, 170), '#36b44a', '#1d7a2c', { gap: 9 });
+    line(s, 'M190 420 H640', '#7a4a22', 22);
+    line(s, 'M470 420 L470 690 M610 420 L610 690', '#1a1a1a', 4);
+    shape(s, rect(450, 690, 180, 22), '#e3151b', '#1a1a1a', { gap: 6, ow: 4 });
+    person(s, 540, 760, .62, { shirt: '#ffd21a', pants: '#2f6fe0', arms: 'up' });
+    sun(s, 860, 140, 60); cloud(s, 560, 200, .9);
+    line(s, 'M700 640 q30 -10 50 10 M720 680 q30 -10 50 10', '#888', 4);
+  })();
+  // 3: young couple on a bench under the moon
+  (() => { const s = $('a3');
+    shape(s, `M760 110 A80 80 0 1 0 830 250 A64 64 0 1 1 760 110 Z`, '#ffd21a', '#e6b800', { gap: 7 });
+    sparkle(s, 600, 120, .9); sparkle(s, 180, 160, 1); sparkle(s, 900, 360, .8);
+    ground(s, 900, 40, 960);
+    const a = person(s, 400, 892, 1.3, { shirt: '#2f6fe0', pants: '#4a5870' });
+    const b = person(s, 600, 892, 1.25, { shirt: '#e3151b', pants: '#2b3a67', longHair: true, hairColor: '#7a4a22' });
+    shape(s, rect(250, 690, 500, 34), '#c98a4b', '#1a1a1a', { gap: 7 });
+    line(s, 'M290 724 V900 M710 724 V900', '#7a4a22', 12);
+    holdHands(s, a.handR, b.handL);
+    heart(s, 500, 300, 1.6);
+  })();
+  // 4: family and friends in a row, hearts above
+  (() => { const s = $('a4');
+    ground(s, 900, 20, 980);
+    const ppl = [[120, 1, '#36b44a', {}], [290, .7, '#ffd21a', { arms: 'up' }], [460, 1.05, '#e3151b', { longHair: true, hairColor: '#7a4a22' }],
+                 [640, 1.05, '#2f6fe0', {}], [820, 1, '#7a4fc2', { hairColor: '#cfcfcf', glasses: true }]];
+    let prev = null;
+    for (const [x, k, c, o] of ppl) { const p = person(s, x, 892, k, Object.assign({ shirt: c, pants: '#2b3a67' }, o)); if (prev && !o.arms && !prev.up) holdHands(s, prev.handR, p.handL); prev = Object.assign(p, { up: o.arms === 'up' }); }
+    heart(s, 260, 240, 1.2); heart(s, 500, 170, 1.6); heart(s, 740, 240, 1.2);
+  })();
+  // 5: two people under an umbrella in the rain
+  (() => { const s = $('a5');
+    cloud(s, 220, 130, 1.3); cloud(s, 720, 100, 1.5);
+    const ux = 568, uy = 180;              // umbrella apex, held in his raised right hand
+    for (let i = 0; i < 40; i++) {
+      const x = 40 + (i * 137) % 920, y = 210 + (i * 71) % 440;
+      if (x > ux - 280 && x < ux + 280 && y > uy + 40) continue;   // no rain under the umbrella
+      line(s, `M${x} ${y} l-14 34`, '#2f6fe0', 4);
+    }
+    ground(s, 860, 40, 960);
+    const a = person(s, 400, 852, 1.2, { shirt: '#2f6fe0', pants: '#4a5870', arms: 'wave' });
+    person(s, 640, 852, 1.15, { shirt: '#e3151b', pants: '#2b3a67', longHair: true, hairColor: '#7a4a22' });
+    line(s, `M${ux} ${uy} V${a.handR[1] + 50} q0 30 -26 30`, '#1a1a1a', 7);
+    shape(s, `M${ux - 270} ${uy + 110} Q${ux} ${uy - 110} ${ux + 270} ${uy + 110} Q${ux + 216} ${uy + 80} ${ux + 162} ${uy + 110} Q${ux + 108} ${uy + 80} ${ux + 54} ${uy + 110} Q${ux} ${uy + 80} ${ux - 54} ${uy + 110} Q${ux - 108} ${uy + 80} ${ux - 162} ${uy + 110} Q${ux - 216} ${uy + 80} ${ux - 270} ${uy + 110} Z`, '#ffd21a', '#1a1a1a', { gap: 8 });
+  })();
+  // 6: song card
+  (() => { const s = $('a6');
+    shape(s, `M120 40 H880 Q920 40 920 80 V480 Q920 520 880 520 H120 Q80 520 80 480 V80 Q80 40 120 40 Z`, '#fff7d6', '#1a1a1a', { gap: 14, op: .6, ow: 5 });
+    note(s, 230, 400, 1.7); note(s, 400, 350, 1.3, '#e3151b');
+    text(s, 660, 230, 'Sinu laul', 84);
+    heart(s, 690, 380, 1.6);
+  })();
+</script>
+</body>
+</html>
