@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – probleem? lahendus.</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* "Problem? Solution." two-panel format after a reference the owner shared:
+     top panel = problem (sad), divider, bottom panel = answer (happy). Crayon kit in tiktok-shared/crayon.js. 3:4. */
+  @font-face{font-family:Kalam;font-weight:700;src:url(../../tiktok-shared/fonts/kalam.ttf)}
+  .slide{background:#fffdf8}
+  .slide::after{display:none}
+  .slide svg{position:absolute;inset:0;width:1080px;height:1440px}
+</style>
+</head>
+<body class="r34">
+<script src="../../tiktok-shared/crayon.js"></script>
+
+<section class="slide"><svg id="s1" viewBox="0 0 1080 1440"></svg></section>
+<section class="slide"><svg id="s2" viewBox="0 0 1080 1440"></svg></section>
+<section class="slide"><svg id="s3" viewBox="0 0 1080 1440"></svg></section>
+<section class="slide"><svg id="s4" viewBox="0 0 1080 1440"></svg></section>
+<section class="slide"><svg id="s5" viewBox="0 0 1080 1440"></svg></section>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const SKIN = '#f6c79a', HAIR = '#3b2a1e', SHIRT = '#2f6fe0';
+  const TOP = [0, 700], BOT = [712, 1440];   // panel y ranges; divider between them
+
+  const label = (svg, x, y, parts, size) => {   // parts: [[text, color], ...] on one line, centred
+    const t = el('text', { x, y, 'text-anchor': 'middle', 'font-family': 'Kalam', 'font-weight': 700, 'font-size': size, filter: 'url(#grain)' }, svg);
+    for (const [s, c] of parts) { const sp = el('tspan', { fill: c }, t); sp.textContent = s; }
+    while (t.getComputedTextLength() > 940 && size > 40) { size -= 2; t.setAttribute('font-size', size); }
+  };
+  const small = (svg, x, y, s, size = 40, c = '#1a1a1a') => label(svg, x, y, [[s, c]], size);
+  const panel = (svg, [y0, y1]) => {
+    const id = 'p' + Math.random().toString(36).slice(2);
+    const cp = el('clipPath', { id }, svg); el('rect', { x: 0, y: y0, width: 1080, height: y1 - y0 }, cp);
+    return el('g', { 'clip-path': `url(#${id})` }, svg);
+  };
+  const divider = svg => line(svg, 'M30 706 C300 700 760 712 1050 704', '#1a1a1a', 9);
+  const burst = (svg, x, y, s = 1, c = '#f2c200', flip = 1) => {
+    for (const [a, l] of [[-40, 60], [0, 70], [40, 60]]) {
+      const r = (a + (flip < 0 ? 180 : 0)) * Math.PI / 180;
+      line(svg, `M${x + Math.cos(r) * 30 * s} ${y + Math.sin(r) * 30 * s} L${x + Math.cos(r) * (30 + l) * s} ${y + Math.sin(r) * (30 + l) * s}`, c, 9);
+    }
+  };
+  const qm = (svg, x, y, s = 1, c = '#e3151b') => {
+    line(svg, `M${x - 22 * s} ${y - 34 * s} C${x - 22 * s} ${y - 74 * s} ${x + 36 * s} ${y - 74 * s} ${x + 34 * s} ${y - 36 * s} C${x + 32 * s} ${y - 12 * s} ${x} ${y - 8 * s} ${x} ${y + 20 * s}`, c, 10);
+    shape(svg, circ(x, y + 50 * s, 9 * s), c, null, { gap: 3, w: 5 });
+  };
+  const bubble = (svg, cx, cy, r, tailX, tailY) => {
+    el('circle', { cx, cy, r, fill: '#ffffff' }, svg);
+    shape(svg, circ(cx, cy, r), '#ffffff', '#1a1a1a', { gap: 40, op: 0, ow: 6 });
+    for (const [f, rr] of [[.35, 24], [.65, 16], [.9, 10]]) {
+      const x = cx - r * .7 + (tailX - (cx - r * .7)) * f, y = cy + r * .7 + (tailY - (cy + r * .7)) * f;
+      el('circle', { cx: x, cy: y, r: rr, fill: '#ffffff' }, svg);
+      shape(svg, circ(x, y, rr), '#ffffff', '#1a1a1a', { gap: 40, op: 0, ow: 5 });
+    }
+  };
+
+
+  // ---------- big-head bust, drawn around its base point (bottom centre, cut off by the panel) ----------
+  function bust(svg, x, base, k, mood, pose, o = {}) {
+    const g = el('g', { transform: `translate(${x} ${base}) scale(${k})` }, svg);
+    const hy = -380, r = 115;
+    // neck + shirt
+    shape(g, rect(-36, hy + 80, 72, 120), SKIN, '#1a1a1a', { gap: 9, op: .8, ow: 4 });
+    el('path', { d: `M-160 40 L-150 -200 Q-140 -238 -95 -244 L-42 -250 Q0 -212 42 -250 L95 -244 Q140 -238 150 -200 L160 40 Z`, fill: o.shirt || SHIRT }, g);
+    shape(g, `M-160 40 L-150 -200 Q-140 -238 -95 -244 L-42 -250 Q0 -212 42 -250 L95 -244 Q140 -238 150 -200 L160 40 Z`, o.shirt || SHIRT, '#1a1a1a', { gap: 8 });
+    // arms (behind the hands, in front of the shirt)
+    const P = {
+      head:  [[-128, -205, -230, -330, -128, -430], [128, -205, 230, -330, 128, -430]],
+      chin:  [[128, -205, 200, -190, 52, -282]],
+      thumb: [[128, -205, 250, -190, 262, -300]],
+      hold:  [[-128, -205, -150, -120, -62, -110], [128, -205, 150, -120, 62, -110]],
+      belly: [[-128, -205, -150, -100, -40, -110], [128, -205, 150, -100, 40, -100]],
+      none:  [],
+    }[pose];
+    for (const [x1, y1, cx1, cy1, x2, y2] of P) {
+      el('path', { d: `M${x1} ${y1} Q${cx1} ${cy1} ${x2} ${y2}`, stroke: '#1a1a1a', 'stroke-width': 54, fill: 'none', 'stroke-linecap': 'round' }, g);
+      el('path', { d: `M${x1} ${y1} Q${cx1} ${cy1} ${x2} ${y2}`, stroke: SKIN, 'stroke-width': 40, fill: 'none', 'stroke-linecap': 'round' }, g);
+    }
+    // head
+    shape(g, circ(-r + 2, hy + 12, 26), SKIN, '#1a1a1a', { gap: 8, op: .85, ow: 4.5 });
+    shape(g, circ(r - 2, hy + 12, 26), SKIN, '#1a1a1a', { gap: 8, op: .85, ow: 4.5 });
+    el('circle', { cx: 0, cy: hy, r, fill: SKIN }, g);
+    shape(g, circ(0, hy, r), SKIN, '#1a1a1a', { gap: 9, op: .85, ow: 5.5 });
+    shape(g, ell(-70, hy + 48, 20, 12), '#ff9aa2', null, { gap: 5, op: .6 });
+    shape(g, ell(70, hy + 48, 20, 12), '#ff9aa2', null, { gap: 5, op: .6 });
+    line(g, `M-8 ${hy + 28} Q0 ${hy + 38} 8 ${hy + 28}`, '#1a1a1a', 4);
+    if (mood === 'happy') {
+      line(g, `M-64 ${hy + 6} Q-42 ${hy - 22} -20 ${hy + 6} M20 ${hy + 6} Q42 ${hy - 22} 64 ${hy + 6}`, '#1a1a1a', 7);
+      shape(g, `M-44 ${hy + 52} Q0 ${hy + 118} 44 ${hy + 52} Z`, '#e8505b', '#1a1a1a', { gap: 5, ow: 5 });
+    } else if (mood === 'sing') {
+      line(g, `M-64 ${hy + 6} Q-42 ${hy - 22} -20 ${hy + 6} M20 ${hy + 6} Q42 ${hy - 22} 64 ${hy + 6}`, '#1a1a1a', 7);
+      shape(g, ell(0, hy + 70, 24, 30), '#e8505b', '#1a1a1a', { gap: 5, ow: 5 });
+    } else {
+      for (const ex of [-40, 40]) { shape(g, circ(ex, hy + 4, 14), '#1a1a1a', null, { gap: 3, w: 5 }); shape(g, circ(ex + 5, hy - 2, 4), '#ffffff', null, { gap: 2, w: 3 }); }
+      if (mood === 'sad') {
+        line(g, `M-68 ${hy - 26} L-20 ${hy - 44} M68 ${hy - 26} L20 ${hy - 44}`, '#1a1a1a', 6);
+        line(g, `M-28 ${hy + 70} Q0 ${hy + 46} 28 ${hy + 70}`, '#1a1a1a', 6);
+      } else {   // hmm
+        line(g, `M-66 ${hy - 34} L-20 ${hy - 34} M20 ${hy - 44} L66 ${hy - 30}`, '#1a1a1a', 6);
+        line(g, `M-22 ${hy + 64} L24 ${hy + 58}`, '#1a1a1a', 6);
+      }
+    }
+    // spiky hair over the top of the head, with a zigzag fringe
+    let d = '';
+    for (let i = 0; i <= 22; i++) {
+      const a = (200 - i * 220 / 22) * Math.PI / 180, R = i % 2 ? r * 1.28 : r * 1.02;
+      d += `${i ? 'L' : 'M'}${(Math.cos(a) * R).toFixed(1)} ${(hy - Math.sin(a) * R).toFixed(1)} `;
+    }
+    for (let i = 0; i <= 8; i++) { const fx = r * .98 - i * (r * 1.96 / 8); d += `L${fx.toFixed(1)} ${(hy - 40 + (i % 2 ? 22 : -6)).toFixed(1)} `; }
+    shape(g, d + 'Z', HAIR, '#1a1a1a', { gap: 6, ow: 4.5 });
+    if (o.headphones) {
+      line(g, `M${-r - 10} ${hy + 10} C${-r - 20} ${hy - 200} ${r + 20} ${hy - 200} ${r + 10} ${hy + 10}`, '#e3151b', 18);
+      shape(g, ell(-r - 6, hy + 14, 26, 46), '#e3151b', '#1a1a1a', { gap: 6, ow: 5 });
+      shape(g, ell(r + 6, hy + 14, 26, 46), '#e3151b', '#1a1a1a', { gap: 6, ow: 5 });
+    }
+    // hands last
+    for (const [, , , , x2, y2] of P) el('circle', { cx: x2, cy: y2, r: 34, fill: SKIN }, g);
+    for (const [, , , , x2, y2] of P) shape(g, circ(x2, y2, 34), SKIN, '#1a1a1a', { gap: 7, op: .85, ow: 4.5 });
+    if (pose === 'thumb') {
+      const [, , , , tx, ty] = P[0];
+      shape(g, `M${tx - 12} ${ty - 26} L${tx - 14} ${ty - 78} Q${tx} ${ty - 96} ${tx + 14} ${ty - 78} L${tx + 14} ${ty - 26} Z`, SKIN, '#1a1a1a', { gap: 6, op: .85, ow: 4.5 });
+    }
+    return g;
+  }
+  // a song card held in both hands (bust-local coordinates)
+  const songCard = (g, title) => {
+    const d = `M-170 -270 H170 Q190 -270 190 -250 V-60 Q190 -40 170 -40 H-170 Q-190 -40 -190 -60 V-250 Q-190 -270 -170 -270 Z`;
+    el('path', { d, fill: '#fff7d6' }, g);
+    shape(g, d, '#fff7d6', '#1a1a1a', { gap: 14, op: .5, ow: 5 });
+    small(g, 0, -205, title, 54);
+    note(g, -60, -80, .8); note(g, 10, -95, .65, '#e3151b'); heart(g, 80, -105, .8);
+    for (const hx of [-150, 150]) { el('circle', { cx: hx, cy: -100, r: 32, fill: SKIN }, g); shape(g, circ(hx, -100, 32), SKIN, '#1a1a1a', { gap: 7, op: .85, ow: 4.5 }); }
+  };
+
+
+  // ---------- 1: Ei tea, mida kinkida? / Kingi laul. ----------
+  (() => { const s = $('s1');
+    const t = panel(s, TOP), b = panel(s, BOT);
+    label(s, 540, 125, [['Ei tea, mida kinkida', '#1a1a1a'], ['?', '#e3151b']], 104);
+    bust(t, 540, 700, 1.0, 'sad', 'head');
+    qm(t, 200, 330, 1.2); qm(t, 870, 300, 1, '#1a1a1a'); burst(t, 180, 520, .9, '#f2c200', -1);
+    divider(s);
+    label(s, 540, 835, [['Kingi ', '#1a1a1a'], ['laul.', '#e3151b']], 124);
+    bust(b, 520, 1440, 1.0, 'happy', 'thumb', { headphones: true });
+    note(b, 180, 1080, 1.3); note(b, 250, 1230, 1, '#e3151b'); note(b, 860, 1040, 1.1, '#2f6fe0');
+    burst(b, 170, 960, .9, '#f2c200', -1);
+  })();
+
+  // ---------- 2: Kingid kaovad kapi taha? / Laul jääb alles. ----------
+  (() => { const s = $('s2');
+    const t = panel(s, TOP), b = panel(s, BOT);
+    label(s, 540, 125, [['Kingid kaovad kapi taha', '#1a1a1a'], ['?', '#e3151b']], 92);
+    bust(t, 380, 700, 1.0, 'sad', 'chin');
+    bubble(t, 790, 390, 150, 560, 300);
+    shape(t, rect(700, 330, 180, 130), '#c98a4b', '#1a1a1a', { gap: 8, ow: 4.5 });
+    shape(t, rect(720, 350, 140, 50), '#e2b77c', '#1a1a1a', { gap: 8, ow: 3.5 });
+    gift(t, 745, 290, 70, 50, { box: '#e3151b', ribbon: '#ffd21a' });
+    line(t, 'M700 330 L740 300 M720 330 L745 310', '#888', 3);
+    divider(s);
+    label(s, 540, 835, [['Laul ', '#1a1a1a'], ['jääb alles.', '#e3151b']], 116);
+    const g = bust(b, 540, 1440, 1.0, 'happy', 'none');
+    songCard(g, 'Laul sulle');
+    burst(b, 200, 990, .9, '#f2c200', -1); burst(b, 880, 990, .9);
+    note(b, 860, 1200, 1, '#2f6fe0');
+  })();
+
+  // ---------- 3: Raske öelda, mida tunned? / Ütle see laulus. ----------
+  (() => { const s = $('s3');
+    const t = panel(s, TOP), b = panel(s, BOT);
+    label(s, 540, 125, [['Raske öelda, mida tunned', '#1a1a1a'], ['?', '#e3151b']], 88);
+    bust(t, 380, 700, 1.0, 'sad', 'none');
+    bubble(t, 790, 380, 140, 560, 300);
+    small(t, 790, 410, '…', 140);
+    line(t, 'M170 300 q20 -20 40 0 q20 20 40 0 M160 360 q20 -20 40 0 q20 20 40 0', '#e3151b', 6);
+    divider(s);
+    label(s, 540, 835, [['Ütle see ', '#1a1a1a'], ['laulus.', '#e3151b']], 124);
+    bust(b, 460, 1440, 1.0, 'sing', 'thumb');
+    note(b, 760, 1000, 1.2, '#e3151b'); note(b, 880, 1140, 1.1); note(b, 180, 1060, 1.2, '#2f6fe0'); heart(b, 860, 1290, 1.1);
+  })();
+
+  // ---------- 4: Tal on juba kõik olemas? / Laul tema enda loost. ----------
+  (() => { const s = $('s4');
+    const t = panel(s, TOP), b = panel(s, BOT);
+    label(s, 540, 125, [['Tal on juba kõik olemas', '#1a1a1a'], ['?', '#e3151b']], 92);
+    bust(t, 380, 700, 1.0, 'hmm', 'chin');
+    bubble(t, 790, 390, 150, 560, 300);
+    gift(t, 700, 400, 90, 70, { box: '#2f6fe0', ribbon: '#e3151b' });
+    gift(t, 800, 410, 80, 60, { box: '#36b44a', ribbon: '#ffd21a' });
+    gift(t, 750, 320, 80, 60, { box: '#e3151b', ribbon: '#ffd21a' });
+    divider(s);
+    label(s, 540, 835, [['Laul tema ', '#1a1a1a'], ['enda loost.', '#e3151b']], 104);
+    const g = bust(b, 540, 1440, 1.0, 'happy', 'none');
+    songCard(g, 'Laul talle');
+    burst(b, 200, 990, .9, '#f2c200', -1); burst(b, 880, 990, .9);
+  })();
+
+  // ---------- 5: Tahad oma laulu? / Kirjuta mulle! ----------
+  (() => { const s = $('s5');
+    const t = panel(s, TOP);
+    label(s, 540, 125, [['Tahad oma laulu', '#1a1a1a'], ['?', '#e3151b']], 112);
+    bust(t, 540, 700, 1.0, 'happy', 'thumb');
+    note(t, 200, 330, 1.2); note(t, 230, 520, 1, '#e3151b'); heart(t, 900, 260, 1.2);
+    divider(s);
+    label(s, 540, 850, [['Kirjuta ', '#1a1a1a'], ['mulle!', '#e3151b']], 130);
+    small(s, 540, 970, 'lauluhing.com', 76, '#e3151b');
+    small(s, 540, 1055, 'TikToki sõnumitesse', 60);
+    small(s, 540, 1130, 'või lauluhing@gmail.com', 60);
+    label(s, 540, 1240, [['Praegu on ', '#1a1a1a'], ['soodushind!', '#e3151b']], 68);
+    burst(s, 150, 1000, .9, '#f2c200', -1); burst(s, 920, 1000, .9);
+  })();
+</script>
+</body>
+</html>
