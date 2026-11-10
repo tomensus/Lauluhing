@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<title>Lauluhing – kuidas tellida (story)</title>
+<link rel="stylesheet" href="../../tiktok-shared/lauluhing.css">
+<style>
+  /* 9:16 story in the crayon style: how to order in three steps. Content between y 280 and 1650. */
+  @font-face{font-family:Kalam;font-weight:700;src:url(../../tiktok-shared/fonts/kalam.ttf)}
+  .slide{background:#fffdf8}
+  .slide::after{display:none}
+  .slide svg{position:absolute;inset:0;width:1080px;height:1920px}
+</style>
+</head>
+<body>
+<script src="../../tiktok-shared/crayon.js"></script>
+<section class="slide"><svg id="st" viewBox="0 0 1080 1920"></svg></section>
+<script>
+  const s = document.getElementById('st');
+  const label = (x, y, parts, size, anchor = 'middle') => {
+    const t = el('text', { x, y, 'text-anchor': anchor, 'font-family': 'Kalam', 'font-weight': 700, 'font-size': size, filter: 'url(#grain)' }, s);
+    for (const [str, c] of parts) { const sp = el('tspan', { fill: c }, t); sp.textContent = str; }
+    while (t.getComputedTextLength() > (anchor === 'middle' ? 900 : 580) && size > 30) { size -= 2; t.setAttribute('font-size', size); }
+  };
+  const K = '#1a1a1a', R = '#e3151b';
+
+  label(540, 380, [['Kuidas tellida ', K], ['laulu?', R]], 104);
+  line(s, 'M140 420 C400 410 680 430 940 414', R, 8);
+
+  // three steps: number circle, icon, text
+  const step = (y, n, title, sub, icon) => {
+    shape(s, circ(150, y, 58), R, '#b80d12', { gap: 7 });
+    label(150, y + 26, [[String(n), '#ffffff']], 78);
+    icon(300, y);
+    label(400, y - 8, [[title, K]], 64, 'start');
+    label(400, y + 52, [[sub, '#555']], 42, 'start');
+  };
+  step(590, 1, 'Kirjuta mulle', 'TikTokis või lauluhing@gmail.com', (x, y) => {
+    shape(s, rect(x - 50, y - 36, 100, 72), '#fff7d6', K, { gap: 10, op: .6, ow: 5 });
+    line(s, `M${x - 48} ${y - 32} L${x} ${y + 4} L${x + 48} ${y - 32}`, K, 5);
+  });
+  step(820, 2, 'Räägi oma lugu', 'kellele, mälestused, naljad', (x, y) => {
+    shape(s, `M${x - 50} ${y - 44} H${x + 50} Q${x + 60} ${y - 44} ${x + 60} ${y - 34} V${y + 20} Q${x + 60} ${y + 30} ${x + 50} ${y + 30} H${x - 10} L${x - 34} ${y + 54} V${y + 30} H${x - 50} Q${x - 60} ${y + 30} ${x - 60} ${y + 20} V${y - 34} Q${x - 60} ${y - 44} ${x - 50} ${y - 44} Z`, '#cfe4fb', K, { gap: 9, ow: 5 });
+    heart(s, x, y - 8, .7);
+  });
+  step(1050, 3, 'Saad oma laulu', 'valmis laul e-postiga', (x, y) => {
+    note(s, x - 14, y + 30, 1.1, R);
+  });
+
+  // happy little figure with headphones and the sale line
+  line(s, 'M60 1200 C320 1194 760 1206 1020 1198', K, 8);
+  label(540, 1300, [['Praegu on ', K], ['SOODUSHIND!', R]], 84);
+  label(540, 1400, [['Telli ', K], ['lauluhing.com', R]], 84);
+  label(540, 1480, [['või vasta sellele storyle 💬', K]], 56);
+  line(s, 'M540 1530 C532 1560 548 1590 540 1625 M512 1600 L540 1630 L568 1598', K, 8);
+  sparkle(s, 120, 1420, 1.1); sparkle(s, 960, 1420, 1.1);
+  note(s, 900, 560, 1, '#2f6fe0'); heart(s, 930, 1040, 1);
+</script>
+</body>
+</html>
