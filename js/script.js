@@ -133,7 +133,6 @@ document.querySelectorAll('[data-demo-player]').forEach((button) => {
 
 // Order wizard - one question at a time, submitted to Netlify Forms on completion
 const orderForm = document.getElementById('order-form');
-const formNote = document.getElementById('formNote');
 
 if (orderForm) {
   const steps = Array.from(orderForm.querySelectorAll('.wizard-step'));
@@ -174,10 +173,15 @@ if (orderForm) {
       : (value || '');
   }
 
-  function syncPackageHiddenFields() {
-    document.getElementById('hiddenPackage').value = packageGroup.dataset.value || '';
-    document.getElementById('hiddenPrice').value = packageGroup.dataset.price || '';
-  }
+  // There's a single product, so the order goes straight to its Stripe
+  // Payment Link after the last step (add-ons are offered on the Stripe page).
+  const ORDER = {
+    name: 'Personaalne laul',
+    price: '29,95',
+    stripeUrl: 'https://buy.stripe.com/5kQbJ172y9KI7d65oW1oI08',
+  };
+  document.getElementById('hiddenPackage').value = ORDER.name;
+  document.getElementById('hiddenPrice').value = ORDER.price;
 
   // Chip groups behave as single-select buttons that store their value on the group itself.
   orderForm.querySelectorAll('.chip-group').forEach((group) => {
@@ -199,33 +203,6 @@ if (orderForm) {
       otherInput.addEventListener('input', () => syncHiddenField(group));
     }
   });
-
-  // Package cards behave the same way as chips, plus they carry a price and,
-  // where set up, a Stripe Payment Link to redirect to instead of our own
-  // (mock) card form.
-  const packageGroup = document.getElementById('chipPackage');
-  packageGroup.querySelectorAll('.package-option').forEach((option) => {
-    option.addEventListener('click', () => {
-      packageGroup.querySelectorAll('.package-option').forEach((o) => o.classList.remove('is-selected'));
-      option.classList.add('is-selected');
-      packageGroup.dataset.value = option.dataset.value;
-      packageGroup.dataset.price = option.dataset.price;
-      if (option.dataset.stripeUrl) {
-        packageGroup.dataset.stripeUrl = option.dataset.stripeUrl;
-      } else {
-        delete packageGroup.dataset.stripeUrl;
-      }
-      syncPackageHiddenFields();
-      refreshNav();
-    });
-  });
-
-  // With a single package on offer, select it up front.
-  function preselectSinglePackage() {
-    const options = packageGroup.querySelectorAll('.package-option');
-    if (options.length === 1) options[0].click();
-  }
-  preselectSinglePackage();
 
   orderForm.querySelectorAll('input[type="text"], input[type="email"], textarea').forEach((field) => {
     field.addEventListener('input', refreshNav);
@@ -259,8 +236,6 @@ if (orderForm) {
       case 6:
         return Boolean(document.getElementById('chipVoice').dataset.value);
       case 8:
-        return Boolean(packageGroup.dataset.value);
-      case 9:
         return (
           document.getElementById('field-your-name').value.trim() !== '' &&
           isValidEmail(document.getElementById('field-email').value.trim())
@@ -279,31 +254,11 @@ if (orderForm) {
     backBtn.hidden = index === 0;
 
     const isLast = index === steps.length - 1;
-    if (isLast && packageGroup.dataset.stripeUrl) {
-      nextBtn.textContent = 'Jätka maksele →';
-    } else if (isLast) {
-      nextBtn.textContent = 'Lõpeta tellimus';
-    } else {
-      nextBtn.textContent = 'Edasi';
-    }
+    nextBtn.textContent = isLast ? 'Jätka maksele →' : 'Edasi';
 
     progressFill.style.width = `${((index + 1) / steps.length) * 100}%`;
     stepLabel.textContent = `Samm ${index + 1}/${steps.length}`;
     refreshNav();
-  }
-
-  function collectAnswers() {
-    const kellele = document.getElementById('chipKellele').dataset.value;
-    const genre = document.getElementById('chipGenre').dataset.value;
-    return {
-      kellele: kellele === 'muu' ? document.getElementById('kelleleOther').value.trim() : kellele,
-      personName: document.getElementById('field-person-name').value.trim(),
-      genre: genre === 'muu' ? document.getElementById('genreOther').value.trim() : genre,
-      voice: document.getElementById('chipVoice').dataset.value,
-      packageName: packageGroup.dataset.value,
-      packagePrice: packageGroup.dataset.price,
-      yourName: document.getElementById('field-your-name').value.trim(),
-    };
   }
 
   function submitToNetlify() {
@@ -344,35 +299,14 @@ if (orderForm) {
       return;
     }
 
-    if (packageGroup.dataset.stripeUrl) {
-      const stripeUrl = new URL(packageGroup.dataset.stripeUrl);
-      stripeUrl.searchParams.set('client_reference_id', referenceInput.value);
-      const email = document.getElementById('field-email').value.trim();
-      if (email) stripeUrl.searchParams.set('prefilled_email', email);
-      // Best-effort: don't let a failed/slow form submission block payment.
-      submitToNetlify().catch(() => {}).finally(() => {
-        window.location.href = stripeUrl.toString();
-      });
-      return;
-    }
-
-    // Fallback for a package without a configured Stripe Payment Link yet.
-    submitToNetlify().catch(() => {});
-    const answers = collectAnswers();
-    const reference = referenceInput.value;
-    formNote.textContent = `Aitäh, ${answers.yourName}! Sinu "${answers.packageName}" tellimus ${answers.personName ? `("${answers.personName}") ` : ''}on vastu võetud (viide ${reference}) - võtame peagi ühendust, et makse ja laulu üksikasjad kokku leppida. 🎵`;
-    orderForm.reset();
-    orderForm.querySelectorAll('.chip-option.is-selected, .package-option.is-selected').forEach((c) => c.classList.remove('is-selected'));
-    orderForm.querySelectorAll('.chip-group, .package-group').forEach((g) => {
-      delete g.dataset.value;
-      delete g.dataset.price;
-      delete g.dataset.stripeUrl;
+    const stripeUrl = new URL(ORDER.stripeUrl);
+    stripeUrl.searchParams.set('client_reference_id', referenceInput.value);
+    const email = document.getElementById('field-email').value.trim();
+    if (email) stripeUrl.searchParams.set('prefilled_email', email);
+    // Best-effort: don't let a failed/slow form submission block payment.
+    submitToNetlify().catch(() => {}).finally(() => {
+      window.location.href = stripeUrl.toString();
     });
-    orderForm.querySelectorAll('.chip-other-input').forEach((i) => { i.hidden = true; });
-    referenceInput.value = generateReference();
-    preselectSinglePackage();
-    current = 0;
-    showStep(current);
   });
 
   showStep(current);
