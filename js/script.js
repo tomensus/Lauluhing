@@ -32,8 +32,8 @@ document.querySelectorAll('.faq-item').forEach((item) => {
   });
 });
 
-// Song players: real playback for players with a data-audio-src, a
-// visual/interactive mock (no real audio file) for the rest.
+// Song players. The audio is only fetched when someone presses play, so the
+// demo MP3s (several MB) don't slow down the first page load.
 function formatTime(sec) {
   const m = Math.floor(sec / 60);
   const s = Math.floor(sec % 60).toString().padStart(2, '0');
@@ -50,16 +50,16 @@ document.querySelectorAll('[data-demo-player]').forEach((button) => {
   const card = button.closest('.player-controls');
   const fill = card.querySelector('.progress-fill');
   const timeLabel = card.querySelector('.player-time');
-  let totalLabel = timeLabel ? timeLabel.textContent.split('/')[1].trim() : '2:00';
+  let totalLabel = timeLabel ? timeLabel.textContent.split('/')[1].trim() : '';
+  let audio = null;
 
-  if (button.dataset.audioSrc) {
-    const audio = new Audio(button.dataset.audioSrc);
+  function createAudio() {
+    audio = new Audio();
+    audio.preload = 'none';
+    audio.src = button.dataset.audioSrc;
 
     audio.addEventListener('loadedmetadata', () => {
-      if (isFinite(audio.duration)) {
-        totalLabel = formatTime(audio.duration);
-        if (timeLabel) timeLabel.textContent = `0:00 / ${totalLabel}`;
-      }
+      if (isFinite(audio.duration)) totalLabel = formatTime(audio.duration);
     });
 
     audio.addEventListener('timeupdate', () => {
@@ -73,63 +73,48 @@ document.querySelectorAll('[data-demo-player]').forEach((button) => {
       fill.style.width = '0%';
       if (timeLabel) timeLabel.textContent = `0:00 / ${totalLabel}`;
     });
-
-    button.addEventListener('click', () => {
-      stopOtherPlayers(button);
-      if (audio.paused) {
-        audio.play();
-        button.classList.add('is-playing');
-      } else {
-        audio.pause();
-        button.classList.remove('is-playing');
-      }
-    });
-
-    return;
-  }
-
-  const totalSeconds = (() => {
-    const [min, sec] = totalLabel.split(':').map(Number);
-    return min * 60 + sec;
-  })();
-
-  let elapsed = 0;
-  let intervalId = null;
-
-  function stop() {
-    clearInterval(intervalId);
-    intervalId = null;
-    button.classList.remove('is-playing');
-  }
-
-  function reset() {
-    stop();
-    elapsed = 0;
-    fill.style.width = '0%';
-    if (timeLabel) timeLabel.textContent = `0:00 / ${totalLabel}`;
   }
 
   button.addEventListener('click', () => {
+    if (!button.dataset.audioSrc) return;
+    if (!audio) createAudio();
     stopOtherPlayers(button);
-
-    if (intervalId) {
-      stop();
-      return;
+    if (audio.paused) {
+      audio.play().catch(() => button.classList.remove('is-playing'));
+      button.classList.add('is-playing');
+    } else {
+      audio.pause();
+      button.classList.remove('is-playing');
     }
-
-    button.classList.add('is-playing');
-    intervalId = setInterval(() => {
-      elapsed += 0.2;
-      if (elapsed >= totalSeconds) {
-        reset();
-        return;
-      }
-      const pct = (elapsed / totalSeconds) * 100;
-      fill.style.width = `${pct}%`;
-      if (timeLabel) timeLabel.textContent = `${formatTime(elapsed)} / ${totalLabel}`;
-    }, 200);
   });
 });
+
+// Mobile sticky "order" button: shown once the visitor has scrolled past the
+// hero, hidden again while the pricing card or the order form is on screen.
+const mobileCta = document.getElementById('mobileCta');
+const heroSection = document.querySelector('.hero');
+if (mobileCta && heroSection && 'IntersectionObserver' in window) {
+  const visible = new Set();
+  const update = () => {
+    const hide = visible.has('hero') || visible.has('pricing') || visible.has('order');
+    mobileCta.classList.toggle('is-hidden', hide);
+  };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const key = entry.target.dataset.ctaKey;
+      if (entry.isIntersecting) visible.add(key); else visible.delete(key);
+    });
+    update();
+  }, { threshold: 0.15 });
+  [[heroSection, 'hero'], [document.getElementById('pricing'), 'pricing'], [document.getElementById('order'), 'order']]
+    .forEach(([el, key]) => {
+      if (!el) return;
+      el.dataset.ctaKey = key;
+      observer.observe(el);
+    });
+  mobileCta.classList.add('is-hidden');
+  mobileCta.hidden = false;
+}
 
 // Order wizard - one question at a time, submitted to Netlify Forms on completion
 const orderForm = document.getElementById('order-form');
@@ -273,7 +258,7 @@ if (orderForm) {
   function scrollWizardIntoView() {
     // Center the question itself (not the whole step or card) in the
     // viewport. Centering a taller element - the whole card, or a step
-    // with a lot of content like the package cards - can push its own
+    // with a lot of content - can push its own
     // heading above the visible area on a short phone screen, so we
     // target just the question text, which is always small.
     const activeStep = steps[current];
