@@ -220,6 +220,13 @@ if (orderForm) {
     });
   });
 
+  // With a single package on offer, select it up front.
+  function preselectSinglePackage() {
+    const options = packageGroup.querySelectorAll('.package-option');
+    if (options.length === 1) options[0].click();
+  }
+  preselectSinglePackage();
+
   orderForm.querySelectorAll('input[type="text"], input[type="email"], textarea').forEach((field) => {
     field.addEventListener('input', refreshNav);
   });
@@ -363,6 +370,7 @@ if (orderForm) {
     });
     orderForm.querySelectorAll('.chip-other-input').forEach((i) => { i.hidden = true; });
     referenceInput.value = generateReference();
+    preselectSinglePackage();
     current = 0;
     showStep(current);
   });
