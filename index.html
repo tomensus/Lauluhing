@@ -32,7 +32,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%239e2f48'/%3E%3Cpath d='M50,82 C25,63 10,47 10,30 C10,15 22,6 35,12 C42,15 47,21 50,27 C53,21 58,15 65,12 C78,6 90,15 90,30 C90,47 75,63 50,82 Z' fill='white'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 
 <script type="application/ld+json">
@@ -160,7 +160,7 @@
     <nav class="main-nav" id="main-nav">
       <a href="#how">Kuidas see töötab</a>
       <a href="#examples">Näited</a>
-      <a href="#order">Telli</a>
+      <a href="#pricing">Hind</a>
       <a href="#faq">KKK</a>
     </nav>
 
@@ -183,7 +183,7 @@
         <h1>Kingi laul, mis räägib <span class="highlight">teie lugu</span>.</h1>
         <p class="hero-sub">Jaga meiega oma mälestusi, nimesid ja hetki - meie loome neist personaalse ja ainulaadse laulu, mida saab kinkida sünnipäevaks, pulmaks, aastapäevaks või lihtsalt niisama.</p>
         <div class="hero-actions">
-          <a href="#order" class="btn btn-primary">Telli oma laul</a>
+          <a href="#order" class="btn btn-primary">Telli laul · 29,95€</a>
           <a href="#examples" class="btn btn-ghost">
             <span class="play-icon-small" aria-hidden="true">▶</span>
             Kuula näidislaule
@@ -289,42 +289,6 @@
         </div>
 
         <div class="example-card">
-          <div class="example-art" style="--tint:#e4e3ef">💍</div>
-          <div class="example-body">
-            <p class="example-title">"Jah, sinuga alati"</p>
-            <p class="example-tag">Pulmalaul · Akustiline</p>
-            <div class="player-controls compact">
-              <button class="play-btn" data-demo-player aria-label="Mängi näidislugu">
-                <span class="icon-play">▶</span>
-                <span class="icon-pause">❙❙</span>
-              </button>
-              <div class="progress-track">
-                <div class="progress-fill"></div>
-              </div>
-              <span class="player-time">0:00 / 2:31</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="example-card">
-          <div class="example-art" style="--tint:#dde9e2">👶</div>
-          <div class="example-body">
-            <p class="example-title">"Tere tulemast, väike"</p>
-            <p class="example-tag">Lapse sünniks · Hällilaul</p>
-            <div class="player-controls compact">
-              <button class="play-btn" data-demo-player aria-label="Mängi näidislugu">
-                <span class="icon-play">▶</span>
-                <span class="icon-pause">❙❙</span>
-              </button>
-              <div class="progress-track">
-                <div class="progress-fill"></div>
-              </div>
-              <span class="player-time">0:00 / 1:42</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="example-card">
           <div class="example-art" style="--tint:#f1e0e5">❤️</div>
           <div class="example-body">
             <p class="example-title">"Meie 20 aastat"</p>
@@ -375,6 +339,46 @@
 
       <div class="section-cta">
         <a href="#order" class="btn btn-primary">Telli oma laul</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="container pricing-inner">
+      <div>
+        <p class="section-eyebrow">Hind</p>
+        <h2>Üks lihtne hind, kõik vajalik hinnas</h2>
+        <p class="section-lead">Ei mingeid peidetud tasusid. Maksad alles tellimuse lõpus turvaliselt Stripe'i kaudu.</p>
+        <ul class="pricing-points">
+          <li>⏱️ <strong>Valmis 24 tunniga</strong> – sobib ka viimase hetke kingituseks</li>
+          <li>💬 <strong>Parandused tasuta</strong> – kui midagi kripeldama jääb, teeme üle</li>
+          <li>🔒 <strong>Turvaline makse</strong> – kaardimakse Stripe'i kaudu</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-head">
+          <div>
+            <h3>Personaalne laul</h3>
+            <p class="pricing-sub">Sinu lugu, sinu nimed, sinu laul</p>
+          </div>
+          <p class="pricing-price">29,95€</p>
+        </div>
+        <ul class="pricing-features">
+          <li>Originaalne laul sinu loo põhjal</li>
+          <li>Sõnad + meloodia, sina valid stiili ja hääle</li>
+          <li>Kiire tarne – valmis 24 tunni jooksul</li>
+          <li>Kõrgkvaliteetne MP3 fail e-postiga</li>
+          <li>Väiksemad parandused tasuta</li>
+        </ul>
+        <div class="pricing-addons">
+          <p class="pricing-addons-title">Soovi korral makselehel juurde:</p>
+          <p><span>📺 YouTube'i üleslaadimine</span><span>+9,95€</span></p>
+          <p><span>🎬 Lyric video</span><span>+9,95€</span></p>
+        </div>
+        <a href="#order" class="btn btn-primary btn-full">Alusta tellimist</a>
+        <p class="pricing-secure">🔒 Turvaline makse · 💯 Rahulolu garantii</p>
       </div>
     </div>
   </section>
@@ -487,6 +491,7 @@
           <div class="wizard-step" data-step="8" data-required="true" hidden>
             <p class="wizard-question">Kuhu saadame valmis laulu?</p>
             <p class="wizard-hint">Seda kasutame sinu tellimuse kinnitamiseks ja valmis laulu saatmiseks. Järgmisena suundud turvalisele makselehele.</p>
+            <p class="order-summary"><span>Personaalne laul</span><strong>29,95€</strong></p>
             <div class="form-row">
               <label for="field-your-name">Sinu nimi</label>
               <input type="text" id="field-your-name" name="sinu_nimi" placeholder="Nt Kadri Tamm">
@@ -607,6 +612,8 @@
     <p>© 2026 Lauluhing. Kõik õigused kaitstud.</p>
   </div>
 </footer>
+
+<a href="#order" class="mobile-cta" id="mobileCta" hidden>Telli laul · 29,95€</a>
 
 <script src="js/script.js" defer></script>
 </body>

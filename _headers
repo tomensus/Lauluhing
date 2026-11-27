@@ -1,0 +1,3 @@
+# Netlify caching: the demo songs and images rarely change, so let browsers keep them.
+/assets/*
+  Cache-Control: public, max-age=604800
