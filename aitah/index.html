@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aitäh tellimuse eest! - Lauluhing</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#faf7f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#12161f" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%239e2f48'/%3E%3Cpath d='M50,82 C25,63 10,47 10,30 C10,15 22,6 35,12 C42,15 47,21 50,27 C53,21 58,15 65,12 C78,6 90,15 90,30 C90,47 75,63 50,82 Z' fill='white'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 120 170" width="20" height="26" fill="none" aria-hidden="true">
+          <path d="M64,95 C34,72 14,52 14,32 C14,12 34,2 49,12 C57,18 61,26 64,32 C67,26 71,18 79,12 C94,2 114,12 114,32 C114,52 94,72 64,95 Z" stroke="currentColor" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>
+          <line x1="64" y1="95" x2="64" y2="146" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+          <path d="M64,60 C85,55 100,40 108,15" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+          <path d="M64,90 C82,88 95,78 103,58" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+          <ellipse cx="46" cy="152" rx="21" ry="14" fill="currentColor" transform="rotate(-18 46 152)"/>
+        </svg>
+      </span>
+      <span class="logo-text">Lauluhing</span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <section class="thanks">
+    <div class="container thanks-inner">
+      <div class="thanks-icon" aria-hidden="true">🎵</div>
+      <h1>Aitäh! Sinu tellimus on vastu võetud.</h1>
+      <p class="thanks-lead">Makse õnnestus ja hakkame sinu laulu kallal kohe tööle.</p>
+      <ul class="thanks-steps">
+        <li><strong>Laul valmib 24 tunni jooksul</strong> – saadame valmis MP3 faili sinu e-postile.</li>
+        <li><strong>Küsimused?</strong> – kirjuta meile <a href="mailto:lauluhing@gmail.com">lauluhing@gmail.com</a></li>
+      </ul>
+      <a href="/" class="btn btn-ghost">Tagasi avalehele</a>
+    </div>
+  </section>
+</main>
+
+<script src="/js/tracking.js"></script>
+<script>
+  // Purchase conversion for Meta. Stripe redirects here with
+  // ?session_id={CHECKOUT_SESSION_ID}; it doubles as the event ID and keeps a
+  // page reload from counting the same purchase twice.
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var sessionId = params.get('session_id') || '';
+    var key = 'lh-purchase-' + (sessionId || 'no-session');
+    try { if (sessionId && localStorage.getItem(key)) return; } catch (e) {}
+    window.lhTrack('Purchase', { value: 29.95, currency: 'EUR', content_name: 'Personaalne laul' },
+      { eventID: sessionId || undefined, keepUntilConsent: true });
+    try { if (sessionId) localStorage.setItem(key, '1'); } catch (e) {}
+  })();
+</script>
+</body>
+</html>
