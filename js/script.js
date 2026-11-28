@@ -277,6 +277,10 @@ if (orderForm) {
   nextBtn.addEventListener('click', () => {
     if (!isStepValid(current)) return;
 
+    if (current === 0) {
+      window.lhTrack?.('TellimusAlustatud', {}, { custom: true });
+    }
+
     if (current < steps.length - 1) {
       current += 1;
       showStep(current);
@@ -288,6 +292,8 @@ if (orderForm) {
     stripeUrl.searchParams.set('client_reference_id', referenceInput.value);
     const email = document.getElementById('field-email').value.trim();
     if (email) stripeUrl.searchParams.set('prefilled_email', email);
+    window.lhTrack?.('InitiateCheckout', { value: 29.95, currency: 'EUR', content_name: ORDER.name },
+      { eventID: referenceInput.value });
     // Best-effort: don't let a failed/slow form submission block payment.
     submitToNetlify().catch(() => {}).finally(() => {
       window.location.href = stripeUrl.toString();
